@@ -32,7 +32,7 @@
             android:id="@+id/buttonItems"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:onClick="buttonItemsOnClick"
+            android:onClick="buttonCreateNewItemOnClick"
             android:text="@string/create_new_item" />
 
         <Button
