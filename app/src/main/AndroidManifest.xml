@@ -31,7 +31,7 @@
                 android:value="comp3350.ims.presentation.StudentsActivity" />
         </activity>
         <activity
-            android:name="comp3350.ims.presentation.CoursesActivity"
+            android:name="comp3350.ims.presentation.ActiveInventoryActivity"
             android:label="@string/title_activity_courses" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -42,7 +42,7 @@
             android:label="@string/title_activity_course_students" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="comp3350.ims.presentation.CoursesActivity" />
+                android:value="comp3350.ims.presentation.ActiveInventoryActivity" />
         </activity>
 
     </application>

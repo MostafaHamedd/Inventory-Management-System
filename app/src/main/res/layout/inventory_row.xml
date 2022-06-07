@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="64dp">
+
+    <TextView
+        android:id="@+id/itemName"
+        android:layout_width="100"
+        android:layout_height="32"
+        android:text="ItemName" />
+
+    <TextView
+        android:id="@+id/categoryName"
+        android:layout_width="100"
+        android:layout_height="32"
+        android:text="CategoryName" />
+
+    <TextView
+        android:id="@+id/itemPrice"
+        android:layout_width="100"
+        android:layout_height="32"
+        android:text="itemPrice"
+        android:translationX="110dp"
+        android:translationY="-64dp" />
+
+    <TextView
+        android:id="@+id/itemQuantity"
+        android:layout_width="100"
+        android:layout_height="32"
+        android:text="itemQuantity"
+        android:translationX="110dp"
+        android:translationY="-64dp" />
+
+    <Button
+        android:id="@+id/viewAllItems"
+        android:layout_width="100"
+        android:layout_height="64"
+        android:text="ViewAll"
+        android:translationX="220dp"
+        android:translationY="-128dp" />
+    <Button
+        android:id="@+id/addItem"
+        android:layout_width="100"
+        android:layout_height="64"
+        android:text="+"
+        android:translationX="320dp"
+        android:translationY="-196dp" />
+</LinearLayout>
