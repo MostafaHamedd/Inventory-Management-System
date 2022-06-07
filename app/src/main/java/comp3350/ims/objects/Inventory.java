@@ -1,7 +1,9 @@
+package comp3350.ims.objects;
 import java.util.ArrayList;
+
 public class Inventory {
     private int numofItems ;
-    ArrayList<Item> items = new ArrayList() ;
+    public ArrayList<Item> items = new ArrayList() ;
     //private int size ;
 
 
@@ -46,6 +48,11 @@ public class Inventory {
         }
 
         return item ;
+    }
+
+    public Item getItem(int index){
+
+        return items.get(index) ;
     }
 
 

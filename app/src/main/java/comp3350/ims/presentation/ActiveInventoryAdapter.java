@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import comp3350.ims.R;
+import comp3350.ims.objects.Inventory;
 
 public class ActiveInventoryAdapter extends BaseAdapter {
     Context context;
@@ -18,6 +19,7 @@ public class ActiveInventoryAdapter extends BaseAdapter {
         this.context = context;
         this.activeInventory = inventory;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        System.out.println("WE MADE IT HERE");
     }
 
     @Override
@@ -25,27 +27,27 @@ public class ActiveInventoryAdapter extends BaseAdapter {
         View vi = convertView;
 
         if(vi == null){
-            vi = inflater.inflate(R.layout.row,null);
+            vi = inflater.inflate(R.layout.inventory_row,null);
         }
 
         TextView itemName = (TextView) vi.findViewById(R.id.itemName);
-        itemName.setText(activeInventory.getItem(position).getName());
+        itemName.setText("Name: " + activeInventory.getItem(position).getName());
 
         TextView categoryName = (TextView) vi.findViewById(R.id.categoryName);
-        categoryName.setText(activeInventory.getItem(position).getCategory());
+        categoryName.setText("Category: " + activeInventory.getItem(position).getCategories().get(0) + "");
 
         TextView itemQuantity = (TextView) vi.findViewById(R.id.itemQuantity);
-        itemQuantity.setText(activeInventory.getItem(position).getQuantity());
+        itemQuantity.setText("Quantity: " + activeInventory.getItem(position).getQuantity() + "");
 
         TextView itemPrice = (TextView) vi.findViewById(R.id.itemPrice);
-        itemPrice.setText(activeInventory.getItem(position).getPrice());
+        itemPrice.setText("Price: $" + activeInventory.getItem(position).getPrice() + "");
 
         return vi;
     }
 
     @Override
     public int getCount(){
-        return activeInventory.numItems();
+        return activeInventory.items.size();
     }
 
     @Override
