@@ -29,19 +29,19 @@
         android:layout_centerHorizontal="true">
 
         <Button
-            android:id="@+id/buttonStudents"
+            android:id="@+id/buttonItems"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:onClick="buttonStudentsOnClick"
+            android:onClick="buttonCreateNewItemOnClick"
             android:text="@string/create_new_item" />
 
         <Button
-            android:id="@+id/buttonCourses"
+            android:id="@+id/buttonInventory"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:layout_marginBottom="60dp"
-            android:onClick="buttonCoursesOnClick"
+            android:onClick="buttonInventoryOnClick"
             android:text="@string/view_inventory" />
 
         <Button
