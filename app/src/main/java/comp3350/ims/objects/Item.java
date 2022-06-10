@@ -2,20 +2,25 @@ package comp3350.ims.objects;
 
 import java.util.List;
 
-public class Item extends ItemType{
+public class Item{
 
+    private String name;
+    private float price;
     private String id;
     private String location;
     private String date;
+    private List<String> categories;
 
     public Item(){} //Base constructor
 
     public Item(String id,String location,String date, String name,
-                float price, int quantity, List<String> categories){
-        super(name,price,quantity,categories);
+                float price, List<String> categories){
         this.id = id;
         this.location = location;
         this.date = date;
+        this.name = name;
+        this.price = price;
+        this.categories = categories;
     }
 
     public String getId(){
@@ -40,5 +45,29 @@ public class Item extends ItemType{
 
     public void setDate(String d){
         date = d;
+    }
+
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void addCategorie(String categorie) {
+       categories.add(categorie);
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
