@@ -8,6 +8,7 @@ public class ItemType {
     private float price;
     private int quantity;
     private ArrayList<String> categories; //Going to change once we get category class
+    private ArrayList<Item> items;
 
     public ItemType(){} //Base constructor
 
@@ -17,6 +18,7 @@ public class ItemType {
         this.price = price;
         this.quantity = quantity;
         this.categories = new ArrayList<String>(categories);
+        items = new ArrayList<Item>();
     }
 
     public String getName(){
@@ -55,5 +57,7 @@ public class ItemType {
         categories = c;
     }
 
-
+    public void addItem(Item i){
+        items.add(i);
+    }
 }
