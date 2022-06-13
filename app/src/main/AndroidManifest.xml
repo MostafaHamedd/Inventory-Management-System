@@ -44,6 +44,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="comp3350.ims.presentation.CoursesActivity" />
         </activity>
+        <activity android:name=".presentation.CategoryActivity" />
 
     </application>
 
