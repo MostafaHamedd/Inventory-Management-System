@@ -3,7 +3,11 @@ package comp3350.ims.presentation;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import comp3350.ims.R;
 
@@ -25,6 +29,13 @@ public class ItemCreate extends AppCompatActivity {
                 R.array.locations, android.R.layout.simple_spinner_item);
         adapterLocation.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinLocation.setAdapter(adapterLocation);
+        //setting default date to today's date.
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
+        Date todayDate = new Date();
+        String thisDate = currentDate.format(todayDate);
+        EditText date = (EditText) findViewById(R.id.editTextDate);
+        date.setText(thisDate);
+
 
     }
 }
