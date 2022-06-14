@@ -19,7 +19,7 @@ public class ItemType {
     public ItemType(String name, float price, int quantity, String location, String date, List<String> categories){
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
+        this.quantity = 0;
         this.location = location;
         this.date = date;
         this.categories = new ArrayList<String>(categories);
