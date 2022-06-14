@@ -2,7 +2,7 @@ package comp3350.ims.objects;
 
 import java.util.List;
 
-public class Item extends ItemType{
+public class Item{
 
     private String id;
     private String location;
@@ -10,12 +10,15 @@ public class Item extends ItemType{
 
     public Item(){} //Base constructor
 
-    public Item(String id,String location,String date, String name,
-                float price, int quantity, List<String> categories){
-        super(name,price,quantity,categories);
-        this.id = id;
-        this.location = location;
+    public Item(String location, String date){
         this.date = date;
+        this.location = location;
+    }
+
+    public Item(String id, String location, String date){
+        this.id = id;
+        this.date = date;
+        this.location = location;
     }
 
     public String getId(){
@@ -26,19 +29,13 @@ public class Item extends ItemType{
         this.id = i;
     }
 
-    public String getLocation(){
-        return location;
-    }
-
-    public void setLocation(String l){
-        location = l;
-    }
-
     public String getDate(){
         return date;
     }
 
-    public void setDate(String d){
-        date = d;
+    public String getLocation(){
+        return location;
     }
+
+
 }

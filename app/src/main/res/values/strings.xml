@@ -1,6 +1,42 @@
 <resources>
+
     <string name="app_name">IMS</string>
 
+    <!--   item creation   -->
+    <string name="item_name">Name</string>
+    <string name="item_price">Price</string>
+    <string name="item_quantity">Quantity</string>
+    <string name="item_date">Date</string>
+    <string name="item_category">Category</string>
+    <string name="item_location">Location</string>
+    <string name="item_create">Create</string>
+    <string name="item_dollar_sign">$</string>
+
+    <!--   placeholders   -->
+    <string name="placeholderName">Enter Name</string>
+    <string name="placeholderPrice">0.00</string>
+    <string name="placeholderQuantity">Enter Quantity</string>
+    <string name="placeholderDate">DD/MM/YYYY</string>
+    <string name="placeholderCategory">Choose Category</string>
+    <string name="placeholderLocation">Choose Location</string>
+
+    <!--  pre-set locations spinner   -->
+    <string-array name="locations">
+        <item>None</item>
+        <item>Warehouse</item>
+        <item>Sales-floor</item>
+    </string-array>
+
+    <!--  pre-set category spinner   -->
+    <string-array name="categories">
+        <item>None</item>
+        <item>Dairy</item>
+        <item>Meat</item>
+        <item>Fruits</item>
+        <item>Vegetables</item>
+    </string-array>
+
+    <!--   other   -->
     <string name="action_settings">Settings</string>
     <string name="inventory_management_system">Inventory Management System</string>
     <string name="title_activity_students">IMS: Students</string>
@@ -20,4 +56,5 @@
     <string name="gpa">GPA</string>
     <string name="fatalError">Fatal error</string>
     <string name="warning">Warning</string>
+
 </resources>
