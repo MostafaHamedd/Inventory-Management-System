@@ -61,16 +61,16 @@ public class ItemCreate extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(ItemCreate.this, "New Item Created", Toast.LENGTH_SHORT).show();
                 String nameString = itemName.getText().toString();
-
-                String priceString = itemPrice.getText().toString();
-                float price = Float.parseFloat(priceString);
-
-                String quantityString = itemQuantity.getText().toString();
-                int quantity = Integer.parseInt(quantityString);
-
-                String categoryString = itemCategory.getTransitionName().toString();
-
-                String locationString = itemLocation.getTransitionName().toString();
+//
+//                String priceString = itemPrice.getText().toString();
+//                float price = Float.parseFloat(priceString);
+//
+//                String quantityString = itemQuantity.getText().toString();
+//                int quantity = Integer.parseInt(quantityString);
+//
+//                String categoryString = itemCategory.getTransitionName().toString();
+//
+//                String locationString = itemLocation.getTransitionName().toString();
 
 
             }
