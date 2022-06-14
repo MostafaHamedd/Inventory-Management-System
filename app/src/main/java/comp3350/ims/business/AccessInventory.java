@@ -57,4 +57,24 @@ public class AccessInventory
 		return activeInventory.items.get(index);
 	}
 
+	public String getCategories(ArrayList<String> categoryList){
+		categoryList.clear();
+		return dataAccess.getCategoryList(categoryList);
+	}
+
+	public void addCategory(String category){
+		if(category != null) {
+			dataAccess.addCategory(category);
+		}
+	}
+
+	public void removeIndividualItem(int index){
+
+		if(index >= 0){
+			ItemType item = getItem(currentItemPosition);
+			item.removeItem(index);
+		}
+
+	}
+
 }

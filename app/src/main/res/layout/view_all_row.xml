@@ -21,11 +21,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/categoryName1"
+            android:id="@+id/itemLocation"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
-            android:text="CategoryName"
+            android:text="itemLocation"
             android:textColor="#070707"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -38,11 +38,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/itemPrice1"
+            android:id="@+id/itemId"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
-            android:text="itemPrice"
+            android:text="itemId"
             android:textColor="#070707"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -65,25 +65,14 @@
         android:layout_weight="4"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/itemId"
+        <Button
+            android:id="@+id/removeItemButton"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:text="itemID"
-            android:textColor="#070707"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:onClick="buttonRemoveItem"
+            android:text="Remove" />
 
-        <TextView
-            android:id="@+id/itemLocation"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:text="itemLocation"
-            android:textColor="#070707"
-            android:textSize="16sp"
-            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>
