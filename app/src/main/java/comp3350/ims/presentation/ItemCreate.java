@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import comp3350.ims.R;
@@ -16,14 +17,20 @@ import comp3350.ims.business.AccessInventory;
 public class ItemCreate extends AppCompatActivity {
 
     private AccessInventory accessInventory;
+    private ArrayList<String> categoryList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_create);
-
+        accessInventory = new AccessInventory();
         Spinner spinCategory = findViewById(R.id.spinnerCategory);
-        ArrayAdapter<CharSequence> adapterCategory = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
-        adapterCategory.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+        categoryList = new ArrayList<>();
+
+        accessInventory.getCategories(categoryList);
+
+        ArrayAdapter<String> adapterCategory = new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,categoryList);
+        adapterCategory.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinCategory.setAdapter(adapterCategory);
 
         Spinner spinLocation = findViewById(R.id.spinnerLocation);

@@ -46,13 +46,13 @@ public class DataAccessStub
 		categoryList.add("Bakery") ;
 		categoryList.add("Test") ;
 
-		item = new ItemType("Milk", 5.55f, 12, "Ware House", "12/06/2022" ,categoryList );
+		item = new ItemType("Milk", 5.55f, 12, "Ware House", "12/06/2022" ,"Dairy" );
 		activeInventory.addItem(item);
-		item = new ItemType("Cheese", 6.5f, 12, "Ware House", "12/06/2022" ,categoryList );
+		item = new ItemType("Cheese", 6.5f, 12, "Ware House", "12/06/2022" ,"Dairy" );
 		activeInventory.addItem(item);
-		item = new ItemType("Butter", 3.5f, 12, "Ware House", "12/06/2022" ,categoryList );
+		item = new ItemType("Butter", 3.5f, 12, "Ware House", "12/06/2022" ,"Dairy" );
 		activeInventory.addItem(item);
-		item = new ItemType("Cream", 5.55f, 12, "Ware House", "12/06/2022" ,categoryList );
+		item = new ItemType("Cream", 5.55f, 12, "Ware House", "12/06/2022" ,"Dairy" );
 		activeInventory.addItem(item);
 
 

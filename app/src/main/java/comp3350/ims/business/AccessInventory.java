@@ -63,7 +63,18 @@ public class AccessInventory
 	}
 
 	public void addCategory(String category){
-		dataAccess.addCategory(category);
+		if(category != null) {
+			dataAccess.addCategory(category);
+		}
+	}
+
+	public void removeIndividualItem(int index){
+
+		if(index >= 0){
+			ItemType item = getItem(currentItemPosition);
+			item.removeItem(index);
+		}
+
 	}
 
 }
