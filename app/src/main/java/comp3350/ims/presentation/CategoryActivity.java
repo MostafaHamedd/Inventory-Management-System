@@ -16,7 +16,7 @@ import comp3350.ims.objects.Category;
 public class CategoryActivity extends Activity {
 
    private ArrayList<Category> Categories  ;
-   private ArrayList<String> cateogryList ;
+   private ArrayList<String> categoryList ;
    private ArrayAdapter adapter ;
    private Button createButton ;
    private EditText userText ;
@@ -24,25 +24,25 @@ public class CategoryActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.active_category);
-        cateogryList = new ArrayList<String>() ;
+        categoryList = new ArrayList<String>() ;
 
-        cateogryList.add("Dairy") ;
-        cateogryList.add("Fruits") ;
-        cateogryList.add("Fruits & vegetables") ;
-        cateogryList.add("Meat") ;
-        cateogryList.add("Pantry") ;
-        cateogryList.add("Fish & seafood") ;
-        cateogryList.add("Drinks") ;
-        cateogryList.add("Frozen") ;
-        cateogryList.add("Bakery") ;
-        cateogryList.add("Test") ;
+        categoryList.add("Dairy") ;
+        categoryList.add("Fruits") ;
+        categoryList.add("Fruits & vegetables") ;
+        categoryList.add("Meat") ;
+        categoryList.add("Pantry") ;
+        categoryList.add("Fish & seafood") ;
+        categoryList.add("Drinks") ;
+        categoryList.add("Frozen") ;
+        categoryList.add("Bakery") ;
+        categoryList.add("Test") ;
 
 
 //
 //        String[] testArray = {"Dairy","Fruits & vegetables","Meat","Pantry",
 //                "Fish & seafood","Drinks","Deli","Frozen","Bakery"};
-        ArrayAdapter adapter = new ArrayAdapter<String>(this,
-                R.layout.activtylist_view,cateogryList );
+         adapter = new ArrayAdapter<String>(this,
+                R.layout.activtylist_view,categoryList );
         ListView listView = (ListView) findViewById(R.id.categoryList);
         listView.setAdapter(adapter);
        createButton = (Button) findViewById(R.id.btnCreateCategory) ;
@@ -51,9 +51,10 @@ public class CategoryActivity extends Activity {
     }
 
     public void buttonsCreateCategoryOnClick(View v){
-
         String name = userText.getText().toString();
-        cateogryList.add(name) ;
+        categoryList.add(name) ;
+        System.out.println(categoryList.toString()) ;
+        adapter.notifyDataSetChanged();
     }
 
 }
