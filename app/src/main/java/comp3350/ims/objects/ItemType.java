@@ -11,7 +11,7 @@ public class ItemType {
     private String date;
     private ArrayList<String> categories; //Going to change once we get category class
     private ArrayList<Item> items;
-    private int id = 0;
+    private static int id = 0;
 
     public ItemType(){} //Base constructor
 
