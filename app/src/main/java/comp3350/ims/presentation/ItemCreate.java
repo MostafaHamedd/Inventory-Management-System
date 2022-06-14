@@ -10,17 +10,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import comp3350.ims.R;
+import comp3350.ims.business.AccessInventory;
+
 
 public class ItemCreate extends AppCompatActivity {
 
+    private AccessInventory accessInventory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_create);
 
         Spinner spinCategory = findViewById(R.id.spinnerCategory);
-        ArrayAdapter<CharSequence> adapterCategory = ArrayAdapter.createFromResource(this,
-                R.array.categories, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterCategory = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
         adapterCategory.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinCategory.setAdapter(adapterCategory);
 

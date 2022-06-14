@@ -1,5 +1,6 @@
 package comp3350.ims.persistence;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class DataAccessStub
 	private String dbType = "stub";
 
 	private Inventory activeInventory;
-	private ArrayList<String> category;
+	private ArrayList<String> categoryList;
 
 	public DataAccessStub(String dbName)
 	{
@@ -32,16 +33,26 @@ public class DataAccessStub
 		ItemType item;
 
 		activeInventory = new Inventory();
-		category = new ArrayList<>();
-		category.add("Dairy");
+		categoryList = new ArrayList<>();
 
-		item = new ItemType("Milk", 5.55f, 12, "Ware House", "12/06/2022" ,category );
+		categoryList.add("Dairy") ;
+		categoryList.add("Fruits") ;
+		categoryList.add("Fruits & vegetables") ;
+		categoryList.add("Meat") ;
+		categoryList.add("Pantry") ;
+		categoryList.add("Fish & seafood") ;
+		categoryList.add("Drinks") ;
+		categoryList.add("Frozen") ;
+		categoryList.add("Bakery") ;
+		categoryList.add("Test") ;
+
+		item = new ItemType("Milk", 5.55f, 12, "Ware House", "12/06/2022" ,categoryList );
 		activeInventory.addItem(item);
-		item = new ItemType("Cheese", 6.5f, 12, "Ware House", "12/06/2022" ,category );
+		item = new ItemType("Cheese", 6.5f, 12, "Ware House", "12/06/2022" ,categoryList );
 		activeInventory.addItem(item);
-		item = new ItemType("Butter", 3.5f, 12, "Ware House", "12/06/2022" ,category );
+		item = new ItemType("Butter", 3.5f, 12, "Ware House", "12/06/2022" ,categoryList );
 		activeInventory.addItem(item);
-		item = new ItemType("Cream", 5.55f, 12, "Ware House", "12/06/2022" ,category );
+		item = new ItemType("Cream", 5.55f, 12, "Ware House", "12/06/2022" ,categoryList );
 		activeInventory.addItem(item);
 
 
@@ -86,6 +97,16 @@ public class DataAccessStub
 		return null;
 	}
 
+	public String getCategoryList(ArrayList<String> categoryList){
+		categoryList.addAll(this.categoryList);
+		return null;
+	}
+
+	public void addCategory(String category){
+		if(category != null){
+			categoryList.add(category);
+		}
+	}
 
 
 }
