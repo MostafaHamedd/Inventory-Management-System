@@ -51,6 +51,11 @@ public class CategoryActivity extends Activity {
         categoryList.add(name) ;
         System.out.println(categoryList.toString()) ;
         adapter.notifyDataSetChanged();
+        userText.setText("");
+    }
+
+    public void buttonsDeleteCategoryOnClick(View v){
+
     }
 
 }
