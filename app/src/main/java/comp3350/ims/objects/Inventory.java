@@ -1,11 +1,14 @@
+package comp3350.ims.objects;
 import java.util.ArrayList;
 public class Inventory {
     private int numofItems ;
-    ArrayList<Item> items = new ArrayList() ;
-    //private int size ;
+    ArrayList<ItemType> itemTypes  ;
+
 
 
     public Inventory(){
+
+        itemTypes  = new ArrayList() ;
         numofItems = 0;
     }
 
@@ -14,20 +17,20 @@ public class Inventory {
     }
 
     public boolean addItem(Item newItem){
-        if(!items.contains(newItem)) {
-            items.add(newItem) ;
+        if(!itemTypes.contains(newItem)) {
+            itemTypes.add(newItem) ;
             numofItems++ ;
             return true ;
         }
         return false ;
     }
 
-    public boolean removeItem(Item item){
-        String targetId = item.getId() ;
+    public boolean removeItem(String itemTypeName){
+        String targetName= itemTypeName ;
         boolean removed = false ;
-        for(int i = 0 ; i < items.size() ; i++) {
-            if(items.get(i).getId().equals(targetId)) {
-                items.remove(i) ;
+        for(int i = 0 ; i < itemTypes.size() ; i++) {
+            if(itemTypes.get(i).getName().equals(targetName)) {
+                itemTypes.remove(i) ;
                 removed = true ;
                 numofItems-- ;
             }
@@ -36,12 +39,12 @@ public class Inventory {
         return removed ;
     }
 
-    public Item getItem(String id){
-        String targetId = id;
-        Item item = null ;
-        for(int i = 0 ; i < items.size() ; i++) {
-            if(items.get(i).getId().equals(targetId)) {
-                item = items.get(i) ;
+    public ItemType getItem(String itemName){
+        String targetId = itemName;
+        ItemType item = null ;
+        for(int i = 0 ; i < itemTypes.size() ; i++) {
+            if(itemTypes.get(i).getName().equals(targetId)) {
+                item = itemTypes.get(i) ;
             }
         }
 
