@@ -11,14 +11,14 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/itemName"
+            android:id="@+id/itemName1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
             android:text="ItemName" />
 
         <TextView
-            android:id="@+id/categoryName"
+            android:id="@+id/categoryName1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
@@ -32,32 +32,40 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/itemPrice"
+            android:id="@+id/itemPrice1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
             android:text="itemPrice" />
 
         <TextView
-            android:id="@+id/itemQuantity"
+            android:id="@+id/itemDate"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
-            android:text="itemQuantity" />
+            android:text="itemDate" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/viewAllItems"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="4"
-        android:onClick="buttonViewAllOnClick"
-        android:text="ViewAll" />
 
-    <Button
-        android:id="@+id/addItem"
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="4"
         android:layout_height="match_parent"
-        android:text="+" />
+        android:layout_weight="4"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/itemId"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:text="itemID" />
+
+        <TextView
+            android:id="@+id/itemLocation"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:text="itemLocation" />
+    </LinearLayout>
+
 </LinearLayout>

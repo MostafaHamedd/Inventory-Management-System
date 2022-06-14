@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Inventory {
     private int numofItems ;
-    public ArrayList<Item> items = new ArrayList() ;
+    public ArrayList<ItemType> items = new ArrayList() ;
     //private int size ;
 
 
@@ -15,7 +15,7 @@ public class Inventory {
         return numofItems ;
     }
 
-    public boolean addItem(Item newItem){
+    public boolean addItem(ItemType newItem){
         if(!items.contains(newItem)) {
             items.add(newItem) ;
             numofItems++ ;
@@ -24,11 +24,11 @@ public class Inventory {
         return false ;
     }
 
-    public boolean removeItem(Item item){
-        String targetId = item.getId() ;
+    public boolean removeItem(ItemType item){
+        String targetId = item.getName() ;
         boolean removed = false ;
         for(int i = 0 ; i < items.size() ; i++) {
-            if(items.get(i).getId().equals(targetId)) {
+            if(items.get(i).getName().equals(targetId)) {
                 items.remove(i) ;
                 removed = true ;
                 numofItems-- ;
@@ -38,20 +38,8 @@ public class Inventory {
         return removed ;
     }
 
-    public Item getItem(String id){
-        String targetId = id;
-        Item item = null ;
-        for(int i = 0 ; i < items.size() ; i++) {
-            if(items.get(i).getId().equals(targetId)) {
-                item = items.get(i) ;
-            }
-        }
 
-        return item ;
-    }
-
-    public Item getItem(int index){
-
+    public ItemType getItem(int index){
         return items.get(index) ;
     }
 
