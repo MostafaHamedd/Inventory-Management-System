@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -40,23 +39,23 @@
             android:text="@string/create_new_item" />
 
         <Button
+            android:id="@+id/buttonCategory"
+            android:layout_width="303dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="65dp"
+            android:onClick="buttonCategoryOnClick"
+            android:text="Create Category" />
+
+        <Button
             android:id="@+id/buttonInventory"
             android:layout_width="303dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="65dp"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:onClick="buttonInventoryOnClick"
             android:text="@string/view_inventory" />
 
-        <Button
-            android:id="@+id/buttonRegistrations"
-            android:layout_width="309dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="65dp"
-            android:enabled="false"
-            android:text="@string/registrations" />
     </LinearLayout>
 
 </RelativeLayout>
