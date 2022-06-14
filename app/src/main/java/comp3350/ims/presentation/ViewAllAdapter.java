@@ -37,7 +37,7 @@ public class ViewAllAdapter extends BaseAdapter {
         itemName.setText("Name: " + item.getName());
 
         TextView categoryName = (TextView) vi.findViewById(R.id.categoryName1);
-        categoryName.setText("Category: " + item.getCategories().get(0) + "");
+        categoryName.setText("Category: " + item.getCategory() + "");
 
         TextView itemPrice = (TextView) vi.findViewById(R.id.itemPrice1);
         itemPrice.setText("Price: $" + item.getPrice() + "");

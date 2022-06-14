@@ -15,7 +15,7 @@ public class DataAccessStub
 	private String dbType = "stub";
 
 	private Inventory activeInventory;
-	private ArrayList<String> category;
+	private String category;
 
 	public DataAccessStub(String dbName)
 	{
@@ -32,8 +32,7 @@ public class DataAccessStub
 		ItemType item;
 
 		activeInventory = new Inventory();
-		category = new ArrayList<>();
-		category.add("Dairy");
+		category = "Dairy";
 
 		item = new ItemType("Milk", 5.55f, 12, "Ware House", "12/06/2022" ,category );
 		activeInventory.addItem(item);

@@ -9,20 +9,21 @@ public class ItemType {
     private int quantity;
     private String location;
     private String date;
-    private ArrayList<String> categories; //Going to change once we get category class
+    private String category; //Going to change once we get category class
     private ArrayList<Item> items;
     private static int id = 0;
 
     public ItemType(){} //Base constructor
 
     //Constructor for creating the ItemType itself
-    public ItemType(String name, float price, int quantity, String location, String date, List<String> categories){
+    public ItemType(String name, float price, int quantity, String location, String date,
+                    String category){
         this.name = name;
         this.price = price;
         this.quantity = 0;
         this.location = location;
         this.date = date;
-        this.categories = new ArrayList<String>(categories);
+        this.category = category;
         items = new ArrayList<Item>();
 
         for(int i = 0; i < quantity; i++){
@@ -59,6 +60,8 @@ public class ItemType {
 
     public Item getItem(int index){ return items.get(index) ; }
 
+
+
     public void setPrice(float p){
         price = p;
     }
@@ -72,16 +75,8 @@ public class ItemType {
         quantity = q;
     }
 
-    public ArrayList<String> getCategories(){
-        return categories;
-    }
-
-    public void addCatergory(String q){
-        categories.add(q);
-    }
-
-    public void setCategories(ArrayList<String> c){
-        categories = c;
+    public String getCategory(){
+        return category;
     }
 
     public String getLocation(){
