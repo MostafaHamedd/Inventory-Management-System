@@ -43,13 +43,13 @@ public class ViewAllAdapter extends BaseAdapter {
         itemPrice.setText("Price: $" + item.getPrice() + "");
 
         TextView itemDate = (TextView) vi.findViewById(R.id.itemDate);
-        itemDate.setText("Date: " + item.getDate() + "");
+        itemDate.setText("Date: " + item.getItem(position).getDate() + "");
 
         TextView itemId = (TextView) vi.findViewById(R.id.itemId);
         itemId.setText("ID: " + item.getItem(position).getId() + "");
 
         TextView itemLocation = (TextView) vi.findViewById(R.id.itemLocation);
-        itemLocation.setText("Location: " + item.getLocation() + "");
+        itemLocation.setText("Location: " + item.getItem(position).getLocation() + "");
 
         return vi;
     }

@@ -26,15 +26,15 @@ public class ItemType {
         items = new ArrayList<Item>();
 
         for(int i = 0; i < quantity; i++){
-            addItem();
+            addItem(location, date);
         }
     }
 
-    public void addItem(){
-        Item item = new Item();
+    public void addItem(String location, String date){
+        Item item; ;
         id++;
         String stringId = Integer.toString(id);
-        item.setId(stringId);
+       item =  new Item(stringId,location, date);
         items.add(item);
         quantity++;
     }

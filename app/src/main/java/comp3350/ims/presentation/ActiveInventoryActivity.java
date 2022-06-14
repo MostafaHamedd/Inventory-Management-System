@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import comp3350.ims.R;
@@ -36,9 +38,25 @@ public class ActiveInventoryActivity extends Activity {
     }
 
     public void buttonViewAllOnClick(View v) {
+
         int position = listView.getPositionForView((View)v.getParent());
         accessInventory.setCurrentItem(position);
         Intent viewAllIntent = new Intent(this, viewAllActivity.class);
         this.startActivity(viewAllIntent);
+    }
+
+    public void buttonAddOnClick(View v){
+
+        int position = listView.getPositionForView((View)v.getParent());
+        ItemType item = accessInventory.getItem(position);
+
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
+        Date todayDate = new Date();
+        String thisDate = currentDate.format(todayDate);
+
+        item.addItem("Ware House", thisDate);
+
+
+
     }
 }

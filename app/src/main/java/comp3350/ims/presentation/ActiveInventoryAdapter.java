@@ -19,7 +19,6 @@ public class ActiveInventoryAdapter extends BaseAdapter {
         this.context = context;
         this.activeInventory = inventory;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        System.out.println("WE MADE IT HERE");
     }
 
     @Override
