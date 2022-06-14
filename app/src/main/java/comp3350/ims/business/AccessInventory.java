@@ -14,6 +14,7 @@ public class AccessInventory
 {
 	private DataAccessStub dataAccess;
 	private Inventory activeInventory;
+	private static int currentItemPosition;
 
 	public AccessInventory()
 	{
@@ -42,6 +43,18 @@ public class AccessInventory
 	{
 		itemList.clear();
 		return dataAccess.getSequentialItems(itemList);
+	}
+
+	public void setCurrentItem(int index){
+		currentItemPosition = index;
+	}
+
+	public int getCurrentItemPosition(){
+		return currentItemPosition;
+	}
+
+	public ItemType getItem(int index){
+		return activeInventory.items.get(index);
 	}
 
 }

@@ -8,18 +8,21 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import comp3350.ims.R;
+import comp3350.ims.business.AccessInventory;
 import comp3350.ims.objects.Inventory;
 import comp3350.ims.objects.ItemType;
 
 public class ViewAllAdapter extends BaseAdapter {
-    Context context;
-    ItemType item;
+    private Context context;
+    private ItemType item;
     private static LayoutInflater inflater = null;
 
     public ViewAllAdapter(Context context, ItemType item){
         this.context = context;
         this.item = item;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+
     }
 
     @Override

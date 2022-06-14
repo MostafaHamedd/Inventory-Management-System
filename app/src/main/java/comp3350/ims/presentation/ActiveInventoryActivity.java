@@ -19,13 +19,14 @@ import comp3350.ims.objects.ItemType;
 public class ActiveInventoryActivity extends Activity {
 
     private Inventory activeInventory;
-    ListView listView;
+    private ListView listView;
+    private AccessInventory accessInventory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        AccessInventory accessInventory = new AccessInventory();
+        accessInventory = new AccessInventory();
 
         activeInventory = accessInventory.getActiveInventory();
 
@@ -35,6 +36,8 @@ public class ActiveInventoryActivity extends Activity {
     }
 
     public void buttonViewAllOnClick(View v) {
+        int position = listView.getPositionForView((View)v.getParent());
+        accessInventory.setCurrentItem(position);
         Intent viewAllIntent = new Intent(this, viewAllActivity.class);
         this.startActivity(viewAllIntent);
     }

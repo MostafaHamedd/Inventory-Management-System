@@ -11,8 +11,8 @@ import comp3350.ims.R;
 import comp3350.ims.objects.Inventory;
 
 public class ActiveInventoryAdapter extends BaseAdapter {
-    Context context;
-    Inventory activeInventory;
+    private Context context;
+    private Inventory activeInventory;
     private static LayoutInflater inflater = null;
 
     public ActiveInventoryAdapter(Context context, Inventory inventory){

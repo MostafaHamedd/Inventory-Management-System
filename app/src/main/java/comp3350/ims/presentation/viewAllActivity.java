@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.ims.R;
+import comp3350.ims.business.AccessInventory;
 import comp3350.ims.objects.ItemType;
 
 
@@ -20,15 +21,12 @@ public class viewAllActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ArrayList<String> category = new ArrayList<String>();
-        category.add("Dairy");
-
-        item =  new ItemType("Milk", 5.55f, 12, "Ware House", "12/06/2022" ,category );
-        item.addItem();
-        item.addItem();
+        AccessInventory accessInventory = new AccessInventory();
+        int position = accessInventory.getCurrentItemPosition();
+        ItemType currentItem = accessInventory.getItem(position);
 
         setContentView(R.layout.activity_view_all);
         listView = (ListView) findViewById(R.id.viewAllListView);
-        listView.setAdapter(new ViewAllAdapter(this, item));
+        listView.setAdapter(new ViewAllAdapter(this, currentItem));
     }
 }
