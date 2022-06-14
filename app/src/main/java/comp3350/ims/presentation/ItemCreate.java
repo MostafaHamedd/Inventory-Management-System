@@ -2,9 +2,13 @@ package comp3350.ims.presentation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,6 +16,13 @@ import java.util.Date;
 import comp3350.ims.R;
 
 public class ItemCreate extends AppCompatActivity {
+
+    private EditText itemName;
+    private EditText itemPrice;
+    private EditText itemQuantity;
+    private Spinner itemCategory;
+    private Spinner itemLocation;
+    private Button createBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +40,7 @@ public class ItemCreate extends AppCompatActivity {
                 R.array.locations, android.R.layout.simple_spinner_item);
         adapterLocation.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinLocation.setAdapter(adapterLocation);
+
         //setting default date to today's date.
         SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
         Date todayDate = new Date();
@@ -36,6 +48,32 @@ public class ItemCreate extends AppCompatActivity {
         EditText date = (EditText) findViewById(R.id.editTextDate);
         date.setText(thisDate);
 
+        itemName = findViewById(R.id.itemNameInput);
+        itemPrice = findViewById(R.id.itemPriceInput);
+        itemQuantity = findViewById(R.id.itemQuantityInput);
+        //private Spinner itemDate = findViewById(R.id.itemNameInput);
+        itemCategory = spinCategory;
+        itemLocation = spinLocation;
+        createBtn = findViewById(R.id.itemCreateBtn);
 
+        createBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ItemCreate.this, "New Item Created", Toast.LENGTH_SHORT).show();
+                String nameString = itemName.getText().toString();
+
+                String priceString = itemPrice.getText().toString();
+                float price = Float.parseFloat(priceString);
+
+                String quantityString = itemQuantity.getText().toString();
+                int quantity = Integer.parseInt(quantityString);
+
+                String categoryString = itemCategory.getTransitionName().toString();
+
+                String locationString = itemLocation.getTransitionName().toString();
+
+
+            }
+        });
     }
 }
