@@ -20,6 +20,7 @@ public class CategoryActivity extends Activity {
    private ArrayAdapter adapter ;
    private Button createButton ;
    private EditText userText ;
+   private ListView listView ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,11 +36,10 @@ public class CategoryActivity extends Activity {
         categoryList.add("Drinks") ;
         categoryList.add("Frozen") ;
         categoryList.add("Bakery") ;
-        categoryList.add("Test") ;
 
          adapter = new ArrayAdapter<String>(this,
          R.layout.activtylist_view,categoryList );
-        ListView listView = (ListView) findViewById(R.id.categoryList);
+         listView = (ListView) findViewById(R.id.categoryList);
         listView.setAdapter(adapter);
        createButton = (Button) findViewById(R.id.btnCreateCategory) ;
         userText = (EditText) findViewById(R.id.txtCategoryName) ;
@@ -54,8 +54,6 @@ public class CategoryActivity extends Activity {
         userText.setText("");
     }
 
-    public void buttonsDeleteCategoryOnClick(View v){
 
-    }
 
 }
