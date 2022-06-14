@@ -37,12 +37,8 @@ public class CategoryActivity extends Activity {
         categoryList.add("Bakery") ;
         categoryList.add("Test") ;
 
-
-//
-//        String[] testArray = {"Dairy","Fruits & vegetables","Meat","Pantry",
-//                "Fish & seafood","Drinks","Deli","Frozen","Bakery"};
          adapter = new ArrayAdapter<String>(this,
-                R.layout.activtylist_view,categoryList );
+         R.layout.activtylist_view,categoryList );
         ListView listView = (ListView) findViewById(R.id.categoryList);
         listView.setAdapter(adapter);
        createButton = (Button) findViewById(R.id.btnCreateCategory) ;

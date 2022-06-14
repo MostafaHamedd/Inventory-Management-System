@@ -17,7 +17,6 @@
         android:textStyle="bold|italic" />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignWithParentIfMissing="false"
@@ -41,9 +40,10 @@
 
         <Button
             android:id="@+id/buttonCategory"
-            android:layout_width="fill_parent"
+            android:layout_width="303dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+
+            android:layout_marginLeft="65dp"
             android:onClick="buttonCategoryOnClick"
             android:text="Create Category" />
 
@@ -52,19 +52,10 @@
             android:layout_width="303dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="65dp"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:onClick="buttonInventoryOnClick"
             android:text="@string/view_inventory" />
 
-        <Button
-            android:id="@+id/buttonRegistrations"
-            android:layout_width="309dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="65dp"
-            android:enabled="false"
-            android:text="@string/registrations" />
     </LinearLayout>
 
 </RelativeLayout>
