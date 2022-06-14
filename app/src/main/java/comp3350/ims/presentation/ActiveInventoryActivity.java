@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -56,6 +57,8 @@ public class ActiveInventoryActivity extends Activity {
 
         item.addItem("Ware House", thisDate);
 
+        TextView itemQuantity = ((View)v.getParent()).findViewById(R.id.itemQuantity);
+        itemQuantity.setText("Quantity: " + item.getQuantity() + "");
 
 
     }
