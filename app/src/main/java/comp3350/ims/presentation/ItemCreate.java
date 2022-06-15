@@ -7,10 +7,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import comp3350.ims.R;
@@ -50,7 +50,7 @@ public class ItemCreate extends AppCompatActivity {
         spinLocation.setAdapter(adapterLocation);
 
         //setting default date to today's date.
-        SimpleDateFormat currentDate = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
         Date todayDate = new Date();
         String thisDate = currentDate.format(todayDate);
         EditText date = (EditText) findViewById(R.id.editTextDate);
@@ -75,9 +75,9 @@ public class ItemCreate extends AppCompatActivity {
                 String quantityString = itemQuantity.getText().toString();
                 int quantity = Integer.parseInt(quantityString);
 
-                String categoryString = "test cat";
+                String categoryString = itemCategory.getSelectedItem().toString();
 
-                String locationString = "test Location";
+                String locationString = itemLocation.getSelectedItem().toString();
 
                 ItemType newItem = new ItemType(nameString, price, quantity, locationString, thisDate,
                         categoryString );
