@@ -9,7 +9,7 @@ public class ItemType {
     private int quantity;
     private String location;
     private String date;
-    private ArrayList<String> categories; //Going to change once we get category class
+    private String categories; //Going to change once we get category class
     private ArrayList<Item> items;
     private static int id = 0;
     private boolean needsRefill;
@@ -17,19 +17,21 @@ public class ItemType {
     public ItemType(){} //Base constructor
 
     //Constructor for creating the ItemType itself
-    public ItemType(String name, float price, int quantity, String location, String date, List<String> categories){
+    public ItemType(String name, float price, int quantity, String location, String date, String categories){
         this.name = name;
         this.price = price;
         this.quantity = 0;
         this.location = location;
         this.date = date;
-        this.categories = new ArrayList<String>(categories);
-        this.needsRefill = this.quantity > MIN_QUANTITY ? false : true;
+        this.categories = categories;
+        this.categories = categories;
         items = new ArrayList<Item>();
 
         for(int i = 0; i < quantity; i++){
             addItem(location, date);
         }
+
+        this.needsRefill = this.quantity > MIN_QUANTITY ? false : true;
     }
 
     public void addItem(String location, String date){
@@ -39,15 +41,18 @@ public class ItemType {
        item =  new Item(stringId,location, date);
         items.add(item);
         quantity++;
+
+        this.needsRefill = this.quantity > MIN_QUANTITY ? false : true;
     }
 
-    public void removeItem(){
-        if(!items.isEmpty()){
-            items.remove(0);
+    public void removeItem(int index){
+        if(!items.isEmpty() && index >= 0){
+            items.remove(index);
             quantity--;
         }
         needsRefill = quantity > MIN_QUANTITY ? false : true;
     }
+
     public String getName(){
         return name;
     }
@@ -75,15 +80,11 @@ public class ItemType {
         quantity = q;
     }
 
-    public ArrayList<String> getCategories(){
+    public String getCategorie(){
         return categories;
     }
 
-    public void addCategory(String q){
-        categories.add(q);
-    }
-
-    public void setCategories(ArrayList<String> c){
+    public void setCategories(String c){
         categories = c;
     }
 

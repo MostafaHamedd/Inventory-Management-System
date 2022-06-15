@@ -1,6 +1,7 @@
 package comp3350.ims.presentation;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ public class ActiveInventoryAdapter extends BaseAdapter {
     public ActiveInventoryAdapter(Context context, Inventory inventory){
         this.context = context;
         this.activeInventory = inventory;
+        this.activeInventory.reorderByQuantity();
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -33,10 +35,14 @@ public class ActiveInventoryAdapter extends BaseAdapter {
         itemName.setText("Name: " + activeInventory.getItem(position).getName());
 
         TextView categoryName = (TextView) vi.findViewById(R.id.categoryName);
-        categoryName.setText("Category: " + activeInventory.getItem(position).getCategories().get(0) + "");
+        categoryName.setText("Category: " + activeInventory.getItem(position).getCategorie() + "");
 
         TextView itemQuantity = (TextView) vi.findViewById(R.id.itemQuantity);
         itemQuantity.setText("Quantity: " + activeInventory.getItem(position).getQuantity() + "");
+
+        if(activeInventory.getItem(position).needsRefill()){
+            itemQuantity.setTextColor(Color.parseColor("RED"));
+        }
 
         TextView itemPrice = (TextView) vi.findViewById(R.id.itemPrice);
         itemPrice.setText("Price: $" + activeInventory.getItem(position).getPrice() + "");

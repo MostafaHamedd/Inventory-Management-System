@@ -8,8 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import comp3350.ims.R;
-import comp3350.ims.business.AccessInventory;
-import comp3350.ims.objects.Inventory;
 import comp3350.ims.objects.ItemType;
 
 public class ViewAllAdapter extends BaseAdapter {
@@ -21,8 +19,6 @@ public class ViewAllAdapter extends BaseAdapter {
         this.context = context;
         this.item = item;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-
     }
 
     @Override
@@ -35,12 +31,6 @@ public class ViewAllAdapter extends BaseAdapter {
 
         TextView itemName = (TextView) vi.findViewById(R.id.itemName1);
         itemName.setText("Name: " + item.getName());
-
-        TextView categoryName = (TextView) vi.findViewById(R.id.categoryName1);
-        categoryName.setText("Category: " + item.getCategories().get(0) + "");
-
-        TextView itemPrice = (TextView) vi.findViewById(R.id.itemPrice1);
-        itemPrice.setText("Price: $" + item.getPrice() + "");
 
         TextView itemDate = (TextView) vi.findViewById(R.id.itemDate);
         itemDate.setText("Date: " + item.getItem(position).getDate() + "");

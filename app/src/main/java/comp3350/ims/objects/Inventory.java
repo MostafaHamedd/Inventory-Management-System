@@ -44,15 +44,19 @@ public class Inventory {
     public ArrayList<ItemType> reorderByQuantity(){
         ArrayList<ItemType> newItemTypeList = new ArrayList<>();
 
-        for(int i = 0; i < items.size(); i++){
-            if(items.get(i).needsRefill()){
-                newItemTypeList.add(0, items.get(i));
-            }else{
-                newItemTypeList.add(newItemTypeList.size() - 1, items.get(i));
+        if(items.size() > 1) {
+            for (int i = 0; i < items.size(); i++) {
+                if (items.get(i).needsRefill()) {
+                    newItemTypeList.add(0, items.get(i));
+                } else {
+                    newItemTypeList.add(items.get(i));
+                }
             }
-        }
 
-        items = newItemTypeList;
+            items = newItemTypeList;
+        }else{
+            newItemTypeList = items;
+        }
 
         return newItemTypeList;
     }

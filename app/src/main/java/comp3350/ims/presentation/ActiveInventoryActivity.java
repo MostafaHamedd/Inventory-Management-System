@@ -2,9 +2,14 @@ package comp3350.ims.presentation;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,6 +27,7 @@ public class ActiveInventoryActivity extends Activity {
 
     private Inventory activeInventory;
     private ListView listView;
+    public ActiveInventoryAdapter adapter;
     private AccessInventory accessInventory;
 
     @Override
@@ -34,7 +40,8 @@ public class ActiveInventoryActivity extends Activity {
 
         setContentView(R.layout.activity_active_inventory);
         listView = (ListView) findViewById(R.id.activeInventoryList);
-        listView.setAdapter(new ActiveInventoryAdapter(this, activeInventory));
+        adapter = new ActiveInventoryAdapter(this, activeInventory);
+        listView.setAdapter(adapter);
     }
 
     public void buttonViewAllOnClick(View v) {
@@ -56,7 +63,27 @@ public class ActiveInventoryActivity extends Activity {
 
         item.addItem("Ware House", thisDate);
 
+        TextView itemQuantity = ((View)v.getParent()).findViewById(R.id.itemQuantity);
+        if(activeInventory.getItem(position).needsRefill()){
+            itemQuantity.setTextColor(Color.parseColor("RED"));
+        }else {
+            itemQuantity.setTextColor(Color.parseColor("BLACK"));
+        }
 
+        updateDataChanges();
 
+        Toast.makeText(this, "Item Added", Toast.LENGTH_SHORT).show();
+
+    }
+
+    public  void updateDataChanges(){
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onRestart(){
+        activeInventory.reorderByQuantity();
+        super.onRestart();
+        updateDataChanges();
     }
 }
