@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -46,6 +47,8 @@ public class CategoryActivity extends Activity {
         System.out.println(categoryList.toString()) ;
         adapter.notifyDataSetChanged();
         userText.setText("");
+        Toast toast = Toast.makeText(getApplicationContext(),"Category created",Toast.LENGTH_SHORT) ;
+        toast.show();
     }
 
 
