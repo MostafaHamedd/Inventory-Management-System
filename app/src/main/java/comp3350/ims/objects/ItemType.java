@@ -3,7 +3,7 @@ package comp3350.ims.objects;
 import java.util.*;
 
 public class ItemType {
-
+    public static final int MIN_QUANTITY = 10;
     private String name;
     private float price;
     private int quantity;
@@ -12,6 +12,7 @@ public class ItemType {
     private ArrayList<String> categories; //Going to change once we get category class
     private ArrayList<Item> items;
     private static int id = 0;
+    private boolean needsRefill;
 
     public ItemType(){} //Base constructor
 
@@ -23,6 +24,7 @@ public class ItemType {
         this.location = location;
         this.date = date;
         this.categories = new ArrayList<String>(categories);
+        this.needsRefill = this.quantity > MIN_QUANTITY ? false : true;
         items = new ArrayList<Item>();
 
         for(int i = 0; i < quantity; i++){
@@ -44,6 +46,7 @@ public class ItemType {
             items.remove(0);
             quantity--;
         }
+        needsRefill = quantity > MIN_QUANTITY ? false : true;
     }
     public String getName(){
         return name;
@@ -76,7 +79,7 @@ public class ItemType {
         return categories;
     }
 
-    public void addCatergory(String q){
+    public void addCategory(String q){
         categories.add(q);
     }
 
@@ -98,5 +101,13 @@ public class ItemType {
 
     public void setDate(String d){
         date = d;
+    }
+
+    public boolean needsRefill() {
+        return needsRefill;
+    }
+
+    public void setNeedsRefill(boolean needsRefill) {
+        this.needsRefill = needsRefill;
     }
 }
