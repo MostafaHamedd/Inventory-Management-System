@@ -38,13 +38,13 @@ public class DataAccessStub {
 
 		item = new ItemType("Milk", 5.55f, 12, "Ware House", "12/06/2022", "Dairy");
 		activeInventory.addItem(item);
-		item = new ItemType("Cream", 3.00f, 12, "Ware House", "12/06/2022", "Dairy");
+		item = new ItemType("Cream", 3.00f, 18, "Ware House", "12/06/2022", "Dairy");
 		activeInventory.addItem(item);
 		item = new ItemType("Oreo", 4.00f, 12, "Ware House", "12/06/2022", "Pantry");
 		activeInventory.addItem(item);
-		item = new ItemType("Ice Cream", 8.5f, 12, "Ware House", "12/06/2022", "Frozen");
+		item = new ItemType("Ice Cream", 8.5f, 3, "Ware House", "12/06/2022", "Frozen");
 		activeInventory.addItem(item);
-		item = new ItemType("Butter", 3.5f, 12, "Ware House", "12/06/2022", "Dairy");
+		item = new ItemType("Butter", 3.5f, 2, "Ware House", "12/06/2022", "Dairy");
 		activeInventory.addItem(item);
 		item = new ItemType("Bread", 3.5f, 12, "Ware House", "12/06/2022", "Bakery");
 		activeInventory.addItem(item);
