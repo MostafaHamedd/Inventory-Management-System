@@ -1,6 +1,7 @@
 package comp3350.ims.presentation;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,28 +16,33 @@ public class ActiveInventoryAdapter extends BaseAdapter {
     private Inventory activeInventory;
     private static LayoutInflater inflater = null;
 
-    public ActiveInventoryAdapter(Context context, Inventory inventory){
+    public ActiveInventoryAdapter(Context context, Inventory inventory) {
         this.context = context;
         this.activeInventory = inventory;
+        this.activeInventory.reorderByQuantity();
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
 
-        if(vi == null){
-            vi = inflater.inflate(R.layout.inventory_row,null);
+        if (vi == null) {
+            vi = inflater.inflate(R.layout.inventory_row, null);
         }
 
         TextView itemName = (TextView) vi.findViewById(R.id.itemName);
         itemName.setText("Name: " + activeInventory.getItem(position).getName());
 
         TextView categoryName = (TextView) vi.findViewById(R.id.categoryName);
-        categoryName.setText("Category: " + activeInventory.getItem(position).getCategorie() + "");
+        categoryName.setText("Category: " + activeInventory.getItem(position).getCategory() + "");
 
         TextView itemQuantity = (TextView) vi.findViewById(R.id.itemQuantity);
         itemQuantity.setText("Quantity: " + activeInventory.getItem(position).getQuantity() + "");
+
+        if (activeInventory.getItem(position).needsRefill()) {
+            itemQuantity.setTextColor(Color.parseColor("RED"));
+        }
 
         TextView itemPrice = (TextView) vi.findViewById(R.id.itemPrice);
         itemPrice.setText("Price: $" + activeInventory.getItem(position).getPrice() + "");
@@ -45,17 +51,17 @@ public class ActiveInventoryAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount(){
+    public int getCount() {
         return activeInventory.items.size();
     }
 
     @Override
-    public Object getItem(int position){
+    public Object getItem(int position) {
         return activeInventory.getItem(position);
     }
 
     @Override
-    public long getItemId(int position){
+    public long getItemId(int position) {
         return position;
     }
 

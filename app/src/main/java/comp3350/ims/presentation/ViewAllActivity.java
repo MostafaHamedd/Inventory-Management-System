@@ -4,20 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import comp3350.ims.R;
 import comp3350.ims.business.AccessInventory;
 import comp3350.ims.objects.ItemType;
 
+public class ViewAllActivity extends Activity {
 
-public class viewAllActivity extends Activity {
-
-    private ItemType item;
     ListView listView;
     private AccessInventory accessInventory;
     private ViewAllAdapter adapter;
@@ -36,13 +30,12 @@ public class viewAllActivity extends Activity {
         listView.setAdapter(adapter);
     }
 
-    public void buttonRemoveItem(View v){
-        int position = listView.getPositionForView((View)v.getParent());
-        if(position >=0 ) {
+    public void buttonRemoveItem(View v) {
+        int position = listView.getPositionForView((View) v.getParent());
+        if (position >= 0) {
             accessInventory.removeIndividualItem(position);
             adapter.notifyDataSetChanged();
             Toast.makeText(this, "Item Removed", Toast.LENGTH_SHORT).show();
-
         }
     }
 }

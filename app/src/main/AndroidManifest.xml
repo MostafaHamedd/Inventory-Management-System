@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="comp3350.ims.presentation.ItemCreate"
+            android:name="comp3350.ims.presentation.ItemCreateActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.HomeActivity"
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="comp3350.ims.presentation.viewAllActivity"
+            android:name="comp3350.ims.presentation.ViewAllActivity"
             android:label="@string/title_activity_courses" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
