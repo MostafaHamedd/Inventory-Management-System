@@ -26,15 +26,6 @@ public class AccessInventory {
 		return dataAccess.insertItem(item);
 	}
 
-	public String deleteItem(ItemType item) {
-		return dataAccess.deleteItem(item);
-	}
-
-	public String getSequentialItems(ArrayList < ItemType > itemList) {
-		itemList.clear();
-		return dataAccess.getSequentialItems(itemList);
-	}
-
 	public void setCurrentItem(int index) {
 		currentItemPosition = index;
 	}

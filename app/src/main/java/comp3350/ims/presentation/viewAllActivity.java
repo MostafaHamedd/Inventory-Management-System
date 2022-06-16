@@ -16,7 +16,6 @@ import comp3350.ims.objects.ItemType;
 
 public class viewAllActivity extends Activity {
 
-    private ItemType item;
     ListView listView;
     private AccessInventory accessInventory;
     private ViewAllAdapter adapter;

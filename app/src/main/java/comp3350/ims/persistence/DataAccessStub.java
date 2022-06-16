@@ -1,13 +1,10 @@
 package comp3350.ims.persistence;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 import comp3350.ims.application.Main;
 import comp3350.ims.objects.Inventory;
 import comp3350.ims.objects.ItemType;
-import comp3350.ims.objects.Item;
 
 public class DataAccessStub {
 	private String dbName;
@@ -73,22 +70,6 @@ public class DataAccessStub {
 		return null;
 	}
 
-	public String deleteItem(ItemType item) {
-		int index;
-
-		index = activeInventory.items.indexOf(item);
-
-		if (index >= 0) {
-			activeInventory.items.remove(index);
-		}
-		return null;
-	}
-
-	public String getSequentialItems(ArrayList < ItemType > itemList) {
-
-		itemList.addAll(activeInventory.items);
-		return null;
-	}
 
 	public String getCategoryList(ArrayList < String > categoryList) {
 		categoryList.addAll(this.categoryList);
