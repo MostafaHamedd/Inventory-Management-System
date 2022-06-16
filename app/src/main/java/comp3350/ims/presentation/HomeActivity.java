@@ -41,7 +41,7 @@ public class HomeActivity extends Activity {
     }
 
     public void buttonCreateNewItemOnClick(View v) {
-        Intent itemCreateIntent = new Intent(HomeActivity.this, ItemCreate.class);
+        Intent itemCreateIntent = new Intent(HomeActivity.this, ItemCreateActivity.class);
         HomeActivity.this.startActivity(itemCreateIntent);
     }
 

@@ -17,7 +17,7 @@ import comp3350.ims.R;
 import comp3350.ims.business.AccessInventory;
 import comp3350.ims.objects.ItemType;
 
-public class ItemCreate extends AppCompatActivity {
+public class ItemCreateActivity extends AppCompatActivity {
 
     private EditText itemName;
     private EditText itemPrice;
@@ -66,7 +66,7 @@ public class ItemCreate extends AppCompatActivity {
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ItemCreate.this, "New Item Created", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ItemCreateActivity.this, "New Item Created", Toast.LENGTH_SHORT).show();
                 String nameString = itemName.getText().toString();
 
                 String priceString = itemPrice.getText().toString();

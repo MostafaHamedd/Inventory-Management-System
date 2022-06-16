@@ -17,7 +17,6 @@ import java.util.Date;
 import comp3350.ims.R;
 import comp3350.ims.business.AccessInventory;
 import comp3350.ims.objects.Inventory;
-import comp3350.ims.objects.Item;
 import comp3350.ims.objects.ItemType;
 
 public class ActiveInventoryActivity extends Activity {
@@ -45,7 +44,7 @@ public class ActiveInventoryActivity extends Activity {
 
         int position = listView.getPositionForView((View) v.getParent());
         accessInventory.setCurrentItem(position);
-        Intent viewAllIntent = new Intent(this, viewAllActivity.class);
+        Intent viewAllIntent = new Intent(this, ViewAllActivity.class);
         this.startActivity(viewAllIntent);
     }
 

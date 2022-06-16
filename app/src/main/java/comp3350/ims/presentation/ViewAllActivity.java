@@ -14,7 +14,7 @@ import comp3350.ims.R;
 import comp3350.ims.business.AccessInventory;
 import comp3350.ims.objects.ItemType;
 
-public class viewAllActivity extends Activity {
+public class ViewAllActivity extends Activity {
 
     ListView listView;
     private AccessInventory accessInventory;
