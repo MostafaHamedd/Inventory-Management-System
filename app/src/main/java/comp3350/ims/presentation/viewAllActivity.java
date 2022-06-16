@@ -14,7 +14,6 @@ import comp3350.ims.R;
 import comp3350.ims.business.AccessInventory;
 import comp3350.ims.objects.ItemType;
 
-
 public class viewAllActivity extends Activity {
 
     private ItemType item;
@@ -36,9 +35,9 @@ public class viewAllActivity extends Activity {
         listView.setAdapter(adapter);
     }
 
-    public void buttonRemoveItem(View v){
-        int position = listView.getPositionForView((View)v.getParent());
-        if(position >=0 ) {
+    public void buttonRemoveItem(View v) {
+        int position = listView.getPositionForView((View) v.getParent());
+        if (position >= 0) {
             accessInventory.removeIndividualItem(position);
             adapter.notifyDataSetChanged();
             Toast.makeText(this, "Item Removed", Toast.LENGTH_SHORT).show();

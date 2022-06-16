@@ -16,7 +16,7 @@ public class ActiveInventoryAdapter extends BaseAdapter {
     private Inventory activeInventory;
     private static LayoutInflater inflater = null;
 
-    public ActiveInventoryAdapter(Context context, Inventory inventory){
+    public ActiveInventoryAdapter(Context context, Inventory inventory) {
         this.context = context;
         this.activeInventory = inventory;
         this.activeInventory.reorderByQuantity();
@@ -24,11 +24,11 @@ public class ActiveInventoryAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
 
-        if(vi == null){
-            vi = inflater.inflate(R.layout.inventory_row,null);
+        if (vi == null) {
+            vi = inflater.inflate(R.layout.inventory_row, null);
         }
 
         TextView itemName = (TextView) vi.findViewById(R.id.itemName);
@@ -40,7 +40,7 @@ public class ActiveInventoryAdapter extends BaseAdapter {
         TextView itemQuantity = (TextView) vi.findViewById(R.id.itemQuantity);
         itemQuantity.setText("Quantity: " + activeInventory.getItem(position).getQuantity() + "");
 
-        if(activeInventory.getItem(position).needsRefill()){
+        if (activeInventory.getItem(position).needsRefill()) {
             itemQuantity.setTextColor(Color.parseColor("RED"));
         }
 
@@ -51,17 +51,17 @@ public class ActiveInventoryAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount(){
+    public int getCount() {
         return activeInventory.items.size();
     }
 
     @Override
-    public Object getItem(int position){
+    public Object getItem(int position) {
         return activeInventory.getItem(position);
     }
 
     @Override
-    public long getItemId(int position){
+    public long getItemId(int position) {
         return position;
     }
 

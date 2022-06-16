@@ -22,7 +22,6 @@ import comp3350.ims.objects.Inventory;
 import comp3350.ims.objects.Item;
 import comp3350.ims.objects.ItemType;
 
-
 public class ActiveInventoryActivity extends Activity {
 
     private Inventory activeInventory;
@@ -46,15 +45,15 @@ public class ActiveInventoryActivity extends Activity {
 
     public void buttonViewAllOnClick(View v) {
 
-        int position = listView.getPositionForView((View)v.getParent());
+        int position = listView.getPositionForView((View) v.getParent());
         accessInventory.setCurrentItem(position);
         Intent viewAllIntent = new Intent(this, viewAllActivity.class);
         this.startActivity(viewAllIntent);
     }
 
-    public void buttonAddOnClick(View v){
+    public void buttonAddOnClick(View v) {
 
-        int position = listView.getPositionForView((View)v.getParent());
+        int position = listView.getPositionForView((View) v.getParent());
         ItemType item = accessInventory.getItem(position);
 
         SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
@@ -63,10 +62,10 @@ public class ActiveInventoryActivity extends Activity {
 
         item.addItem("Ware House", thisDate);
 
-        TextView itemQuantity = ((View)v.getParent()).findViewById(R.id.itemQuantity);
-        if(activeInventory.getItem(position).needsRefill()){
+        TextView itemQuantity = ((View) v.getParent()).findViewById(R.id.itemQuantity);
+        if (activeInventory.getItem(position).needsRefill()) {
             itemQuantity.setTextColor(Color.parseColor("RED"));
-        }else {
+        } else {
             itemQuantity.setTextColor(Color.parseColor("BLACK"));
         }
 
@@ -76,12 +75,12 @@ public class ActiveInventoryActivity extends Activity {
 
     }
 
-    public  void updateDataChanges(){
+    public void updateDataChanges() {
         adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onRestart(){
+    public void onRestart() {
         activeInventory.reorderByQuantity();
         super.onRestart();
         updateDataChanges();
