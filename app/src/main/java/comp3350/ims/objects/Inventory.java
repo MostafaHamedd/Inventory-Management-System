@@ -3,9 +3,10 @@ import java.util.ArrayList;
 
 public class Inventory {
     private int numofItems;
-    public ArrayList < ItemType > items = new ArrayList();
+    public ArrayList < ItemType > items;
 
     public Inventory() {
+        items = new ArrayList();
         numofItems = 0;
     }
 

@@ -93,7 +93,7 @@ public class ItemType {
         quantity = q;
     }
 
-    public String getCategorie() {
+    public String getCategory() {
         return categories;
     }
 
