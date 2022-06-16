@@ -42,7 +42,6 @@ public class viewAllActivity extends Activity {
             accessInventory.removeIndividualItem(position);
             adapter.notifyDataSetChanged();
             Toast.makeText(this, "Item Removed", Toast.LENGTH_SHORT).show();
-
         }
     }
 }

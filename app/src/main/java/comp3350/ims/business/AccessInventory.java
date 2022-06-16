@@ -1,13 +1,11 @@
 package comp3350.ims.business;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import comp3350.ims.application.Main;
 import comp3350.ims.application.Services;
 import comp3350.ims.objects.Inventory;
 import comp3350.ims.objects.ItemType;
-import comp3350.ims.objects.Student;
 import comp3350.ims.persistence.DataAccessStub;
 
 public class AccessInventory

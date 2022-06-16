@@ -2,11 +2,14 @@ package comp3350.ims.presentation;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -59,7 +62,16 @@ public class ActiveInventoryActivity extends Activity {
         String thisDate = currentDate.format(todayDate);
 
         item.addItem("Ware House", thisDate);
+
+        TextView itemQuantity = ((View)v.getParent()).findViewById(R.id.itemQuantity);
+        if(activeInventory.getItem(position).needsRefill()){
+            itemQuantity.setTextColor(Color.parseColor("RED"));
+        }else {
+            itemQuantity.setTextColor(Color.parseColor("BLACK"));
+        }
+
         updateDataChanges();
+
         Toast.makeText(this, "Item Added", Toast.LENGTH_SHORT).show();
 
     }
@@ -70,6 +82,7 @@ public class ActiveInventoryActivity extends Activity {
 
     @Override
     public void onRestart(){
+        activeInventory.reorderByQuantity();
         super.onRestart();
         updateDataChanges();
     }
