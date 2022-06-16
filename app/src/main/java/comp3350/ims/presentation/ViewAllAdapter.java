@@ -19,8 +19,6 @@ public class ViewAllAdapter extends BaseAdapter {
         this.context = context;
         this.item = item;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-
     }
 
     @Override
