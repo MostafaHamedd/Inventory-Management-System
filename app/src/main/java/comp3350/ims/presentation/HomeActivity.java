@@ -50,12 +50,12 @@ public class HomeActivity extends Activity {
     }
 
     public void buttonInventoryOnClick(View v) {
-        Intent coursesIntent = new Intent(HomeActivity.this, ActiveInventoryActivity.class);
-        HomeActivity.this.startActivity(coursesIntent);
+        Intent inventoryIntent = new Intent(HomeActivity.this, ActiveInventoryActivity.class);
+        HomeActivity.this.startActivity(inventoryIntent);
     }
 
     public void buttonCategoryOnClick(View v) {
-        Intent coursesIntent = new Intent(HomeActivity.this, CategoryActivity.class);
-        HomeActivity.this.startActivity(coursesIntent);
+        Intent categoryIntent = new Intent(HomeActivity.this, CategoryActivity.class);
+        HomeActivity.this.startActivity(categoryIntent);
     }
 }
