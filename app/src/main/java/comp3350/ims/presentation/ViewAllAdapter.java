@@ -15,18 +15,18 @@ public class ViewAllAdapter extends BaseAdapter {
     private ItemType item;
     private static LayoutInflater inflater = null;
 
-    public ViewAllAdapter(Context context, ItemType item){
+    public ViewAllAdapter(Context context, ItemType item) {
         this.context = context;
         this.item = item;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
 
-        if(vi == null){
-            vi = inflater.inflate(R.layout.view_all_row,null);
+        if (vi == null) {
+            vi = inflater.inflate(R.layout.view_all_row, null);
         }
 
         TextView itemName = (TextView) vi.findViewById(R.id.itemName1);
@@ -45,17 +45,17 @@ public class ViewAllAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount(){
-        return  item.getSize();
+    public int getCount() {
+        return item.getSize();
     }
 
     @Override
-    public Object getItem(int position){
+    public Object getItem(int position) {
         return item.getItem(position);
     }
 
     @Override
-    public long getItemId(int position){
+    public long getItemId(int position) {
         return position;
     }
 
