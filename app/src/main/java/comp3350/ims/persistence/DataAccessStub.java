@@ -36,15 +36,14 @@ public class DataAccessStub
 		categoryList = new ArrayList<>();
 
 		categoryList.add("Dairy") ;
-		categoryList.add("Fruits") ;
 		categoryList.add("Fruits & vegetables") ;
 		categoryList.add("Meat") ;
 		categoryList.add("Pantry") ;
-		categoryList.add("Fish & seafood") ;
+		categoryList.add("Seafood") ;
 		categoryList.add("Drinks") ;
 		categoryList.add("Frozen") ;
 		categoryList.add("Bakery") ;
-		categoryList.add("Test") ;
+
 
 		item = new ItemType("Milk", 5.55f, 12, "Ware House", "12/06/2022" ,"Dairy" );
 		activeInventory.addItem(item);

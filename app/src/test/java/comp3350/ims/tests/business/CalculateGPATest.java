@@ -2,7 +2,6 @@ package comp3350.ims.tests.business;
 
 import junit.framework.TestCase;
 
-import comp3350.ims.business.Calculate;
 import comp3350.ims.objects.SC;
 import java.util.List;
 import java.util.ArrayList;
