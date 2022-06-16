@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="comp3350.srsys">
+    package="comp3350.ims">
 
     <application
         android:allowBackup="true"
@@ -9,41 +10,37 @@
         android:theme="@style/AppTheme">
 
         <activity
+            android:name="comp3350.ims.presentation.ItemCreate"
+            android:exported="false" />
+        <activity
             android:name=".presentation.HomeActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.StudentsActivity"
-            android:label="@string/title_activity_students" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="comp3350.srsys.presentation.HomeActivity" />
-        </activity>
-        <activity
-            android:name="comp3350.srsys.presentation.StudentCoursesActivity"
-            android:label="@string/title_activity_student_courses" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="comp3350.srsys.presentation.StudentsActivity" />
-        </activity>
-        <activity
-            android:name="comp3350.srsys.presentation.CoursesActivity"
+            android:name="comp3350.ims.presentation.viewAllActivity"
             android:label="@string/title_activity_courses" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="comp3350.srsys.presentation.HomeActivity" />
+                android:value="comp3350.ims.presentation.HomeActivity" />
         </activity>
+
         <activity
-            android:name="comp3350.srsys.presentation.CourseStudentsActivity"
-            android:label="@string/title_activity_course_students" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="comp3350.srsys.presentation.CoursesActivity" />
+            android:name=".presentation.ActiveInventoryActivity"
+            android:label="@string/app_name"
+
+            android:configChanges="keyboardHidden|orientation|screenSize">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity android:name=".presentation.CategoryActivity" />
 
     </application>
 

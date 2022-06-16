@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SRSYS.iml" filepath="$PROJECT_DIR$/SRSYS.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SRSYS.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SRSYS.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SRSYS.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SRSYS.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SRSYS.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SRSYS.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SRSYS.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SRSYS.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Comp-3350-group-project.iml" filepath="$PROJECT_DIR$/.idea/modules/Comp-3350-group-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Comp-3350-group-project.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Comp-3350-group-project.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Comp-3350-group-project.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Comp-3350-group-project.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Comp-3350-group-project.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Comp-3350-group-project.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Comp-3350-group-project.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Comp-3350-group-project.app.unitTest.iml" />
     </modules>
   </component>
 </project>
