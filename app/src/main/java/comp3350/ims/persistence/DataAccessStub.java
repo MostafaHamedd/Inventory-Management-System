@@ -41,11 +41,19 @@ public class DataAccessStub {
 
 		item = new ItemType("Milk", 5.55f, 12, "Ware House", "12/06/2022", "Dairy");
 		activeInventory.addItem(item);
-		item = new ItemType("Cheese", 6.5f, 12, "Ware House", "12/06/2022", "Dairy");
+		item = new ItemType("Cream", 3.00f, 12, "Ware House", "12/06/2022", "Dairy");
+		activeInventory.addItem(item);
+		item = new ItemType("Oreo", 4.00f, 12, "Ware House", "12/06/2022", "Pantry");
+		activeInventory.addItem(item);
+		item = new ItemType("Ice Cream", 8.5f, 12, "Ware House", "12/06/2022", "Frozen");
 		activeInventory.addItem(item);
 		item = new ItemType("Butter", 3.5f, 12, "Ware House", "12/06/2022", "Dairy");
 		activeInventory.addItem(item);
-		item = new ItemType("Cream", 5.55f, 12, "Ware House", "12/06/2022", "Dairy");
+		item = new ItemType("Bread", 3.5f, 12, "Ware House", "12/06/2022", "Bakery");
+		activeInventory.addItem(item);
+		item = new ItemType("Coke 12 pk", 8f, 12, "Ware House", "12/06/2022", "Drinks");
+		activeInventory.addItem(item);
+		item = new ItemType("Cheese", 6.5f, 12, "Ware House", "12/06/2022", "Dairy");
 		activeInventory.addItem(item);
 
 		System.out.println("Opened " + dbType + " database " + dbName);
