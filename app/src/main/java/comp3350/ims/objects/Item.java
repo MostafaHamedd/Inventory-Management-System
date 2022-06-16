@@ -1,6 +1,5 @@
 package comp3350.ims.objects;
 
-
 public class Item {
 
     private String id;
