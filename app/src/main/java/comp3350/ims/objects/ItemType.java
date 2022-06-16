@@ -14,7 +14,15 @@ public class ItemType {
     private static int id = 0;
     private boolean needsRefill;
 
-    public ItemType(){} //Base constructor
+    public ItemType(){
+        name ="";
+        price =0;
+        quantity = 0;
+        location = "";
+        date = "";
+        categories = "";
+        items = new ArrayList<>();
+    } //Base constructor
 
     //Constructor for creating the ItemType itself
     public ItemType(String name, float price, int quantity, String location, String date, String categories){
@@ -35,10 +43,10 @@ public class ItemType {
     }
 
     public void addItem(String location, String date){
-        Item item; ;
+        Item item;
         id++;
         String stringId = Integer.toString(id);
-       item =  new Item(stringId,location, date);
+        item =  new Item(stringId,location, date);
         items.add(item);
         quantity++;
 
@@ -75,7 +83,10 @@ public class ItemType {
         return quantity;
     }
 
-    public int getSize(){ return items.size();}
+    public int getSize(){
+        return items.size();
+    }
+
     public void setQuantity(int q){
         quantity = q;
     }

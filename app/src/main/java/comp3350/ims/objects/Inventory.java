@@ -2,8 +2,8 @@ package comp3350.ims.objects;
 import java.util.ArrayList;
 
 public class Inventory {
-    private int numofItems ;
-    public ArrayList<ItemType> items = new ArrayList() ;
+    private int numofItems;
+    public ArrayList<ItemType> items = new ArrayList();
     //private int size ;
 
     public Inventory(){
@@ -16,29 +16,29 @@ public class Inventory {
 
     public boolean addItem(ItemType newItem){
         if(!items.contains(newItem)) {
-            items.add(newItem) ;
-            numofItems++ ;
-            return true ;
+            items.add(newItem);
+            numofItems++;
+            return true;
         }
-        return false ;
+        return false;
     }
 
     public boolean removeItem(ItemType item){
-        String targetId = item.getName() ;
-        boolean removed = false ;
-        for(int i = 0 ; i < items.size() ; i++) {
+        String targetId = item.getName();
+        boolean removed = false;
+        for(int i = 0; i < items.size(); i++) {
             if(items.get(i).getName().equals(targetId)) {
-                items.remove(i) ;
-                removed = true ;
-                numofItems-- ;
+                items.remove(i);
+                removed = true;
+                numofItems--;
             }
         }
-
-        return removed ;
+        return removed;
     }
 
     public ItemType getItem(int index){
-        return items.get(index) ;
+        if(index < numofItems)return items.get(index);
+        return null;
     }
 
     public ArrayList<ItemType> reorderByQuantity(){

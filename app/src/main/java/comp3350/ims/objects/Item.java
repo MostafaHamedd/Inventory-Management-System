@@ -8,11 +8,16 @@ public class Item{
     private String location;
     private String date;
 
-    public Item(){} //Base constructor
+    public Item(){
+        id="";
+        location = "";
+        date = "";
+    } //Base constructor
 
     public Item(String location, String date){
         this.date = date;
         this.location = location;
+        id = "";
     }
 
     public Item(String id, String location, String date){
