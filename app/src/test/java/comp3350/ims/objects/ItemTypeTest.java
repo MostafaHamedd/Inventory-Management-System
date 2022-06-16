@@ -4,6 +4,12 @@ import junit.framework.TestCase;
 
 public class ItemTypeTest extends TestCase {
 
+    public void setUp() {
+    }
+
+    public void tearDown() {
+    }
+
     public void testItemType(){
         //Test base case constructor
         ItemType test = new ItemType();

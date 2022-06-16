@@ -4,6 +4,12 @@ import junit.framework.TestCase;
 
 public class InventoryTest extends TestCase {
 
+    public void setUp() {
+    }
+
+    public void tearDown() {
+    }
+
     public void testInventory(){
         Inventory test = new Inventory();
         assertEquals(0,test.getNumOfItems());
