@@ -100,7 +100,7 @@ public class ItemTypeTest extends TestCase {
 
     public void testSetCategories() {
         ItemType test = new ItemType();
-        test.setCategories("Category");
+        test.setCategory("Category");
         assertEquals("Category",test.getCategory());
     }
 

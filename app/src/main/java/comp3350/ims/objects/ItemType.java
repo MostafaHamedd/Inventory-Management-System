@@ -9,7 +9,7 @@ public class ItemType {
     private int quantity;
     private String location;
     private String date;
-    private String categories;
+    private String category;
     private ArrayList < Item > items;
     private static int id = 0;
     private boolean needsRefill;
@@ -20,19 +20,18 @@ public class ItemType {
         quantity = 0;
         location = "";
         date = "";
-        categories = "";
+        category = "";
         items = new ArrayList<>();
         needsRefill = true;
     } //Base constructor
 
-    public ItemType(String name, float price, int quantity, String location, String date, String categories) {
+    public ItemType(String name, float price, int quantity, String location, String date, String category) {
         this.name = name;
         this.price = price;
         this.quantity = 0;
         this.location = location;
         this.date = date;
-        this.categories = categories;
-        this.categories = categories;
+        this.category = category;
         items = new ArrayList < Item > ();
 
         for (int i = 0; i < quantity; i++) {
@@ -94,11 +93,11 @@ public class ItemType {
     }
 
     public String getCategory() {
-        return categories;
+        return category;
     }
 
-    public void setCategories(String c) {
-        categories = c;
+    public void setCategory(String c) {
+        category = c;
     }
 
     public String getLocation() {
