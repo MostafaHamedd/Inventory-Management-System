@@ -58,4 +58,5 @@ public class HomeActivity extends Activity {
         Intent coursesIntent = new Intent(HomeActivity.this, CategoryActivity.class);
         HomeActivity.this.startActivity(coursesIntent);
     }
+
 }
