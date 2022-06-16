@@ -39,4 +39,17 @@ public class InventoryTest extends TestCase {
         assertEquals(testType,test.getItem(0));
     }
 
+    public void testReorderByQuantity(){
+        Inventory test = new Inventory();
+        ItemType testType = new ItemType();
+        ItemType testType2 = new ItemType();
+
+        //Set first item to not need a refill
+        testType.setNeedsRefill(false);
+        test.addItem(testType);
+        test.addItem(testType2);
+
+        test.reorderByQuantity();
+        assertEquals(testType2,test.getItem(0));
+    }
 }

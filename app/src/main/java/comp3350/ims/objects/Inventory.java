@@ -52,7 +52,6 @@ public class Inventory {
                     newItemTypeList.add(items.get(i));
                 }
             }
-
             items = newItemTypeList;
         } else {
             newItemTypeList = items;

@@ -119,4 +119,15 @@ public class ItemTypeTest extends TestCase {
         test.setDate("March");
         assertEquals("March",test.getDate());
     }
+
+    public void testneedsRefill(){
+        ItemType test = new ItemType();
+        assertTrue(test.needsRefill());
+    }
+
+    public void testsetNeedsRefill(){
+        ItemType test = new ItemType();
+        test.setNeedsRefill(false);
+        assertFalse(test.needsRefill());
+    }
 }

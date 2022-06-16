@@ -21,8 +21,9 @@ public class ItemType {
         location = "";
         date = "";
         categories = "";
-        items = new ArrayList < > ();
-    }
+        items = new ArrayList<>();
+        needsRefill = true;
+    } //Base constructor
 
     public ItemType(String name, float price, int quantity, String location, String date, String categories) {
         this.name = name;
