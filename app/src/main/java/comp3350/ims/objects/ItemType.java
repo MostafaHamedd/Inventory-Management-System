@@ -22,6 +22,7 @@ public class ItemType {
         date = "";
         categories = "";
         items = new ArrayList<>();
+        needsRefill = true;
     } //Base constructor
 
     //Constructor for creating the ItemType itself
