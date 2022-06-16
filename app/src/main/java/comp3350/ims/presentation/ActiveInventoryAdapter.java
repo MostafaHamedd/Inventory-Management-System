@@ -35,7 +35,7 @@ public class ActiveInventoryAdapter extends BaseAdapter {
         itemName.setText("Name: " + activeInventory.getItem(position).getName());
 
         TextView categoryName = (TextView) vi.findViewById(R.id.categoryName);
-        categoryName.setText("Category: " + activeInventory.getItem(position).getCategorie() + "");
+        categoryName.setText("Category: " + activeInventory.getItem(position).getCategory() + "");
 
         TextView itemQuantity = (TextView) vi.findViewById(R.id.itemQuantity);
         itemQuantity.setText("Quantity: " + activeInventory.getItem(position).getQuantity() + "");
