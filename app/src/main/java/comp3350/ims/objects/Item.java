@@ -1,6 +1,5 @@
 package comp3350.ims.objects;
 
-import java.util.List;
 
 public class Item{
 
