@@ -33,9 +33,11 @@ public class ItemTypeTest extends TestCase {
     }
 
     public void testAddItem() {
+
         ItemType test = new ItemType();
         test.addItem("location","date");
         assertEquals("location",test.getItem(0).getLocation());
+
     }
 
     public void testRemoveItem() {
@@ -45,6 +47,56 @@ public class ItemTypeTest extends TestCase {
         test.removeItem(0);
         assertEquals("location2",test.getItem(0).getLocation());
         assertEquals(1,test.getSize());
+    }
+
+    public void testEquals(){
+
+        ItemType test1 = new ItemType("Milk", 5.55f, 12, "Ware House", "12/06/2022", "Dairy");
+        ItemType test2 = new ItemType("Milk", 2.23f, 1, "Ware House", "12/06/2022", "Dairy");
+        assertEquals(test1.equals(test2), true);
+
+        ItemType test3 = new ItemType("Cheese", 5.55f, 12, "Ware House", "12/06/2022", "Dairy");
+        ItemType test4 = new ItemType("Butter", 2.23f, 12, "Ware House", "12/06/2022", "Dairy");
+        assertFalse(test3.equals(test4));
+
+        ItemType test5 = new ItemType("Milk", 5.55f, 12, "Ware House", "12/06/2022", "Dairy");
+        ItemType test6 = new ItemType("Milk", 5.55f, 12, "Ware House", "12/06/2022", "Dairy");
+        assertEquals(test1.equals(test2), true);
+    }
+
+    public void testQuantity(){
+        ItemType test1 = new ItemType();
+
+        assertEquals(test1.getQuantity(), 0);
+
+        test1.addItem("ware house", "12/06/2022");
+        test1.addItem("ware house", "12/06/2022");
+        test1.addItem("ware house", "12/06/2022");
+        test1.addItem("ware house", "12/06/2022");
+        test1.addItem("ware house", "12/06/2022");
+        test1.addItem("ware house", "12/06/2022");
+        test1.addItem("ware house", "12/06/2022");
+
+        assertEquals(test1.getQuantity(), 7);
+
+        test1.removeItem(0);
+        test1.removeItem(0);
+        test1.removeItem(0);
+        test1.removeItem(0);
+        test1.removeItem(0);
+        test1.removeItem(0);
+        test1.removeItem(0);
+
+        assertEquals(test1.getQuantity(),0);
+        test1.addItem("ware house", "12/06/2022");
+
+        //removing after from empty list.
+        test1.removeItem(0);
+        test1.removeItem(0);
+        test1.removeItem(0);
+        test1.removeItem(0);
+        assertEquals(test1.getQuantity(),0);
+
     }
 
     public void testGetName() {
@@ -75,11 +127,6 @@ public class ItemTypeTest extends TestCase {
         assertEquals((float)1.11,test.getPrice());
     }
 
-    public void testGetQuantity() {
-        ItemType test = new ItemType("name", (float) 1.11,2,
-                "location","date","categorie");
-        assertEquals(2,test.getQuantity());
-    }
 
     public void testGetSize() {
         ItemType test = new ItemType("name", (float) 1.11,2,

@@ -21,7 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_alignWithParentIfMissing="false"
         android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
         android:orientation="vertical">
 
         <ImageView

@@ -74,11 +74,11 @@ public class ActiveInventoryActivity extends Activity {
 
     public void updateDataChanges() {
         adapter.notifyDataSetChanged();
+        activeInventory.reorderByQuantity();
     }
 
     @Override
     public void onRestart() {
-        activeInventory.reorderByQuantity();
         super.onRestart();
         updateDataChanges();
     }

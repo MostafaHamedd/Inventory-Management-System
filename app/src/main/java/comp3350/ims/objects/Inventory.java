@@ -1,12 +1,16 @@
 package comp3350.ims.objects;
 import java.util.ArrayList;
 
+import comp3350.ims.business.ProcessReorder;
+
 public class Inventory {
     private int numOfItems;
+    private ProcessReorder checkReorder;
     public ArrayList < ItemType > items;
 
     public Inventory() {
         items = new ArrayList();
+        checkReorder = new ProcessReorder(items);
         numOfItems = 0;
     }
 
@@ -15,7 +19,7 @@ public class Inventory {
     }
 
     public boolean addItem(ItemType newItem) {
-        if (!items.contains(newItem)) {
+        if (newItem != null && !items.contains(newItem)) {
             items.add(newItem);
             numOfItems++;
             return true;
@@ -23,11 +27,12 @@ public class Inventory {
         return false;
     }
 
-    public boolean removeItem(ItemType item) {
-        String targetId = item.getName();
+    public boolean removeItem(ItemType item){
+
         boolean removed = false;
+
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getName().equals(targetId)) {
+            if ((items.get(i)).equals(item)) {
                 items.remove(i);
                 removed = true;
                 numOfItems--;
@@ -37,26 +42,10 @@ public class Inventory {
     }
 
     public ItemType getItem(int index) {
-        if (index < numOfItems) return items.get(index);
-        return null;
+         return items.get(index);
     }
 
-    public ArrayList <ItemType> reorderByQuantity() {
-        ArrayList <ItemType> newItemTypeList = new ArrayList <> ();
-
-        if (items.size() > 1) {
-            for (int i = 0; i < items.size(); i++) {
-                if (items.get(i).needsRefill()) {
-                    newItemTypeList.add(0, items.get(i));
-                } else {
-                    newItemTypeList.add(items.get(i));
-                }
-            }
-            items = newItemTypeList;
-        } else {
-            newItemTypeList = items;
-        }
-
-        return newItemTypeList;
+    public void reorderByQuantity() {
+        checkReorder.reorderByQuantity();
     }
 }

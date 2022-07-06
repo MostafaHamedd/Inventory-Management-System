@@ -2,7 +2,7 @@ package comp3350.ims.objects;
 
 import java.util.*;
 
-public class ItemType {
+public class ItemType implements Comparable<ItemType> {
     public static final int MIN_QUANTITY = 10;
     private String name;
     private float price;
@@ -32,14 +32,13 @@ public class ItemType {
         this.location = location;
         this.date = date;
         this.categories = categories;
-        this.categories = categories;
         items = new ArrayList < Item > ();
 
         for (int i = 0; i < quantity; i++) {
             addItem(location, date);
         }
 
-        this.needsRefill = this.quantity > MIN_QUANTITY ? false : true;
+        checkRefill();
     }
 
     public void addItem(String location, String date) {
@@ -49,8 +48,7 @@ public class ItemType {
         item = new Item(stringId, location, date);
         items.add(item);
         quantity++;
-
-        this.needsRefill = this.quantity > MIN_QUANTITY ? false : true;
+        checkRefill();
     }
 
     public void removeItem(int index) {
@@ -58,7 +56,19 @@ public class ItemType {
             items.remove(index);
             quantity--;
         }
-        needsRefill = quantity > MIN_QUANTITY ? false : true;
+        checkRefill();
+    }
+
+    @Override
+    public boolean equals(Object o){
+        boolean isEqual = false;
+        if(o instanceof ItemType){
+            ItemType item = (ItemType) o;
+            if((this.name).equals(item.getName())){
+                isEqual = true;
+            }
+        }
+        return isEqual;
     }
 
     public String getName() {
@@ -123,5 +133,19 @@ public class ItemType {
 
     public void setNeedsRefill(boolean needsRefill) {
         this.needsRefill = needsRefill;
+    }
+
+    private void checkRefill(){
+        this.needsRefill = this.quantity <= MIN_QUANTITY;
+    }
+
+    @Override
+    public int compareTo(ItemType o) {
+        if(this.quantity == o.getQuantity())
+            return 0;
+        else if(this.quantity > o.getQuantity())
+            return 1;
+        else
+            return -1;
     }
 }
