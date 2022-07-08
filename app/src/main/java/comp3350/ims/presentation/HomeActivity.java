@@ -55,4 +55,9 @@ public class HomeActivity extends Activity {
         HomeActivity.this.startActivity(coursesIntent);
     }
 
+    public void buttonLocationOnClick(View v) {
+        Intent coursesIntent = new Intent(HomeActivity.this, LocationActivity.class);
+        HomeActivity.this.startActivity(coursesIntent);
+    }
+
 }
