@@ -1,16 +1,13 @@
 package comp3350.ims.objects;
 import java.util.ArrayList;
-
-import comp3350.ims.business.ProcessReorder;
+import java.util.Collections;
 
 public class Inventory {
     private int numOfItems;
-    private ProcessReorder checkReorder;
     public ArrayList < ItemType > items;
 
     public Inventory() {
         items = new ArrayList();
-        checkReorder = new ProcessReorder(items);
         numOfItems = 0;
     }
 
@@ -46,6 +43,18 @@ public class Inventory {
     }
 
     public void reorderByQuantity() {
-        checkReorder.reorderByQuantity();
+
+        int numberOfRefill = 0;
+        if (items.size() > 0) {
+
+            for (int i = 0; i < items.size(); i++) {
+                if (items.get(i).needsRefill()) {
+                    items.add(0,items.remove(i));
+                    numberOfRefill++;
+                }
+            }
+
+            Collections.sort(items.subList(0, numberOfRefill));
+        }
     }
 }
