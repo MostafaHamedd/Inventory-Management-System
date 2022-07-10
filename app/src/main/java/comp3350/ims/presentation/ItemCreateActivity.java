@@ -2,6 +2,7 @@ package comp3350.ims.presentation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -66,23 +67,33 @@ public class ItemCreateActivity extends AppCompatActivity {
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ItemCreateActivity.this, "New Item Created", Toast.LENGTH_SHORT).show();
+
                 String nameString = itemName.getText().toString();
-
                 String priceString = itemPrice.getText().toString();
-                float price = Float.parseFloat(priceString);
-
                 String quantityString = itemQuantity.getText().toString();
-                int quantity = Integer.parseInt(quantityString);
-
                 String categoryString = itemCategory.getSelectedItem().toString();
-
                 String locationString = itemLocation.getSelectedItem().toString();
+                ItemType newItem;
 
-                ItemType newItem = new ItemType(nameString, price, quantity, locationString, thisDate,
-                        categoryString);
+                if (TextUtils.isEmpty(nameString)) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Error: name can't be empty", Toast.LENGTH_SHORT);
+                    toast.show();
 
-                accessInventory.insertItem(newItem);
+                } else if (TextUtils.isEmpty(priceString)) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Error: Please enter a valid price", Toast.LENGTH_SHORT);
+                    toast.show();
+                } else if (TextUtils.isEmpty(quantityString)) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Error: Please enter a valid quantity", Toast.LENGTH_SHORT);
+                    toast.show();
+                } else {
+                    float price = Float.parseFloat(priceString);
+                    int quantity = Integer.parseInt(quantityString);
+                    newItem = new ItemType(nameString, price, quantity, locationString, thisDate,
+                            categoryString);
+                    accessInventory.insertItem(newItem);
+                    Toast.makeText(ItemCreateActivity.this, "New Item Created", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
