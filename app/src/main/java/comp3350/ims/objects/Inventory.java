@@ -7,7 +7,7 @@ public class Inventory {
     public ArrayList < ItemType > items;
 
     public Inventory() {
-        items = new ArrayList();
+        items = new ArrayList<>();
         numOfItems = 0;
     }
 
@@ -16,7 +16,7 @@ public class Inventory {
     }
 
     public boolean addItem(ItemType newItem) {
-        if (newItem != null && !items.contains(newItem)) {
+        if (newItem != null && !(items.contains(newItem))) {
             items.add(newItem);
             numOfItems++;
             return true;
@@ -38,8 +38,10 @@ public class Inventory {
         return removed;
     }
 
-    public ItemType getItem(int index) {
-         return items.get(index);
+    public ItemType getItem(int index) throws IndexOutOfBoundsException {
+        if(index < 0|| index >= items.size())
+            throw new IndexOutOfBoundsException();
+        return items.get(index);
     }
 
     public void reorderByQuantity() {

@@ -60,15 +60,19 @@ public class ActiveInventoryActivity extends Activity {
         item.addItem("Ware House", thisDate);
 
         TextView itemQuantity = ((View) v.getParent()).findViewById(R.id.itemQuantity);
-        if (activeInventory.getItem(position).needsRefill()) {
-            itemQuantity.setTextColor(Color.parseColor("RED"));
-        } else {
-            itemQuantity.setTextColor(Color.parseColor("BLACK"));
+        try {
+            if (activeInventory.getItem(position).needsRefill()) {
+                itemQuantity.setTextColor(Color.parseColor("RED"));
+            } else {
+                itemQuantity.setTextColor(Color.parseColor("BLACK"));
+            }
+
+            updateDataChanges();
+
+            Toast.makeText(this, "Item Added", Toast.LENGTH_SHORT).show();
+        } catch (IndexOutOfBoundsException e){
+            System.out.println(e.getMessage());
         }
-
-        updateDataChanges();
-
-        Toast.makeText(this, "Item Added", Toast.LENGTH_SHORT).show();
 
     }
 
