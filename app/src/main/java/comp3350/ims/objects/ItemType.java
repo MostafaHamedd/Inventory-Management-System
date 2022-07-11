@@ -22,7 +22,7 @@ public class ItemType implements Comparable<ItemType> {
         date = "";
         category = "";
         items = new ArrayList<>();
-        needsRefill = true;
+       checkRefill();
     } //Base constructor
 
     public ItemType(String name, float price, int quantity, String location, String date, String category) {
@@ -52,7 +52,7 @@ public class ItemType implements Comparable<ItemType> {
     }
 
     public void removeItem(int index) {
-        if (!items.isEmpty() && index >= 0) {
+        if (!items.isEmpty() && index >= 0 && index < items.size()) {
             items.remove(index);
             quantity--;
         }
@@ -71,6 +71,16 @@ public class ItemType implements Comparable<ItemType> {
         return isEqual;
     }
 
+    @Override
+    public int compareTo(ItemType o) {
+        if(this.quantity == o.getQuantity())
+            return 0;
+        else if(this.quantity > o.getQuantity())
+            return 1;
+        else
+            return -1;
+    }
+
     public String getName() {
         return name;
     }
@@ -87,10 +97,6 @@ public class ItemType implements Comparable<ItemType> {
         return items.get(index);
     }
 
-    public void setPrice(float p) {
-        price = p;
-    }
-
     public int getQuantity() {
         return quantity;
     }
@@ -99,32 +105,16 @@ public class ItemType implements Comparable<ItemType> {
         return items.size();
     }
 
-    public void setQuantity(int q) {
-        quantity = q;
-    }
-
     public String getCategory() {
         return category;
-    }
-
-    public void setCategory(String c) {
-        category = c;
     }
 
     public String getLocation() {
         return location;
     }
 
-    public void setLocation(String l) {
-        location = l;
-    }
-
     public String getDate() {
         return date;
-    }
-
-    public void setDate(String d) {
-        date = d;
     }
 
     public boolean needsRefill() {
@@ -139,13 +129,5 @@ public class ItemType implements Comparable<ItemType> {
         this.needsRefill = this.quantity <= MIN_QUANTITY;
     }
 
-    @Override
-    public int compareTo(ItemType o) {
-        if(this.quantity == o.getQuantity())
-            return 0;
-        else if(this.quantity > o.getQuantity())
-            return 1;
-        else
-            return -1;
-    }
+
 }

@@ -13,7 +13,6 @@ public class InventoryTest extends TestCase {
     public void testSimpleCases(){
 
         Inventory inventory = new Inventory();
-        assertEquals(0,inventory.getNumOfItems());
 
         ItemType item = new ItemType("Coke 12 pk", 8f, 12, "Ware House", "12/06/2022", "Drinks");
         ItemType item1 = new ItemType("Pepsi 12 pk", 8f, 12, "Ware House", "12/06/2022", "Drinks");
@@ -114,6 +113,19 @@ public class InventoryTest extends TestCase {
 
         test.reorderByQuantity();
         assertEquals(testType2,test.getItem(0));
+    }
+
+    public void testEdgeCases(){
+
+        Inventory inventory = new Inventory();
+
+        assertEquals(inventory.getNumOfItems(), 0);
+        ItemType item = new ItemType("Coke 12 pk", 8f, 12, "Ware House", "12/06/2022", "Drinks");
+        assertFalse(inventory.removeItem(item));
+
+        assertTrue(inventory.addItem(item));
+        assertEquals(inventory.getNumOfItems(),1);
+
     }
 
 
