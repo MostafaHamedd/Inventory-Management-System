@@ -96,11 +96,20 @@ public class DataAccessStub {
 		}
 	}
 
-	public void removeLocation(int index){
-		if(index > -1 && index < locationList.size()){
-			locationList.remove(index);
-		}
+	public boolean removeLocation(String name){
+		return locationList.remove(name);
 	}
+
+	public boolean removeCategory(String name){
+		return categoryList.remove(name);
+	}
+	public boolean isCategory(String name){
+		return categoryList.contains(name) ;
+	}
+	public boolean isLocation(String name){
+		return locationList.contains(name) ;
+	}
+
 
 
 }

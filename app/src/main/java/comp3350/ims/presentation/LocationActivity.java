@@ -45,57 +45,27 @@ public class LocationActivity extends Activity {
         deleteButton = (Button) findViewById(R.id.btnDeleteLocation);
         userText = (EditText) findViewById(R.id.txtLocationName);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int  index = position;
-                selectItem(index,view) ;
-
-            }
-
-        });
-        deleteButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view) {
-                deleteSelected() ;
-            }
-
-        } );
 
     }
 
-   public void selectItem(int index,View view){
-       if(!listView.isItemChecked(index)){
-           listView.setItemChecked(index,true) ;
-           view.setBackgroundColor(Color.GRAY);
-           selectedIndex = index ;
-       }else{
-           view.setBackgroundColor(Color.BLUE);
-           listView.setItemChecked(index,false) ;
 
-       }
-
-   }
-   public void deleteSelected(){
-       accessInventory.removeLocation(selectedIndex);
-        locationList.remove(selectedIndex) ;
-       adapter.notifyDataSetChanged();
-       Toast toast = Toast.makeText(getApplicationContext(), "Item deleted", Toast.LENGTH_SHORT);
-       toast.show();
-
-
-
-   }
 
 
     public void buttonsCreateLocationOnClick(View v) {
         String name = userText.getText().toString().trim();
         if (!TextUtils.isEmpty(name)) {
-            accessInventory.addLocation(name);
-            locationList.add(name);
-            adapter.notifyDataSetChanged();
-            userText.setText("");
-            Toast toast = Toast.makeText(getApplicationContext(), "Location created", Toast.LENGTH_SHORT);
-            toast.show();
+            if(!accessInventory.isLocation(name)) {
+                accessInventory.addLocation(name);
+                locationList.add(name);
+                adapter.notifyDataSetChanged();
+                userText.setText("");
+                Toast toast = Toast.makeText(getApplicationContext(), "Location created", Toast.LENGTH_SHORT);
+                toast.show();
+            }else{
+                Toast toast = Toast.makeText(getApplicationContext(), "Location already exists", Toast.LENGTH_SHORT);
+                toast.show();
+            }
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), "Error: Please enter a valid input", Toast.LENGTH_SHORT);
             toast.show();
@@ -103,7 +73,18 @@ public class LocationActivity extends Activity {
     }
 
     public void buttonsDeleteLocationOnClick(View v) {
-//      listView.getItemC
+        String name = userText.getText().toString().trim();
+        if (!TextUtils.isEmpty(name) && accessInventory.removeLocation(name)) {
+                locationList.remove(name);
+                adapter.notifyDataSetChanged();
+                userText.setText("");
+                Toast toast = Toast.makeText(getApplicationContext(), "Location Deleted", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Location was not found", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
 }

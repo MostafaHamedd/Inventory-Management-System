@@ -60,10 +60,13 @@ public class AccessInventory {
 		}
 	}
 
-		public void removeLocation (int index){
-			dataAccess.removeLocation(index);
+	public boolean removeLocation(String name){
+		return dataAccess.removeLocation(name);
+	}
+	public boolean removeCategory (String name){
+		return dataAccess.removeCategory(name);
 
-		}
+	}
 		public void removeIndividualItem ( int index){
 
 			if (index >= 0) {
@@ -72,5 +75,12 @@ public class AccessInventory {
 			}
 
 		}
+	public boolean isCategory(String name){
+		return dataAccess.isCategory(name) ;
+	}
+	public boolean isLocation(String name){
+		return dataAccess.isLocation(name) ;
+	}
+
 
 	}
