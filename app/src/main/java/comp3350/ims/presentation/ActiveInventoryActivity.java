@@ -9,8 +9,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,6 +16,10 @@ import comp3350.ims.R;
 import comp3350.ims.business.AccessInventory;
 import comp3350.ims.objects.Inventory;
 import comp3350.ims.objects.ItemType;
+
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 public class ActiveInventoryActivity extends Activity {
 
@@ -38,6 +40,63 @@ public class ActiveInventoryActivity extends Activity {
         listView = (ListView) findViewById(R.id.activeInventoryList);
         adapter = new ActiveInventoryAdapter(this, activeInventory);
         listView.setAdapter(adapter);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // Inflate menu with items using MenuInflator
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+
+        // Initialise menu item search bar
+        // with id and take its object
+        MenuItem searchViewItem = menu.findItem(R.id.search_bar);
+        SearchView searchView = MenuItemCompat.getActionView(searchViewItem);
+
+        // attach setOnQueryTextListener
+        // to search view defined above
+        searchView.setOnQueryTextListener(
+                new SearchView.OnQueryTextListener() {
+
+                    // Override onQueryTextSubmit method
+                    // which is call
+                    // when submitquery is searched
+
+                    @Override
+                    public boolean onQueryTextSubmit(String query)
+                    {
+                        // If the list contains the search query
+                        // than filter the adapter
+                        // using the filter method
+                        // with the query as its argument
+                        if (list.contains(query)) {
+                            adapter.getFilter().filter(query);
+                        }
+                        else {
+                            // Search query not found in List View
+                            Toast
+                                    .makeText(MainActivity.this,
+                                            "Not found",
+                                            Toast.LENGTH_LONG)
+                                    .show();
+                        }
+                        return false;
+                    }
+
+                    // This method is overridden to filter
+                    // the adapter according to a search query
+                    // when the user is typing search
+                    @Override
+                    public boolean onQueryTextChange(String newText)
+                    {
+                        adapter.getFilter().filter(newText);
+                        return false;
+                    }
+                });
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     public void buttonViewAllOnClick(View v) {
@@ -65,6 +124,7 @@ public class ActiveInventoryActivity extends Activity {
         } else {
             itemQuantity.setTextColor(Color.parseColor("BLACK"));
         }
+
 
         updateDataChanges();
 

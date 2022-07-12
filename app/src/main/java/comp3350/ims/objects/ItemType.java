@@ -23,6 +23,7 @@ public class ItemType {
         category = "";
         items = new ArrayList<>();
         needsRefill = true;
+
     } //Base constructor
 
     public ItemType(String name, float price, int quantity, String location, String date, String category) {
@@ -123,4 +124,9 @@ public class ItemType {
     public void setNeedsRefill(boolean needsRefill) {
         this.needsRefill = needsRefill;
     }
+
+    public boolean contains(String searchedName){
+        return name.contains(searchedName);
+    }
+
 }

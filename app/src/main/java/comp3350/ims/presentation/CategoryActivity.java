@@ -22,6 +22,7 @@ public class CategoryActivity extends Activity {
     private Button createButton;
     private EditText userText;
     private AccessInventory accessInventory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
