@@ -14,7 +14,17 @@ public class Services
 		if (dataAccessService == null)
 		{
 			dataAccessService = new DataAccessDatabase(dbName);
-			dataAccessService.open(Main.dbName);
+			dataAccessService.open(Main.getDBPathName());
+		}
+		return dataAccessService;
+	}
+
+	public static DataAccess createDataAccess(DataAccess alternateDataAccessService)
+	{
+		if (dataAccessService == null)
+		{
+			dataAccessService = alternateDataAccessService;
+			dataAccessService.open(Main.getDBPathName());
 		}
 		return dataAccessService;
 	}
