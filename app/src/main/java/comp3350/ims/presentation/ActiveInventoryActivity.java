@@ -31,6 +31,7 @@ import comp3350.ims.business.AccessInventory;
 import comp3350.ims.objects.Inventory;
 import comp3350.ims.objects.ItemType;
 
+
 public class ActiveInventoryActivity extends Activity {
 
     private Inventory activeInventory;
@@ -50,6 +51,9 @@ public class ActiveInventoryActivity extends Activity {
         listView = (ListView) findViewById(R.id.activeInventoryList);
         adapter = new ActiveInventoryAdapter(this, activeInventory);
         listView.setAdapter(adapter);
+
+
+
     }
 
     public void buttonViewAllOnClick(View v) {
@@ -146,6 +150,11 @@ public class ActiveInventoryActivity extends Activity {
             System.out.println(e.getMessage());
         }
 
+
+        updateDataChanges();
+
+        Toast.makeText(this, "Item Added", Toast.LENGTH_SHORT).show();
+
     }
 
     public void updateDataChanges() {
@@ -158,4 +167,25 @@ public class ActiveInventoryActivity extends Activity {
         super.onRestart();
         updateDataChanges();
     }
+
+    public void sortNameAscending(View v){
+        activeInventory.sortByName();
+        updateDataChanges();
+    }
+
+    public void sortNameDescending(View v){
+        activeInventory.reverseSortByName();
+        updateDataChanges();
+    }
+
+    public void sortPriceAscending(View v){
+        activeInventory.sortByPrice();
+        updateDataChanges();
+    }
+
+    public void sortPriceDescending(View v){
+        activeInventory.reverseSortByPrice();
+        updateDataChanges();
+    }
+
 }
