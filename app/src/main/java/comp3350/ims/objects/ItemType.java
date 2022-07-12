@@ -52,6 +52,11 @@ public class ItemType implements Comparable<ItemType> {
         return item ;
     }
 
+    public void addItem(Item item) {
+        items.add(item);
+        checkRefill();
+    }
+
     public void removeItem(int index) {
         if (!items.isEmpty() && index >= 0 && index < items.size()) {
             items.remove(index);

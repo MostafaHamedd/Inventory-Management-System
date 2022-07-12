@@ -41,16 +41,12 @@ public class DataAccessDatabase implements DataAccess{
             st1 = c1.createStatement();
             st2 = c1.createStatement();
             st3 = c1.createStatement();
-//            getActiveInventory() ;
-//            addCategory("test");
-//            isCategory("Bakery");
-//            isCategory("test");
-           addLocation("Test");
-//             isLocation("Test");
-//            removeLocation("Test");
-//            removeLocation("Test");
-          //  insertItem( new ItemType("Mostafa",15,15,"test","test","test")) ;
 
+            addCategory("MOMMY");
+            addLocation("MILKERS");
+            ItemType itm = new ItemType("POP",1,1,"AUGUST","MILKERS","MOMMY");
+            insertItem(itm);
+            addItem(itm.addItem("MILKERS","AUGUST"),itm);
         }
         catch (Exception e)
         {
@@ -63,69 +59,71 @@ public class DataAccessDatabase implements DataAccess{
 
     }
 
-    public Inventory getActiveInventory(){
-        Inventory i1 = new Inventory();
-        String invId ;
-      try{
-          cmdString = "Select * from Inventory";
-          rs2 = st1.executeQuery(cmdString);
-      }
-      catch(Exception e){
-          processSQLError(e);
+    public Inventory getActiveInventory() {
+        Inventory inventory = new Inventory();
+        String inventoryID;
+        ArrayList<ItemType> itemTypes = new ArrayList<>();
+        try {
+            cmdString = "Select * from ItemType";
+            rs3 = st2.executeQuery(cmdString);
+
+            while (rs3.next()) {
+                String itemTypeName = rs3.getString("NAME");
+                float price = rs3.getFloat("PRICE");
+                int quantity = rs3.getInt("QUANTITY");
+                String location = rs3.getString("LOCATION");
+                String date = rs3.getString("DATE");
+                String category = rs3.getString("CATEGORY");
+                itemTypes.add(new ItemType(itemTypeName, price, quantity, location, date, category));
+            }
+
+            cmdString = "Select * from Item";
+            rs4 = st3.executeQuery(cmdString);
+
+            while (rs4.next()) {
+                int id = rs4.getInt("ID");
+                String location = rs4.getString("LOCATION");
+                String date = rs4.getString("DATE");
+                String itemTypeName = rs4.getString("ITEMTYPENAME");
+
+                for (int i = 0; i < itemTypes.size(); i++) {
+                    if (itemTypes.get(i).getName().equals(itemTypeName)) {
+                        itemTypes.get(i).addItem(new Item(id + "", location, date));
+                    }
+                }
+            }
+
+            inventory = new Inventory(itemTypes);
+        }catch(Exception e){
+              processSQLError(e);
         }
-      try{
-          while (rs2.next()) {
-              invId = rs2.getString("INVENTORYID") ;
-              System.out.println(invId + " Lets GOOOO" );
-          }
-
-      }
-      catch(Exception e){
-          processSQLError(e);
-      }
 
 
-      return i1;
+
+        return inventory;
     }
 
     public void insertItem(ItemType item){
         String values ;
 
-
-        try{
-            values = "\'"+item.getName()+"\'"
-                    +", '" +"MAIN"
-                    +"', '" +item.getPrice()
-                    +"', '" +item.getCategory()
-                    +"', '" +item.getLocation()
-                    +"', '" +item.getDate()
-                    +"', '" +item.getQuantity()
-                    +"'";
+        try {
+            values = "\'" + item.getName() + "\'"
+                    + ", '" + "MAIN"
+                    + "', '" + item.getPrice()
+                    + "', '" + item.getCategory()
+                    + "', '" + item.getLocation()
+                    + "', '" + item.getDate()
+                    + "', '" + item.getQuantity()
+                    + "'";
             System.out.println(values);
-            cmdString = "Insert into ITEMTYPE " + " Values(" +values +")";
+            cmdString = "Insert into ITEMTYPE " + " Values(" + values + ")";
             updateCount = st1.executeUpdate(cmdString);
-            System.out.println("Hereeee");
-            cmdString = "Select * from Item";
-            rs2 = st1.executeQuery(cmdString);
-            String itemName ;
-            try{
-                while (rs2.next()) {
-                    itemName = rs2.getString("NAME") ;
-                    System.out.println(itemName + " Lets GOOOO" );
 
-                }
-
-            }
-            catch(Exception e){
+            //code here to do insert item
+        }catch(Exception e){
                 processSQLError(e);
             }
 
-
-        }
-        catch (Exception e)
-        {
-            result = processSQLError(e);
-        }
 
     }
 
@@ -158,7 +156,7 @@ public class DataAccessDatabase implements DataAccess{
 
 
         try {
-            values = "\'" + item.getId() + "\'"
+            values = "\'" + item.getId()
                     + "', '" + itemType.getName()
                     + "', '" + item.getDate()
                     + "', '" + item.getLocation()
