@@ -3,16 +3,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.ims.objects.Inventory;
+import comp3350.ims.objects.Item;
 import comp3350.ims.objects.ItemType;
 
 public interface DataAccess {
     void open(String string);
 
     void close();
-
+    public void addItem(Item item, ItemType itemType);
     public Inventory getActiveInventory();
 
-    public String insertItem(ItemType item);
+    public void insertItem(ItemType item);
 
     public String getCategoryList(ArrayList < String > categoryList);
 

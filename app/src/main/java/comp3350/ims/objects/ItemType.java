@@ -41,7 +41,7 @@ public class ItemType implements Comparable<ItemType> {
         checkRefill();
     }
 
-    public void addItem(String location, String date) {
+    public Item addItem(String location, String date) {
         Item item;
         id++;
         String stringId = Integer.toString(id);
@@ -49,6 +49,7 @@ public class ItemType implements Comparable<ItemType> {
         items.add(item);
         quantity++;
         checkRefill();
+        return item ;
     }
 
     public void removeItem(int index) {

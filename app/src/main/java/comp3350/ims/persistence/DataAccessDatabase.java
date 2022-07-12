@@ -9,6 +9,7 @@ import java.sql.SQLWarning;
 import java.sql.DatabaseMetaData;
 
 import comp3350.ims.objects.Inventory;
+import comp3350.ims.objects.Item;
 import comp3350.ims.objects.ItemType;
 
 public class DataAccessDatabase implements DataAccess{
@@ -40,12 +41,22 @@ public class DataAccessDatabase implements DataAccess{
             st1 = c1.createStatement();
             st2 = c1.createStatement();
             st3 = c1.createStatement();
+//            getActiveInventory() ;
+//            addCategory("test");
+//            isCategory("Bakery");
+//            isCategory("test");
+           addLocation("Test");
+//             isLocation("Test");
+//            removeLocation("Test");
+//            removeLocation("Test");
+          //  insertItem( new ItemType("Mostafa",15,15,"test","test","test")) ;
 
         }
         catch (Exception e)
         {
             processSQLError(e);
         }
+        System.out.println("Opened " +dbType +" database " +dbPath);
     }
 
     public void close(){
@@ -53,11 +64,69 @@ public class DataAccessDatabase implements DataAccess{
     }
 
     public Inventory getActiveInventory(){
-        return null;
+        Inventory i1 = new Inventory();
+        String invId ;
+      try{
+          cmdString = "Select * from Inventory";
+          rs2 = st1.executeQuery(cmdString);
+      }
+      catch(Exception e){
+          processSQLError(e);
+        }
+      try{
+          while (rs2.next()) {
+              invId = rs2.getString("INVENTORYID") ;
+              System.out.println(invId + " Lets GOOOO" );
+          }
+
+      }
+      catch(Exception e){
+          processSQLError(e);
+      }
+
+
+      return i1;
     }
 
-    public String insertItem(ItemType item){
-        return null;
+    public void insertItem(ItemType item){
+        String values ;
+
+
+        try{
+            values = "\'"+item.getName()+"\'"
+                    +", '" +"MAIN"
+                    +"', '" +item.getPrice()
+                    +"', '" +item.getCategory()
+                    +"', '" +item.getLocation()
+                    +"', '" +item.getDate()
+                    +"', '" +item.getQuantity()
+                    +"'";
+            System.out.println(values);
+            cmdString = "Insert into ITEMTYPE " + " Values(" +values +")";
+            updateCount = st1.executeUpdate(cmdString);
+            System.out.println("Hereeee");
+            cmdString = "Select * from Item";
+            rs2 = st1.executeQuery(cmdString);
+            String itemName ;
+            try{
+                while (rs2.next()) {
+                    itemName = rs2.getString("NAME") ;
+                    System.out.println(itemName + " Lets GOOOO" );
+
+                }
+
+            }
+            catch(Exception e){
+                processSQLError(e);
+            }
+
+
+        }
+        catch (Exception e)
+        {
+            result = processSQLError(e);
+        }
+
     }
 
     public String getCategoryList(ArrayList< String > categoryList){
@@ -82,6 +151,31 @@ public class DataAccessDatabase implements DataAccess{
 
         return null;
     }
+
+
+    public void addItem(Item item, ItemType itemType) {
+        String values;
+
+
+        try {
+            values = "\'" + item.getId() + "\'"
+                    + "', '" + itemType.getName()
+                    + "', '" + item.getDate()
+                    + "', '" + item.getLocation()
+                    + "'";
+            System.out.println(values);
+            cmdString = "Insert into ITEM " + " Values(" + values + ")";
+            updateCount = st1.executeUpdate(cmdString);
+            cmdString = "Select * from Item";
+            rs2 = st1.executeQuery(cmdString);
+            String itemName;
+        }
+        catch (Exception e)
+        {
+            processSQLError(e);
+        }
+    }
+
 
     public String getLocationList(ArrayList < String > locationList){
         String category;
@@ -136,15 +230,60 @@ public class DataAccessDatabase implements DataAccess{
         }
     }
 
-    public boolean removeLocation(String name){return false;
+    public boolean removeLocation(String name){
+        boolean flag = false ;
+        try{
+            cmdString = "Delete from LOCATION where NAME= " +"\'"+name+"\'" ;
+            rs2 = st1.executeQuery(cmdString);
+            flag = true ;
+
+        }
+        catch(Exception e){
+            processSQLError(e);
+        }
+        return flag ;
     }
 
-    public boolean removeCategory(String name){return false;}
+    public boolean removeCategory(String name) {
+        boolean flag = false;
+        try {
+            cmdString = "Delete from CATEGORY where NAME= " + "\'" + name + "\'";
+            rs2 = st1.executeQuery(cmdString);
+            flag = true;
 
-    public boolean isCategory(String name){return false;}
+        } catch (Exception e) {
+            processSQLError(e);
+        }
+        return flag;
+    }
 
-    public boolean isLocation(String name){return false;}
+    public boolean isCategory(String name){
+        try{
+            cmdString = "select * from CATEGORY where NAME= "+"\'"+name+"\'" ;
+            rs2 = st1.executeQuery(cmdString);
+            System.out.println(rs2.next() + " Lets goo #2");
 
+        }
+        catch(Exception e){
+            processSQLError(e);
+        }
+        return false ;
+    }
+
+    public boolean isLocation(String name){
+        try{
+        cmdString = "select * from LOCATION where NAME= "+"\'"+name+"\'"  ;
+        rs2 = st1.executeQuery(cmdString);
+            System.out.println(rs2.next() + " Lets goo #2 loc");
+
+    }
+    catch(Exception e){
+        processSQLError(e);
+    }
+        return false ;
+    }
+
+    public ArrayList<String> getLocationList(){return null;}
 
     public String processSQLError(Exception e)
     {
