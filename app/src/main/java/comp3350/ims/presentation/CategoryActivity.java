@@ -26,8 +26,7 @@ public class CategoryActivity extends Activity {
     private AccessInventory accessInventory;
     ListView listView;
     Button deleteButton ;
-    int selectedIndex ;
-    boolean currentlySelected;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class CategoryActivity extends Activity {
         accessInventory = new AccessInventory();
 
         accessInventory.getCategories(categoryList);
-        currentlySelected = false ;
+
         adapter = new ArrayAdapter < String > (this, R.layout.activtylist_view, categoryList);
          listView = (ListView) findViewById(R.id.categoryList);
         listView.setAdapter(adapter);
