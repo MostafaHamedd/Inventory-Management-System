@@ -8,7 +8,7 @@ import comp3350.ims.objects.Inventory;
 import comp3350.ims.objects.Item;
 import comp3350.ims.objects.ItemType;
 import comp3350.ims.persistence.DataAccess;
-import comp3350.ims.persistence.DataAccessStub;
+
 
 public class AccessInventory {
 	private DataAccess dataAccess;
