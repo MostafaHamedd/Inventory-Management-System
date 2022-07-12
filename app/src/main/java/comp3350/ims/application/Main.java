@@ -3,6 +3,7 @@ package comp3350.ims.application;
 public class Main
 {
 	public static final String dbName="IMS";
+	public static String dbPathName="database/IMS";
 
 	public static void main(String[] args)
 	{
@@ -20,5 +21,17 @@ public class Main
 	public static void shutDown()
 	{
 		Services.closeDataAccess();
+	}
+
+	public static String getDBPathName() {
+		if (dbPathName == null)
+			return dbName;
+		else
+			return dbPathName;
+	}
+
+	public static void setDBPathName(String pathName) {
+		System.out.println("Setting DB path to: " + pathName);
+		dbPathName = pathName;
 	}
 }
