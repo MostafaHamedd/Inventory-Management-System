@@ -93,6 +93,8 @@ public class ItemType implements Comparable<ItemType> {
         return price;
     }
 
+    public void setPrice(float p) { this.price = p; }
+
     public Item getItem(int index) {
         return items.get(index);
     }
@@ -108,6 +110,8 @@ public class ItemType implements Comparable<ItemType> {
     public String getCategory() {
         return category;
     }
+
+    public void setCategory( String c) { this.category = c; }
 
     public String getLocation() {
         return location;
