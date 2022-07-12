@@ -2,7 +2,7 @@ package comp3350.ims.application;
 
 public class Main
 {
-	public static final String dbName="SC";
+	public static final String dbName="IMS";
 
 	public static void main(String[] args)
 	{

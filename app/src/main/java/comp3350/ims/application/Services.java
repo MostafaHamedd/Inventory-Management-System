@@ -1,22 +1,25 @@
 package comp3350.ims.application;
 
+import comp3350.ims.persistence.DataAccess;
+import comp3350.ims.persistence.DataAccessDatabase;
 import comp3350.ims.persistence.DataAccessStub;
+
 
 public class Services
 {
-	private static DataAccessStub dataAccessService = null;
+	private static DataAccess dataAccessService = null;
 
-	public static DataAccessStub createDataAccess(String dbName)
+	public static DataAccess createDataAccess(String dbName)
 	{
 		if (dataAccessService == null)
 		{
-			dataAccessService = new DataAccessStub(dbName);
+			dataAccessService = new DataAccessDatabase(dbName);
 			dataAccessService.open(Main.dbName);
 		}
 		return dataAccessService;
 	}
 
-	public static DataAccessStub getDataAccess(String dbName)
+	public static DataAccess getDataAccess(String dbName)
 	{
 		if (dataAccessService == null)
 		{

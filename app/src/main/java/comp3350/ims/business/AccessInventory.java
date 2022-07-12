@@ -6,15 +6,16 @@ import comp3350.ims.application.Main;
 import comp3350.ims.application.Services;
 import comp3350.ims.objects.Inventory;
 import comp3350.ims.objects.ItemType;
+import comp3350.ims.persistence.DataAccess;
 import comp3350.ims.persistence.DataAccessStub;
 
 public class AccessInventory {
-	private DataAccessStub dataAccess;
+	private DataAccess dataAccess;
 	private Inventory activeInventory;
 	private static int currentItemPosition;
 
 	public AccessInventory() {
-		dataAccess = (DataAccessStub) Services.getDataAccess(Main.dbName);
+		dataAccess =  Services.getDataAccess(Main.dbName);
 		activeInventory = dataAccess.getActiveInventory();
 	}
 

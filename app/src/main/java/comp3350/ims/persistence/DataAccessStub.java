@@ -6,7 +6,7 @@ import comp3350.ims.application.Main;
 import comp3350.ims.objects.Inventory;
 import comp3350.ims.objects.ItemType;
 
-public class DataAccessStub {
+public class DataAccessStub implements DataAccess{
 	private String dbName;
 	private String dbType = "stub";
 
