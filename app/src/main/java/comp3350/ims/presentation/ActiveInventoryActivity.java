@@ -2,11 +2,14 @@ package comp3350.ims.presentation;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
+import android.support.annotation.RequiresApi;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,7 +63,7 @@ public class ActiveInventoryActivity extends Activity {
 
     private String saveName = "";
     private float savePrice = 0;
-    private String saveCategory = "";
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void buttonEditDialogOnClick(View v) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -74,47 +77,42 @@ public class ActiveInventoryActivity extends Activity {
         EditText newName = new EditText(this);
         newName.setText(item.getName());
         newName.setInputType(InputType.TYPE_CLASS_TEXT);
-        builder.setView(newName);
 
-        builder.setMessage("Price");
         EditText newPrice = new EditText(this);
-        String priceText = ""+item.getPrice();
+        String priceText = "" + item.getPrice();
         newPrice.setText(priceText);
-        newPrice.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        builder.setView(newPrice);
-
-//        Spinner spinCategory = findViewById(R.id.spinnerCategory);
-//        ArrayList < String > categoryList;
-//        categoryList = new ArrayList< >();
-//        accessInventory.getCategories(categoryList);
-//        ArrayAdapter< String > adapterCategory = new ArrayAdapter < > (this, R.layout.support_simple_spinner_dropdown_item, categoryList);
-//        adapterCategory.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-//        spinCategory.setAdapter(adapterCategory);
-
-        builder.setMessage("Category");
-        EditText newCategory = new EditText(this);
-        newCategory.setText(item.getCategory());
-        newCategory.setInputType(InputType.TYPE_CLASS_TEXT);
-        builder.setView(newCategory);
-
-//        final LayoutInflater inflater =
+        newPrice.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
         lila.addView(newName);
         lila.addView(newPrice);
-        lila.addView(newCategory);
-
         builder.setView(lila);
 
-// Set up the buttons
+        final LayoutInflater inflater = getLayoutInflater();
+        final View inflator = inflater.inflate(R.layout.activity_edit_dialog_inventory_row, null);
+
+        Spinner spinCategory = (Spinner) inflator.findViewById(R.id.spinnerCategory);
+
+        ArrayList < String > categoryList = new ArrayList < > ();
+
+        accessInventory.getCategories(categoryList);
+
+        ArrayAdapter < String > adapterCategory = new ArrayAdapter < > (this, R.layout.support_simple_spinner_dropdown_item, categoryList);
+        adapterCategory.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinCategory.setAdapter(adapterCategory);
+
+        builder.setView(inflator);
+//
+//        EditText n = (EditText) findViewById(R.id.itemNameInput);
+//        n.setText(item.getName());
+
+        // Set up the buttons
         builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 saveName = newName.getText().toString();
                 savePrice = Float.parseFloat(newPrice.getText().toString());
-                saveCategory = newCategory.getText().toString();
                 item.setName(saveName);
                 item.setPrice(savePrice);
-                item.setCategory(saveCategory);
                 adapter.notifyDataSetChanged();
             }
         });
@@ -124,9 +122,7 @@ public class ActiveInventoryActivity extends Activity {
                 dialog.cancel();
             }
         });
-
         builder.show();
-
     }
 
     public void buttonAddOnClick(View v) {
