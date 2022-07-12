@@ -46,7 +46,6 @@ public class DataAccessDatabase implements DataAccess{
         {
             processSQLError(e);
         }
-        System.out.println("Opened " +dbType +" database " +dbPath);
     }
 
     public void close(){
@@ -65,15 +64,14 @@ public class DataAccessDatabase implements DataAccess{
         String category;
         String myName = EOF;
 
-        categoryList = new ArrayList<String>();
         try
         {
-            cmdString = "Select * from Category";
+            cmdString = "Select * from CATEGORY";
             rs3 = st1.executeQuery(cmdString);
 
             while (rs3.next())
             {
-                myName = rs3.getString("Name");
+                myName = rs3.getString("NAME");
                 categoryList.add(myName);
             }
             rs3.close();
@@ -81,11 +79,31 @@ public class DataAccessDatabase implements DataAccess{
         {
             processSQLError(e);
         }
+
         return null;
     }
 
     public String getLocationList(ArrayList < String > locationList){
-            return null;
+        String category;
+        String myName = EOF;
+
+        try
+        {
+            cmdString = "Select * from LOCATION";
+            rs3 = st1.executeQuery(cmdString);
+
+            while (rs3.next())
+            {
+                myName = rs3.getString("NAME");
+                locationList.add(myName);
+            }
+            rs3.close();
+        } catch (Exception e)
+        {
+            processSQLError(e);
+        }
+
+        return null;
     }
 
     public void addCategory(String category){
@@ -118,7 +136,8 @@ public class DataAccessDatabase implements DataAccess{
         }
     }
 
-    public boolean removeLocation(String name){return false;}
+    public boolean removeLocation(String name){return false;
+    }
 
     public boolean removeCategory(String name){return false;}
 
@@ -126,7 +145,6 @@ public class DataAccessDatabase implements DataAccess{
 
     public boolean isLocation(String name){return false;}
 
-    public ArrayList<String> getLocationList(){return null;}
 
     public String processSQLError(Exception e)
     {
