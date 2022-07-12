@@ -29,7 +29,8 @@ public class Item {
     }
 
     public void setId(String i) {
-        this.id = i;
+        if(i != null)
+            this.id = i;
     }
 
     public String getDate() {

@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import comp3350.ims.R;
 import comp3350.ims.objects.Inventory;
 
@@ -31,21 +33,26 @@ public class ActiveInventoryAdapter extends BaseAdapter {
             vi = inflater.inflate(R.layout.inventory_row, null);
         }
 
-        TextView itemName = (TextView) vi.findViewById(R.id.itemName);
-        itemName.setText("Name: " + activeInventory.getItem(position).getName());
+        try {
 
-        TextView categoryName = (TextView) vi.findViewById(R.id.categoryName);
-        categoryName.setText("Category: " + activeInventory.getItem(position).getCategory() + "");
+            TextView itemName = (TextView) vi.findViewById(R.id.itemName);
+            itemName.setText("Name: " + activeInventory.getItem(position).getName());
 
-        TextView itemQuantity = (TextView) vi.findViewById(R.id.itemQuantity);
-        itemQuantity.setText("Quantity: " + activeInventory.getItem(position).getQuantity() + "");
+            TextView categoryName = (TextView) vi.findViewById(R.id.categoryName);
+            categoryName.setText("Category: " + activeInventory.getItem(position).getCategory() + "");
 
-        if (activeInventory.getItem(position).needsRefill()) {
-            itemQuantity.setTextColor(Color.parseColor("RED"));
+            TextView itemQuantity = (TextView) vi.findViewById(R.id.itemQuantity);
+            itemQuantity.setText("Quantity: " + activeInventory.getItem(position).getQuantity() + "");
+
+            if (activeInventory.getItem(position).needsRefill()) {
+                itemQuantity.setTextColor(Color.parseColor("RED"));
+            }
+
+            TextView itemPrice = (TextView) vi.findViewById(R.id.itemPrice);
+            itemPrice.setText("Price: $" + activeInventory.getItem(position).getPrice() + "");
+        } catch (IndexOutOfBoundsException e){
+            System.out.println(e.getMessage());
         }
-
-        TextView itemPrice = (TextView) vi.findViewById(R.id.itemPrice);
-        itemPrice.setText("Price: $" + activeInventory.getItem(position).getPrice() + "");
 
         return vi;
     }

@@ -10,7 +10,8 @@ public class ItemTest extends TestCase {
     public void tearDown() {
     }
 
-    public void testItem(){
+
+    public void testTypicaCases(){
         Item test = new Item();
         assertEquals(test.getDate(),"");
         assertEquals(test.getId(),"");
@@ -27,24 +28,5 @@ public class ItemTest extends TestCase {
         assertEquals(test3.getDate(),"date");
     }
 
-    public void testGetId() {
-        Item test = new Item("123","location","date");
-        assertEquals(test.getId(),"123");
-    }
 
-    public void testSetId() {
-        Item test = new Item();
-        test.setId("test");
-        assertEquals(test.getId(),"test");
-    }
-
-    public void testGetDate() {
-        Item test = new Item("location","Today");
-        assertEquals(test.getDate(),"Today");
-    }
-
-    public void testGetLocation() {
-        Item test = new Item("Here","date");
-        assertEquals(test.getLocation(),"Here");
-    }
 }

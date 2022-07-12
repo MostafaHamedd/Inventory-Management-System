@@ -28,6 +28,7 @@ public class ItemCreateActivity extends AppCompatActivity {
     private Button createBtn;
     private AccessInventory accessInventory;
     private ArrayList < String > categoryList;
+    private ArrayList < String > locationList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +38,16 @@ public class ItemCreateActivity extends AppCompatActivity {
         Spinner spinCategory = findViewById(R.id.spinnerCategory);
 
         categoryList = new ArrayList < > ();
+        locationList = new ArrayList < > ();
 
         accessInventory.getCategories(categoryList);
-
+        accessInventory.getLocations(locationList) ;
         ArrayAdapter < String > adapterCategory = new ArrayAdapter < > (this, R.layout.support_simple_spinner_dropdown_item, categoryList);
         adapterCategory.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinCategory.setAdapter(adapterCategory);
 
         Spinner spinLocation = findViewById(R.id.spinnerLocation);
-        ArrayAdapter < CharSequence > adapterLocation = ArrayAdapter.createFromResource(this,
-                R.array.locations, android.R.layout.simple_spinner_item);
+        ArrayAdapter < String > adapterLocation = new ArrayAdapter < > (this, R.layout.support_simple_spinner_dropdown_item, locationList);
         adapterLocation.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinLocation.setAdapter(adapterLocation);
 
