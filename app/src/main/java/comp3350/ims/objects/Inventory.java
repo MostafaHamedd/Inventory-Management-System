@@ -1,10 +1,12 @@
 package comp3350.ims.objects;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class Inventory {
     private int numOfItems;
-    public ArrayList < ItemType > items;
+    public ArrayList <ItemType> items;
+    private  ArrayList<ItemType> inventory;
 
     public Inventory() {
         items = new ArrayList<>();
@@ -17,7 +19,7 @@ public class Inventory {
     }
 
     public int getNumOfItems() {
-        return numOfItems;
+        return items.size();
     }
 
     public boolean addItem(ItemType newItem) {
@@ -63,5 +65,41 @@ public class Inventory {
 
             Collections.sort(items.subList(0, numberOfRefill));
         }
+    }
+
+    public void sortByName(){
+        Collections.sort(items, new Comparator<ItemType>() {
+            @Override
+            public int compare(ItemType itemType1, ItemType itemType2) {
+                return itemType1.getName().compareTo(itemType2.getName());
+            }
+        });
+    }
+
+    public void reverseSortByName(){
+        Collections.sort(items, new Comparator<ItemType>() {
+            @Override
+            public int compare(ItemType itemType1, ItemType itemType2) {
+                return itemType2.getName().compareTo(itemType1.getName());
+            }
+        });
+    }
+
+    public void sortByPrice() {
+        Collections.sort(items, new Comparator<ItemType>() {
+            @Override
+            public int compare(ItemType itemType1, ItemType itemType2) {
+                return Float.compare(itemType1.getPrice(),itemType2.getPrice());
+            }
+        });
+    }
+
+    public void reverseSortByPrice() {
+        Collections.sort(items, new Comparator<ItemType>() {
+            @Override
+            public int compare(ItemType itemType1, ItemType itemType2) {
+                return Float.compare(itemType2.getPrice(),itemType1.getPrice());
+            }
+        });
     }
 }
