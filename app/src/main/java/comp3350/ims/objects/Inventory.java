@@ -6,7 +6,6 @@ import java.util.Comparator;
 public class Inventory {
     private int numOfItems;
     public ArrayList <ItemType> items;
-    private  ArrayList<ItemType> inventory;
 
     public Inventory() {
         items = new ArrayList<>();
@@ -41,7 +40,7 @@ public class Inventory {
     }
 
     public ItemType getItem(int index) throws IndexOutOfBoundsException {
-        if(index < 0|| index >= items.size())
+        if(index < 0|| index >= items.size() || items.size() == 0)
             throw new IndexOutOfBoundsException();
         return items.get(index);
     }

@@ -2,6 +2,9 @@ package comp3350.ims.objects;
 
 import junit.framework.TestCase;
 
+import comp3350.ims.objects.Inventory;
+import comp3350.ims.objects.ItemType;
+
 public class InventoryTest extends TestCase {
 
     public void setUp() {
@@ -154,4 +157,103 @@ public class InventoryTest extends TestCase {
         assertTrue(thrown);
     }
 
+    public void testSortingBaseCases(){
+        Inventory test = new Inventory();
+
+        ItemType milk =  new ItemType("Milk",1.1f,10,"Here","","");
+        test.addItem(milk);
+        ItemType cereal =  new ItemType("Cereal",1.2f,10,"Here","","");
+        test.addItem(cereal);
+        ItemType cookie =  new ItemType("Cookie",5.1f,10,"Here","","");
+        test.addItem(cookie);
+
+        test.sortByPrice();
+        assertEquals(milk,test.getItem(0));
+        assertEquals(cookie,test.getItem(test.getNumOfItems()-1));
+
+        test.reverseSortByPrice();
+        assertEquals(cookie,test.getItem(0));
+        assertEquals(milk,test.getItem(test.getNumOfItems()-1));
+
+        test.sortByName();
+        assertEquals(cereal,test.getItem(0));
+        assertEquals(milk,test.getItem(test.getNumOfItems()-1));
+
+        test.reverseSortByName();
+        assertEquals(milk,test.getItem(0));
+        assertEquals(cereal,test.getItem(test.getNumOfItems()-1));
+    }
+
+    public void testInvalidSortCases(){
+        Inventory test = new Inventory();
+        test.addItem(null);
+
+        boolean passed = false;
+        //Sorting empty array
+        test.sortByName();
+        try{
+            test.getItem(0);
+        }
+        catch(IndexOutOfBoundsException e){
+            passed = true;
+        }
+        assertTrue(passed);
+
+        passed = false;
+        test.reverseSortByName();
+        try{
+            test.getItem(0);
+        }
+        catch(IndexOutOfBoundsException e){
+            passed = true;
+        }
+        assertTrue(passed);
+
+        passed = false;
+        test.sortByPrice();
+        try{
+            test.getItem(0);
+        }
+        catch(IndexOutOfBoundsException e){
+            passed = true;
+        }
+        assertTrue(passed);
+
+        passed = false;
+        test.reverseSortByPrice();
+        try{
+            test.getItem(0);
+        }
+        catch(IndexOutOfBoundsException e){
+            passed = true;
+        }
+        assertTrue(passed);
+    }
+
+    public void testSortingEqualCases(){
+        Inventory test = new Inventory();
+
+        ItemType milk1 = new ItemType("Milk",2,10,"","","");
+        test.addItem(milk1);
+        ItemType milk2 = new ItemType("Milk",2,10,"","","");
+        test.addItem(milk2);
+        ItemType milk3 = new ItemType("Milk",2,10,"","","");
+        test.addItem(milk3);
+
+        test.sortByName();
+        assertEquals(milk1,test.getItem(0));
+        assertEquals(milk3,test.getItem(test.getNumOfItems()-1));
+
+        test.reverseSortByName();
+        assertEquals(milk3,test.getItem(0));
+        assertEquals(milk1,test.getItem(test.getNumOfItems()-1));
+
+        test.sortByPrice();
+        assertEquals(milk1,test.getItem(0));
+        assertEquals(milk3,test.getItem(test.getNumOfItems()-1));
+
+        test.reverseSortByPrice();
+        assertEquals(milk3,test.getItem(0));
+        assertEquals(milk1,test.getItem(test.getNumOfItems()-1));
+    }
 }
