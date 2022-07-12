@@ -2,13 +2,11 @@ package comp3350.ims.presentation;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.EditTextPreference;
 import android.support.annotation.RequiresApi;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -22,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -63,7 +62,8 @@ public class ActiveInventoryActivity extends Activity {
 
     private String saveName = "";
     private float savePrice = 0;
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    private String saveCategory;
+//    @RequiresApi(api = Build.VERSION_CODES.M)
     public void buttonEditDialogOnClick(View v) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -72,38 +72,31 @@ public class ActiveInventoryActivity extends Activity {
         int position = listView.getPositionForView((View) v.getParent());
         ItemType item = accessInventory.getItem(position);
 
-        LinearLayout lila= new LinearLayout(this);
-        lila.setOrientation(LinearLayout.VERTICAL);
-        EditText newName = new EditText(this);
-        newName.setText(item.getName());
-        newName.setInputType(InputType.TYPE_CLASS_TEXT);
-
-        EditText newPrice = new EditText(this);
-        String priceText = "" + item.getPrice();
-        newPrice.setText(priceText);
-        newPrice.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-
-        lila.addView(newName);
-        lila.addView(newPrice);
-        builder.setView(lila);
-
         final LayoutInflater inflater = getLayoutInflater();
         final View inflator = inflater.inflate(R.layout.activity_edit_dialog_inventory_row, null);
 
         Spinner spinCategory = (Spinner) inflator.findViewById(R.id.spinnerCategory);
-
         ArrayList < String > categoryList = new ArrayList < > ();
-
         accessInventory.getCategories(categoryList);
 
         ArrayAdapter < String > adapterCategory = new ArrayAdapter < > (this, R.layout.support_simple_spinner_dropdown_item, categoryList);
         adapterCategory.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinCategory.setAdapter(adapterCategory);
 
+        EditText newName = (EditText) inflator.findViewById(R.id.itemNameInputs);
+        newName.setText(item.getName());
+        newName.setInputType(InputType.TYPE_CLASS_TEXT);
+
+        EditText newPrice = (EditText) inflator.findViewById(R.id.itemPriceInput);
+        String priceText = ""+item.getPrice();
+        newPrice.setText(priceText);
+
+        Spinner newCategory = (Spinner) inflator.findViewById(R.id.spinnerCategory);
+        ArrayAdapter<String> spinnerAdap =  (ArrayAdapter<String>) newCategory.getAdapter();
+        int spinnerPosition = spinnerAdap.getPosition(item.getCategory());
+        newCategory.setSelection(spinnerPosition);
+
         builder.setView(inflator);
-//
-//        EditText n = (EditText) findViewById(R.id.itemNameInput);
-//        n.setText(item.getName());
 
         // Set up the buttons
         builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
@@ -111,8 +104,10 @@ public class ActiveInventoryActivity extends Activity {
             public void onClick(DialogInterface dialog, int which) {
                 saveName = newName.getText().toString();
                 savePrice = Float.parseFloat(newPrice.getText().toString());
+                saveCategory = spinCategory.getSelectedItem().toString();
                 item.setName(saveName);
                 item.setPrice(savePrice);
+                item.setCategory(saveCategory);
                 adapter.notifyDataSetChanged();
             }
         });
