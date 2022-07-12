@@ -62,14 +62,61 @@ public class DataAccessDatabase implements DataAccess{
     }
 
     public String getCategoryList(ArrayList< String > categoryList){
+        String category;
+        String myName = EOF;
+
+        categoryList = new ArrayList<String>();
+        try
+        {
+            cmdString = "Select * from Category";
+            rs3 = st1.executeQuery(cmdString);
+
+            while (rs3.next())
+            {
+                myName = rs3.getString("Name");
+                categoryList.add(myName);
+            }
+            rs3.close();
+        } catch (Exception e)
+        {
+            processSQLError(e);
+        }
         return null;
     }
 
-    public String getLocationList(ArrayList < String > locationList){return null;}
+    public String getLocationList(ArrayList < String > locationList){
+            return null;
+    }
 
-    public void addCategory(String category){return;}
+    public void addCategory(String category){
+        String values;
+        result = null;
+        try
+        {
+            values = category;
+            cmdString = "INSERT INTO CATEGORY " +" VALUES(\'" +values+ "\')";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e) {
+            result = processSQLError(e);
+        }
+    }
 
-    public void addLocation(String location){return;}
+    public void addLocation(String location){
+        String values;
+        result = null;
+        try
+        {
+            values = location;
+            cmdString = "INSERT INTO LOCATION " +" VALUES(\'" +values+ "\')";
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+        }
+        catch (Exception e) {
+            result = processSQLError(e);
+        }
+    }
 
     public boolean removeLocation(String name){return false;}
 
@@ -78,6 +125,7 @@ public class DataAccessDatabase implements DataAccess{
     public boolean isCategory(String name){return false;}
 
     public boolean isLocation(String name){return false;}
+
     public ArrayList<String> getLocationList(){return null;}
 
     public String processSQLError(Exception e)
@@ -86,6 +134,30 @@ public class DataAccessDatabase implements DataAccess{
 
         e.printStackTrace();
 
+        return result;
+    }
+
+    public String checkWarning(Statement st, int updateCount)
+    {
+        String result;
+
+        result = null;
+        try
+        {
+            SQLWarning warning = st.getWarnings();
+            if (warning != null)
+            {
+                result = warning.getMessage();
+            }
+        }
+        catch (Exception e)
+        {
+            result = processSQLError(e);
+        }
+        if (updateCount != 1)
+        {
+            result = "Tuple not inserted correctly.";
+        }
         return result;
     }
 }
