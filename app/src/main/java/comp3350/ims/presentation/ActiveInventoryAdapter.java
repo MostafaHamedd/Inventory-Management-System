@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import comp3350.ims.R;
 import comp3350.ims.objects.Inventory;
 
