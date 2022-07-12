@@ -65,9 +65,20 @@ public class DataAccessDatabase implements DataAccess{
         return null;
     }
 
-    public void addCategory(String category){
+    public String getLocationList(ArrayList < String > locationList){return null;}
 
-    }
+    public void addCategory(String category){return;}
+
+    public void addLocation(String location){return;}
+
+    public boolean removeLocation(String name){return false;}
+
+    public boolean removeCategory(String name){return false;}
+
+    public boolean isCategory(String name){return false;}
+
+    public boolean isLocation(String name){return false;}
+    public ArrayList<String> getLocationList(){return null;}
 
     public String processSQLError(Exception e)
     {

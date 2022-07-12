@@ -16,5 +16,17 @@ public interface DataAccess {
 
     public String getCategoryList(ArrayList < String > categoryList);
 
+    public String getLocationList(ArrayList < String > locationList);
+
     public void addCategory(String category);
+
+    public void addLocation(String location);
+
+    public boolean removeLocation(String name);
+
+    public boolean removeCategory(String name);
+
+    public boolean isCategory(String name);
+
+    public boolean isLocation(String name);
 }

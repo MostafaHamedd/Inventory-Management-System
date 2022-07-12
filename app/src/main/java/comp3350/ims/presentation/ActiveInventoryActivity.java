@@ -1,17 +1,27 @@
 package comp3350.ims.presentation;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
+import android.text.InputType;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import comp3350.ims.R;
@@ -48,6 +58,77 @@ public class ActiveInventoryActivity extends Activity {
         this.startActivity(viewAllIntent);
     }
 
+    private String saveName = "";
+    private float savePrice = 0;
+    private String saveCategory = "";
+    public void buttonEditDialogOnClick(View v) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Edit");
+
+        int position = listView.getPositionForView((View) v.getParent());
+        ItemType item = accessInventory.getItem(position);
+
+        LinearLayout lila= new LinearLayout(this);
+        lila.setOrientation(LinearLayout.VERTICAL);
+        EditText newName = new EditText(this);
+        newName.setText(item.getName());
+        newName.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(newName);
+
+        builder.setMessage("Price");
+        EditText newPrice = new EditText(this);
+        String priceText = ""+item.getPrice();
+        newPrice.setText(priceText);
+        newPrice.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        builder.setView(newPrice);
+
+//        Spinner spinCategory = findViewById(R.id.spinnerCategory);
+//        ArrayList < String > categoryList;
+//        categoryList = new ArrayList< >();
+//        accessInventory.getCategories(categoryList);
+//        ArrayAdapter< String > adapterCategory = new ArrayAdapter < > (this, R.layout.support_simple_spinner_dropdown_item, categoryList);
+//        adapterCategory.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+//        spinCategory.setAdapter(adapterCategory);
+
+        builder.setMessage("Category");
+        EditText newCategory = new EditText(this);
+        newCategory.setText(item.getCategory());
+        newCategory.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(newCategory);
+
+//        final LayoutInflater inflater =
+
+        lila.addView(newName);
+        lila.addView(newPrice);
+        lila.addView(newCategory);
+
+        builder.setView(lila);
+
+// Set up the buttons
+        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                saveName = newName.getText().toString();
+                savePrice = Float.parseFloat(newPrice.getText().toString());
+                saveCategory = newCategory.getText().toString();
+                item.setName(saveName);
+                item.setPrice(savePrice);
+                item.setCategory(saveCategory);
+                adapter.notifyDataSetChanged();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+
+    }
+
     public void buttonAddOnClick(View v) {
 
         int position = listView.getPositionForView((View) v.getParent());
@@ -60,25 +141,29 @@ public class ActiveInventoryActivity extends Activity {
         item.addItem("Ware House", thisDate);
 
         TextView itemQuantity = ((View) v.getParent()).findViewById(R.id.itemQuantity);
-        if (activeInventory.getItem(position).needsRefill()) {
-            itemQuantity.setTextColor(Color.parseColor("RED"));
-        } else {
-            itemQuantity.setTextColor(Color.parseColor("BLACK"));
+        try {
+            if (activeInventory.getItem(position).needsRefill()) {
+                itemQuantity.setTextColor(Color.parseColor("RED"));
+            } else {
+                itemQuantity.setTextColor(Color.parseColor("BLACK"));
+            }
+
+            updateDataChanges();
+
+            Toast.makeText(this, "Item Added", Toast.LENGTH_SHORT).show();
+        } catch (IndexOutOfBoundsException e){
+            System.out.println(e.getMessage());
         }
-
-        updateDataChanges();
-
-        Toast.makeText(this, "Item Added", Toast.LENGTH_SHORT).show();
 
     }
 
     public void updateDataChanges() {
         adapter.notifyDataSetChanged();
+        activeInventory.reorderByQuantity();
     }
 
     @Override
     public void onRestart() {
-        activeInventory.reorderByQuantity();
         super.onRestart();
         updateDataChanges();
     }

@@ -2,7 +2,7 @@ package comp3350.ims.objects;
 
 import java.util.*;
 
-public class ItemType {
+public class ItemType implements Comparable<ItemType> {
     public static final int MIN_QUANTITY = 10;
     private String name;
     private float price;
@@ -22,7 +22,7 @@ public class ItemType {
         date = "";
         category = "";
         items = new ArrayList<>();
-        needsRefill = true;
+       checkRefill();
     } //Base constructor
 
     public ItemType(String name, float price, int quantity, String location, String date, String category) {
@@ -38,7 +38,7 @@ public class ItemType {
             addItem(location, date);
         }
 
-        this.needsRefill = this.quantity > MIN_QUANTITY ? false : true;
+        checkRefill();
     }
 
     public void addItem(String location, String date) {
@@ -48,16 +48,37 @@ public class ItemType {
         item = new Item(stringId, location, date);
         items.add(item);
         quantity++;
-
-        this.needsRefill = this.quantity > MIN_QUANTITY ? false : true;
+        checkRefill();
     }
 
     public void removeItem(int index) {
-        if (!items.isEmpty() && index >= 0) {
+        if (!items.isEmpty() && index >= 0 && index < items.size()) {
             items.remove(index);
             quantity--;
         }
-        needsRefill = quantity > MIN_QUANTITY ? false : true;
+        checkRefill();
+    }
+
+    @Override
+    public boolean equals(Object o){
+        boolean isEqual = false;
+        if(o instanceof ItemType){
+            ItemType item = (ItemType) o;
+            if((this.name).equals(item.getName())){
+                isEqual = true;
+            }
+        }
+        return isEqual;
+    }
+
+    @Override
+    public int compareTo(ItemType o) {
+        if(this.quantity == o.getQuantity())
+            return 0;
+        else if(this.quantity > o.getQuantity())
+            return 1;
+        else
+            return -1;
     }
 
     public String getName() {
@@ -72,12 +93,10 @@ public class ItemType {
         return price;
     }
 
+    public void setPrice(float p) { this.price = p; }
+
     public Item getItem(int index) {
         return items.get(index);
-    }
-
-    public void setPrice(float p) {
-        price = p;
     }
 
     public int getQuantity() {
@@ -88,32 +107,18 @@ public class ItemType {
         return items.size();
     }
 
-    public void setQuantity(int q) {
-        quantity = q;
-    }
-
     public String getCategory() {
         return category;
     }
 
-    public void setCategory(String c) {
-        category = c;
-    }
+    public void setCategory( String c) { this.category = c; }
 
     public String getLocation() {
         return location;
     }
 
-    public void setLocation(String l) {
-        location = l;
-    }
-
     public String getDate() {
         return date;
-    }
-
-    public void setDate(String d) {
-        date = d;
     }
 
     public boolean needsRefill() {
@@ -123,4 +128,10 @@ public class ItemType {
     public void setNeedsRefill(boolean needsRefill) {
         this.needsRefill = needsRefill;
     }
+
+    private void checkRefill(){
+        this.needsRefill = this.quantity <= MIN_QUANTITY;
+    }
+
+
 }
