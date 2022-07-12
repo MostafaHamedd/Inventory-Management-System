@@ -116,6 +116,17 @@ public class DataAccessStub implements DataAccess{
 		return locationList.contains(name) ;
 	}
 
+	public boolean removeItem(Item item,ItemType itemType) {
+		return false;
+	}
+
+	public boolean editItemType(ItemType itemType) {
+		return false;
+	}
+
+	public boolean editItem(Item item) {
+		return false;
+	}
 
 
 }

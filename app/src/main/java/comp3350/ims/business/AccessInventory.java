@@ -77,8 +77,10 @@ public class AccessInventory {
 		public void removeIndividualItem ( int index){
 
 			if (index >= 0) {
-				ItemType item = getItem(currentItemPosition);
-				item.removeItem(index);
+				ItemType itemType = getItem(currentItemPosition);
+				Item item = itemType.getItem(index);
+				itemType.removeItem(index);
+				dataAccess.removeItem(item,itemType);
 			}
 
 		}

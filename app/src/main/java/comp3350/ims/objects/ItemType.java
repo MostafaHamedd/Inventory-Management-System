@@ -4,6 +4,8 @@ import java.util.*;
 
 public class ItemType implements Comparable<ItemType> {
     public static final int MIN_QUANTITY = 10;
+
+    private int ID;
     private String name;
     private float price;
     private int quantity;
@@ -12,9 +14,11 @@ public class ItemType implements Comparable<ItemType> {
     private String category;
     private ArrayList < Item > items;
     private static int id = 0;
+    private static int itemTypeID = 0;
     private boolean needsRefill;
 
     public ItemType() {
+        ID = itemTypeID++;
         name = "";
         price = 0;
         quantity = 0;
@@ -139,5 +143,13 @@ public class ItemType implements Comparable<ItemType> {
         this.needsRefill = this.quantity <= MIN_QUANTITY;
     }
 
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int id) {
+        this.ID = id;
+        itemTypeID++;
+    }
 
 }

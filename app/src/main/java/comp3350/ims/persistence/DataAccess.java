@@ -10,7 +10,9 @@ public interface DataAccess {
     void open(String string);
 
     void close();
+
     public void addItem(Item item, ItemType itemType);
+
     public Inventory getActiveInventory();
 
     public void insertItem(ItemType item);
@@ -30,4 +32,12 @@ public interface DataAccess {
     public boolean isCategory(String name);
 
     public boolean isLocation(String name);
+
+
+    //new stuff we gotta implement
+    public boolean removeItem(Item item,ItemType itemType);
+
+    public boolean editItemType(ItemType itemType);
+
+    public boolean editItem(Item item);
 }
