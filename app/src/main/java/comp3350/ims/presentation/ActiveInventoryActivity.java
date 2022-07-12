@@ -138,7 +138,7 @@ public class ActiveInventoryActivity extends Activity {
         Date todayDate = new Date();
         String thisDate = currentDate.format(todayDate);
 
-        item.addItem("Ware House", thisDate);
+        accessInventory.addItem(item.addItem("Ware House", thisDate),item);
 
         TextView itemQuantity = ((View) v.getParent()).findViewById(R.id.itemQuantity);
         try {
@@ -157,6 +157,7 @@ public class ActiveInventoryActivity extends Activity {
 
     }
 
+
     public void updateDataChanges() {
         adapter.notifyDataSetChanged();
         activeInventory.reorderByQuantity();
@@ -167,4 +168,5 @@ public class ActiveInventoryActivity extends Activity {
         super.onRestart();
         updateDataChanges();
     }
+
 }

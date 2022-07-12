@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import comp3350.ims.application.Main;
 import comp3350.ims.application.Services;
 import comp3350.ims.objects.Inventory;
+import comp3350.ims.objects.Item;
 import comp3350.ims.objects.ItemType;
 import comp3350.ims.persistence.DataAccess;
 import comp3350.ims.persistence.DataAccessStub;
@@ -23,8 +24,8 @@ public class AccessInventory {
 		return activeInventory;
 	}
 
-	public String insertItem(ItemType item) {
-		return dataAccess.insertItem(item);
+	public void insertItem(ItemType item) {
+		 dataAccess.insertItem(item);
 	}
 
 	public void setCurrentItem(int index) {
@@ -48,6 +49,11 @@ public class AccessInventory {
 		categoryList.clear();
 		return dataAccess.getLocationList(categoryList);
 	}
+
+	public void addItem(Item item,ItemType itemType){
+		dataAccess.addItem(item,itemType);
+	}
+
 
 	public void addCategory(String category) {
 		if (category != null) {

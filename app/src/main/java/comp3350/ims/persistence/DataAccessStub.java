@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import comp3350.ims.application.Main;
 import comp3350.ims.objects.Inventory;
+import comp3350.ims.objects.Item;
 import comp3350.ims.objects.ItemType;
 
 public class DataAccessStub implements DataAccess{
@@ -65,14 +66,19 @@ public class DataAccessStub implements DataAccess{
 		System.out.println("Closed " + dbType + " database " + dbName);
 	}
 
+
+	public void addItem(Item item, ItemType itemType) {
+
+	}
+
 	public Inventory getActiveInventory() {
 		return activeInventory;
 	}
 
-	public String insertItem(ItemType item) {
+	public void insertItem(ItemType item) {
 		// don't bother checking for duplicates
 		activeInventory.addItem(item);
-		return null;
+
 	}
 
 
