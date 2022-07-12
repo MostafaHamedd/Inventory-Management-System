@@ -38,9 +38,14 @@ public class AccessInventory {
 		return activeInventory.items.get(index);
 	}
 
-	public String getCategories(ArrayList < String > categoryList) {
+	public String getCategories(ArrayList<String> categoryList) {
 		categoryList.clear();
 		return dataAccess.getCategoryList(categoryList);
+	}
+
+	public String getLocations(ArrayList<String> categoryList) {
+		categoryList.clear();
+		return dataAccess.getLocationList(categoryList);
 	}
 
 	public void addCategory(String category) {
@@ -49,13 +54,33 @@ public class AccessInventory {
 		}
 	}
 
-	public void removeIndividualItem(int index) {
-
-		if (index >= 0) {
-			ItemType item = getItem(currentItemPosition);
-			item.removeItem(index);
+	public void addLocation(String location) {
+		if (location != null) {
+			dataAccess.addLocation(location);
 		}
-
 	}
 
-}
+	public boolean removeLocation(String name){
+		return dataAccess.removeLocation(name);
+	}
+	public boolean removeCategory (String name){
+		return dataAccess.removeCategory(name);
+
+	}
+		public void removeIndividualItem ( int index){
+
+			if (index >= 0) {
+				ItemType item = getItem(currentItemPosition);
+				item.removeItem(index);
+			}
+
+		}
+	public boolean isCategory(String name){
+		return dataAccess.isCategory(name) ;
+	}
+	public boolean isLocation(String name){
+		return dataAccess.isLocation(name) ;
+	}
+
+
+	}

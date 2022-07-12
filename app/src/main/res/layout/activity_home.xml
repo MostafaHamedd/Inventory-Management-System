@@ -41,10 +41,17 @@
             android:id="@+id/buttonCategory"
             android:layout_width="303dp"
             android:layout_height="wrap_content"
-
             android:layout_marginLeft="65dp"
             android:onClick="buttonCategoryOnClick"
             android:text="Create New Category" />
+
+        <Button
+            android:id="@+id/buttonLocation"
+            android:layout_width="303dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="65dp"
+            android:onClick="buttonLocationOnClick"
+            android:text="Create New Location" />
 
         <Button
             android:id="@+id/buttonInventory"

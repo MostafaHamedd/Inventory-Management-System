@@ -12,6 +12,7 @@ public class DataAccessStub {
 
 	private Inventory activeInventory;
 	private ArrayList < String > categoryList;
+	private ArrayList < String > locationList;
 
 	public DataAccessStub(String dbName) {
 		this.dbName = dbName;
@@ -26,6 +27,10 @@ public class DataAccessStub {
 
 		activeInventory = new Inventory();
 		categoryList = new ArrayList < > ();
+		locationList= new ArrayList < > ();
+
+		locationList.add("WareHouse");
+		locationList.add("Sales-floor");
 
 		categoryList.add("Dairy");
 		categoryList.add("Fruits & vegetables");
@@ -75,11 +80,36 @@ public class DataAccessStub {
 		categoryList.addAll(this.categoryList);
 		return null;
 	}
+	public String getLocationList(ArrayList < String > locationList) {
+		locationList.addAll(this.locationList);
+		return null;
+	}
 
 	public void addCategory(String category) {
 		if (category != null) {
 			categoryList.add(category);
 		}
 	}
+	public void addLocation(String location) {
+		if (location != null) {
+			locationList.add(location);
+		}
+	}
+
+	public boolean removeLocation(String name){
+		return locationList.remove(name);
+	}
+
+	public boolean removeCategory(String name){
+		return categoryList.remove(name);
+	}
+	public boolean isCategory(String name){
+		return categoryList.contains(name) ;
+	}
+	public boolean isLocation(String name){
+		return locationList.contains(name) ;
+	}
+
+
 
 }
