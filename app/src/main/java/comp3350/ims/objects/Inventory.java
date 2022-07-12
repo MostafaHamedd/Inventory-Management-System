@@ -12,6 +12,11 @@ public class Inventory {
         numOfItems = 0;
     }
 
+    public Inventory(ArrayList<ItemType> items) {
+        this.items = items;
+        numOfItems = items.size();
+    }
+
     public int getNumOfItems() {
         return items.size();
     }

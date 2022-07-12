@@ -5,16 +5,18 @@ import java.util.ArrayList;
 import comp3350.ims.application.Main;
 import comp3350.ims.application.Services;
 import comp3350.ims.objects.Inventory;
+import comp3350.ims.objects.Item;
 import comp3350.ims.objects.ItemType;
-import comp3350.ims.persistence.DataAccessStub;
+import comp3350.ims.persistence.DataAccess;
+
 
 public class AccessInventory {
-	private DataAccessStub dataAccess;
+	private DataAccess dataAccess;
 	private Inventory activeInventory;
 	private static int currentItemPosition;
 
 	public AccessInventory() {
-		dataAccess = (DataAccessStub) Services.getDataAccess(Main.dbName);
+		dataAccess =  Services.getDataAccess(Main.dbName);
 		activeInventory = dataAccess.getActiveInventory();
 	}
 
@@ -22,8 +24,8 @@ public class AccessInventory {
 		return activeInventory;
 	}
 
-	public String insertItem(ItemType item) {
-		return dataAccess.insertItem(item);
+	public void insertItem(ItemType item) {
+		 dataAccess.insertItem(item);
 	}
 
 	public void setCurrentItem(int index) {
@@ -48,6 +50,11 @@ public class AccessInventory {
 		return dataAccess.getLocationList(categoryList);
 	}
 
+	public void addItem(Item item,ItemType itemType){
+		dataAccess.addItem(item,itemType);
+	}
+
+
 	public void addCategory(String category) {
 		if (category != null) {
 			dataAccess.addCategory(category);
@@ -70,8 +77,10 @@ public class AccessInventory {
 		public void removeIndividualItem ( int index){
 
 			if (index >= 0) {
-				ItemType item = getItem(currentItemPosition);
-				item.removeItem(index);
+				ItemType itemType = getItem(currentItemPosition);
+				Item item = itemType.getItem(index);
+				itemType.removeItem(index);
+				dataAccess.removeItem(item,itemType);
 			}
 
 		}

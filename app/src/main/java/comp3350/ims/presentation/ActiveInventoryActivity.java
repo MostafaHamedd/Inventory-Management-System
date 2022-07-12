@@ -31,7 +31,6 @@ import comp3350.ims.business.AccessInventory;
 import comp3350.ims.objects.Inventory;
 import comp3350.ims.objects.ItemType;
 
-
 public class ActiveInventoryActivity extends Activity {
 
     private Inventory activeInventory;
@@ -121,7 +120,9 @@ public class ActiveInventoryActivity extends Activity {
                 dialog.cancel();
             }
         });
+
         builder.show();
+
     }
 
     public void buttonAddOnClick(View v) {
@@ -133,7 +134,7 @@ public class ActiveInventoryActivity extends Activity {
         Date todayDate = new Date();
         String thisDate = currentDate.format(todayDate);
 
-        item.addItem("Ware House", thisDate);
+        accessInventory.addItem(item.addItem("Ware House", thisDate),item);
 
         TextView itemQuantity = ((View) v.getParent()).findViewById(R.id.itemQuantity);
         try {
@@ -156,6 +157,7 @@ public class ActiveInventoryActivity extends Activity {
         Toast.makeText(this, "Item Added", Toast.LENGTH_SHORT).show();
 
     }
+
 
     public void updateDataChanges() {
         adapter.notifyDataSetChanged();
@@ -187,5 +189,6 @@ public class ActiveInventoryActivity extends Activity {
         activeInventory.reverseSortByPrice();
         updateDataChanges();
     }
+
 
 }
