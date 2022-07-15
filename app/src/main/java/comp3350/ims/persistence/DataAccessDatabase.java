@@ -247,29 +247,30 @@ public class DataAccessDatabase implements DataAccess{
     }
 
     public boolean isCategory(String name){
+        boolean flag = false ;
         try{
             cmdString = "select * from CATEGORY where NAME= "+"\'"+name+"\'" ;
             rs2 = st1.executeQuery(cmdString);
-            System.out.println(rs2.next() + " Lets goo #2");
-
+            flag = rs2.next();
         }
         catch(Exception e){
             processSQLError(e);
         }
-        return false ;
+        return flag ;
     }
 
     public boolean isLocation(String name){
+        boolean flag = false ;
         try{
         cmdString = "select * from LOCATION where NAME= "+"\'"+name+"\'"  ;
         rs2 = st1.executeQuery(cmdString);
-            System.out.println(rs2.next() + " Lets goo #2 loc");
+            flag = rs2.next();
 
     }
     catch(Exception e){
         processSQLError(e);
     }
-        return false ;
+        return flag ;
     }
 
     public boolean removeItem(int itemID) {
