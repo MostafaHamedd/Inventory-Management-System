@@ -40,6 +40,7 @@ public class ItemType implements Comparable<ItemType> {
 
     public void addItem(Item item) {
         items.add(item);
+        quantity++;
         checkRefill();
     }
 

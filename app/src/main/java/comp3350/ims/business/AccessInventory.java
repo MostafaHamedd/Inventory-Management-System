@@ -89,7 +89,7 @@ public class AccessInventory {
 				ItemType itemType = getItem(currentItemPosition);
 				Item item = itemType.getItem(index);
 				itemType.removeItem(index);
-				dataAccess.removeItem(item.getId());
+				dataAccess.removeItem(item.getId(),itemType.getID(),itemType.getQuantity());
 			}
 
 		}

@@ -47,6 +47,9 @@ public class DataAccessDatabase implements DataAccess{
             processSQLError(e);
         }
         System.out.println("Opened " +dbType +" database " +dbPath);
+
+        Inventory inventory = getActiveInventory();
+
     }
 
     public void close(){
@@ -273,7 +276,7 @@ public class DataAccessDatabase implements DataAccess{
         return flag ;
     }
 
-    public boolean removeItem(int itemID) {
+    public boolean removeItem(int itemID, int itemTypeID, int quantity) {
         boolean flag = false;
         result = null;
         try
@@ -282,6 +285,9 @@ public class DataAccessDatabase implements DataAccess{
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
             System.out.println(result);
+            cmdString = "Update ITEMTYPE Set QUANTITY="+quantity+" where ID=" + itemTypeID;
+            updateCount = st2.executeUpdate(cmdString);
+            result = checkWarning(st2,updateCount);
             flag = true;
         }
         catch (Exception e)

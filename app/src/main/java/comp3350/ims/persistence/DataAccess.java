@@ -33,7 +33,7 @@ public interface DataAccess {
 
     public boolean isLocation(String name);
 
-    public boolean removeItem(int itemID);
+    public boolean removeItem(int itemID,int itemTypeID, int quantity);
 
     public boolean editItemType(ItemType itemType);
 
