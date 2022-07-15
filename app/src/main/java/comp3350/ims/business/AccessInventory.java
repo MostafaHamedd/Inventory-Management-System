@@ -24,8 +24,15 @@ public class AccessInventory {
 		return activeInventory;
 	}
 
-	public void insertItem(ItemType item) {
-		 dataAccess.insertItem(item);
+	public void insertItemType(String nameString, float price, int quantity, String locationString, String thisDate,String categoryString) {
+		ItemType newItemType = new ItemType(nameString,price,quantity,locationString,thisDate,categoryString);
+		dataAccess.insertItem(newItemType);
+		ArrayList<Item> items = new ArrayList<>();
+		for(int i = 0; i < quantity; i++){
+			Item newItem = new Item(locationString,thisDate);
+			dataAccess.addItem(newItem, newItemType.getID());
+		}
+		newItemType.setItems(items);
 	}
 
 	public void setCurrentItem(int index) {
@@ -50,8 +57,10 @@ public class AccessInventory {
 		return dataAccess.getLocationList(categoryList);
 	}
 
-	public void addItem(Item item,ItemType itemType){
-		dataAccess.addItem(item,itemType);
+	public void addItem(String location, String date, ItemType itemType){
+		Item newItem = new Item(location,date);
+		itemType.addItem(newItem);
+		dataAccess.addItem(newItem,itemType.getID());
 	}
 
 
@@ -80,7 +89,7 @@ public class AccessInventory {
 				ItemType itemType = getItem(currentItemPosition);
 				Item item = itemType.getItem(index);
 				itemType.removeItem(index);
-				dataAccess.removeItem(item,itemType);
+				dataAccess.removeItem(item.getId());
 			}
 
 		}

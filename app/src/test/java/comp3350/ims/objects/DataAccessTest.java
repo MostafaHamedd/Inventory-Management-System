@@ -68,7 +68,7 @@ public class DataAccessTest extends TestCase {
 
         dataAccess.addLocation("TestLocation");
         dataAccess.addCategory("TestCategory");
-        dataAccess.addItem(new Item("warehouse","12/02/22"),item );
+        dataAccess.addItem(new Item("warehouse","12/02/22"),item.getID() );
 
         dataAccess.getLocationList(locationList);
         dataAccess.getCategoryList(categoryList);

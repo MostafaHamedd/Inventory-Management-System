@@ -13,7 +13,6 @@ public class ItemType implements Comparable<ItemType> {
     private String date;
     private String category;
     private ArrayList < Item > items;
-    private static int id = 0;
     private static int itemTypeID = 0;
     private boolean needsRefill;
 
@@ -26,35 +25,17 @@ public class ItemType implements Comparable<ItemType> {
         date = "";
         category = "";
         items = new ArrayList<>();
-       checkRefill();
     } //Base constructor
 
     public ItemType(String name, float price, int quantity, String location, String date, String category) {
         ID = itemTypeID++;
         this.name = name;
         this.price = price;
-        this.quantity = 0;
         this.location = location;
         this.date = date;
         this.category = category;
+        this.quantity = quantity;
         items = new ArrayList < Item > ();
-
-        for (int i = 0; i < quantity; i++) {
-            addItem(location, date);
-        }
-
-        checkRefill();
-    }
-
-    public Item addItem(String location, String date) {
-        Item item;
-        id++;
-        String stringId = Integer.toString(id);
-        item = new Item(stringId, location, date);
-        items.add(item);
-        quantity++;
-        checkRefill();
-        return item ;
     }
 
     public void addItem(Item item) {
@@ -148,9 +129,13 @@ public class ItemType implements Comparable<ItemType> {
         return ID;
     }
 
+    public void setItems(ArrayList<Item> items){ this.items = items;}
+
     public void setID(int id) {
         this.ID = id;
-        itemTypeID++;
+        if(id > itemTypeID){
+            itemTypeID = id + 1;
+        }
     }
 
 }

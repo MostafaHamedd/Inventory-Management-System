@@ -128,13 +128,13 @@ public class ActiveInventoryActivity extends Activity {
     public void buttonAddOnClick(View v) {
 
         int position = listView.getPositionForView((View) v.getParent());
-        ItemType item = accessInventory.getItem(position);
+        ItemType itemType = accessInventory.getItem(position);
 
         SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
         Date todayDate = new Date();
         String thisDate = currentDate.format(todayDate);
 
-        accessInventory.addItem(item.addItem("Ware House", thisDate),item);
+        accessInventory.addItem(itemType.getLocation(),thisDate,itemType);
 
         TextView itemQuantity = ((View) v.getParent()).findViewById(R.id.itemQuantity);
         try {

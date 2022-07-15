@@ -11,7 +11,7 @@ public interface DataAccess {
 
     void close();
 
-    public void addItem(Item item, ItemType itemType);
+    public void addItem(Item item, int itemTypeID);
 
     public Inventory getActiveInventory();
 
@@ -33,9 +33,7 @@ public interface DataAccess {
 
     public boolean isLocation(String name);
 
-
-    //new stuff we gotta implement
-    public boolean removeItem(Item item,ItemType itemType);
+    public boolean removeItem(int itemID);
 
     public boolean editItemType(ItemType itemType);
 
