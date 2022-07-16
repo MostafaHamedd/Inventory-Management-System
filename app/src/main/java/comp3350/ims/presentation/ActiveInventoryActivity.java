@@ -179,6 +179,9 @@ public class ActiveInventoryActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 adapter.getFilter().filter(newText);
+                if(newText.isEmpty()){
+                    updateDataChanges();
+                }
                 return false;
             }
         });

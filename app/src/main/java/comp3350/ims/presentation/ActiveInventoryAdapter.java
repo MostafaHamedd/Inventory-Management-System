@@ -17,11 +17,13 @@ import comp3350.ims.objects.Inventory;
 public class ActiveInventoryAdapter extends BaseAdapter {
     private Context context;
     private Inventory activeInventory;
+    private Inventory mainInventory;
     private static LayoutInflater inflater = null;
 
     public ActiveInventoryAdapter(Context context, Inventory inventory) {
         this.context = context;
         this.activeInventory = inventory;
+        this.mainInventory= inventory;
         this.activeInventory.reorderByQuantity();
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -77,27 +79,31 @@ public class ActiveInventoryAdapter extends BaseAdapter {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
-            if (constraint != null && constraint.length() > 0) {
-                String filterString = constraint.toString().toLowerCase(Locale.getDefault());
-                Inventory tempInventory = new Inventory();
-                for (int i = 0; i < activeInventory.items.size(); i++) {
-                    if (activeInventory.getItem(i).getName().toLowerCase(Locale.getDefault()).contains(filterString)) {
-                        tempInventory.addItem(activeInventory.getItem(i));
+            Inventory tempInventory = new Inventory();
+
+            if(constraint.length() == 0){
+                results.count = mainInventory.items.size();
+                results.values = mainInventory;
+            }
+            else{
+                for(int i = 0; i < activeInventory.items.size(); i++){
+                    if(mainInventory.items.get(i).getName().toLowerCase(Locale.getDefault()).contains(constraint.toString().toLowerCase(Locale.getDefault()))){
+                        tempInventory.addItem(activeInventory.items.get(i));
                     }
                 }
                 results.count = tempInventory.items.size();
                 results.values = tempInventory;
-            } else {
-                results.count = activeInventory.items.size();
-                results.values = activeInventory;
             }
+
+
             return results;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            activeInventory = (Inventory) results.values;
+
             if(results.count > 0) {
+                activeInventory = (Inventory) results.values;
                 notifyDataSetChanged();
             } else {
                 notifyDataSetInvalidated();
