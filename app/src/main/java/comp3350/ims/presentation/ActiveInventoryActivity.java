@@ -199,4 +199,11 @@ public class ActiveInventoryActivity extends Activity {
     }
 
 
+    @Override
+    public void onBackPressed(){
+        Intent coursesIntent = new Intent(this, HomeActivity.class);
+        this.startActivity(coursesIntent);
+    }
+
+
 }
