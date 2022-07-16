@@ -1,4 +1,4 @@
-package comp3350.ims.objects;
+package comp3350.ims.persistence;
 
 import java.util.ArrayList;
 

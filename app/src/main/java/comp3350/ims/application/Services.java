@@ -1,6 +1,7 @@
 package comp3350.ims.application;
 
 import comp3350.ims.persistence.DataAccess;
+import comp3350.ims.persistence.DataAccessStub;
 import comp3350.ims.persistence.DataAccessDatabase;
 
 
@@ -23,7 +24,8 @@ public class Services
 		if (dataAccessService == null)
 		{
 			dataAccessService = alternateDataAccessService;
-			dataAccessService.open(Main.getDBPathName());
+			dataAccessService = new DataAccessStub();
+			dataAccessService.open(Main.dbName);
 		}
 		return dataAccessService;
 	}

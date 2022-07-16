@@ -1,26 +1,25 @@
 package comp3350.ims.presentation;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
+import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.support.v7.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ import comp3350.ims.business.AccessInventory;
 import comp3350.ims.objects.Inventory;
 import comp3350.ims.objects.ItemType;
 
-public class ActiveInventoryActivity extends Activity {
+public class ActiveInventoryActivity extends AppCompatActivity {
 
     private Inventory activeInventory;
     private ListView listView;
@@ -41,12 +40,16 @@ public class ActiveInventoryActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_active_inventory);
+
+        Toolbar mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+         setSupportActionBar(mTopToolbar);
 
         accessInventory = new AccessInventory();
 
         activeInventory = accessInventory.getActiveInventory();
 
-        setContentView(R.layout.activity_active_inventory);
+
         listView = (ListView) findViewById(R.id.activeInventoryList);
         adapter = new ActiveInventoryAdapter(this, activeInventory);
         listView.setAdapter(adapter);
@@ -158,6 +161,30 @@ public class ActiveInventoryActivity extends Activity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_home,menu);
+
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setQueryHint("Enter item name...");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
 
     public void updateDataChanges() {
         adapter.notifyDataSetChanged();

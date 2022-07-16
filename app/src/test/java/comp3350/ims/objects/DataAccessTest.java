@@ -5,6 +5,7 @@ import junit.framework.TestCase;
 import java.util.ArrayList;
 
 import comp3350.ims.persistence.DataAccess;
+import comp3350.ims.persistence.DataAccessStub;
 
 public class DataAccessTest extends TestCase {
 

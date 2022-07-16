@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -72,4 +73,40 @@ public class ActiveInventoryAdapter extends BaseAdapter {
         return position;
     }
 
+    Filter myFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults results = new FilterResults();
+            if (constraint != null && constraint.length() > 0) {
+                String filterString = constraint.toString().toLowerCase(Locale.getDefault());
+                Inventory tempInventory = new Inventory();
+                for (int i = 0; i < activeInventory.items.size(); i++) {
+                    if (activeInventory.getItem(i).getName().toLowerCase(Locale.getDefault()).contains(filterString)) {
+                        tempInventory.addItem(activeInventory.getItem(i));
+                    }
+                }
+                results.count = tempInventory.items.size();
+                results.values = tempInventory;
+            } else {
+                results.count = activeInventory.items.size();
+                results.values = activeInventory;
+            }
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            activeInventory = (Inventory) results.values;
+            if(results.count > 0) {
+                notifyDataSetChanged();
+            } else {
+                notifyDataSetInvalidated();
+            }
+        }
+    };
+
+
+    public Filter getFilter() {
+        return myFilter;
+    }
 }

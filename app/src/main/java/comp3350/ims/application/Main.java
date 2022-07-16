@@ -1,12 +1,17 @@
 package comp3350.ims.application;
 
+import comp3350.ims.persistence.DataAccess;
+import comp3350.ims.persistence.DataAccessStub;
+
 public class Main
 {
 	public static final String dbName="IMS";
 	public static String dbPathName="database/IMS";
+	public static DataAccess dataAccessService = null;
 
 	public static void main(String[] args)
 	{
+		dataAccessService = new DataAccessStub();
 		startUp();
 
 		shutDown();
@@ -15,7 +20,8 @@ public class Main
 
 	public static void startUp()
 	{
-		Services.createDataAccess(dbName);
+		//Services.createDataAccess(dbName);
+		Services.createDataAccess(dataAccessService);
 	}
 
 	public static void shutDown()
