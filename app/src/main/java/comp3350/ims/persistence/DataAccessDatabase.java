@@ -71,7 +71,7 @@ public class DataAccessDatabase implements DataAccess{
                 String location = rs3.getString("LOCATIONNAME");
                 String date = rs3.getString("DATE");
                 String category = rs3.getString("CATEGORYNAME");
-                ItemType type = new ItemType(itemTypeName, price, quantity, location, date, category);
+                ItemType type = new ItemType(itemTypeName, price, location, date, category);
                 type.setID(id);
                 itemTypes.add(type);
             }

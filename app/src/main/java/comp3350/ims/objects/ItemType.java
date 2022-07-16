@@ -27,14 +27,14 @@ public class ItemType implements Comparable<ItemType> {
         items = new ArrayList<>();
     } //Base constructor
 
-    public ItemType(String name, float price, int quantity, String location, String date, String category) {
+    public ItemType(String name, float price, String location, String date, String category) {
         ID = itemTypeID++;
         this.name = name;
         this.price = price;
         this.location = location;
         this.date = date;
         this.category = category;
-        this.quantity = quantity;
+        this.quantity = 0;
         items = new ArrayList < Item > ();
     }
 

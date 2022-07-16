@@ -25,7 +25,7 @@ public class AccessInventory {
 	}
 
 	public void insertItemType(String nameString, float price, int quantity, String locationString, String thisDate,String categoryString) {
-		ItemType newItemType = new ItemType(nameString,price,quantity,locationString,thisDate,categoryString);
+		ItemType newItemType = new ItemType(nameString,price,locationString,thisDate,categoryString);
 		dataAccess.insertItem(newItemType);
 		ArrayList<Item> items = new ArrayList<>();
 		for(int i = 0; i < quantity; i++){

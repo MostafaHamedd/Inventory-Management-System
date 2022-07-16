@@ -1,6 +1,7 @@
 package comp3350.ims.presentation;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -37,5 +38,11 @@ public class ViewAllActivity extends Activity {
             adapter.notifyDataSetChanged();
             Toast.makeText(this, "Item Removed", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent coursesIntent = new Intent(this, ActiveInventoryActivity.class);
+        this.startActivity(coursesIntent);
     }
 }

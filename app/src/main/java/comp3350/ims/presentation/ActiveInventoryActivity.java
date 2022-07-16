@@ -166,8 +166,16 @@ public class ActiveInventoryActivity extends Activity {
 
     @Override
     public void onRestart() {
-        super.onRestart();
+        activeInventory = accessInventory.getActiveInventory();
         updateDataChanges();
+        super.onRestart();
+    }
+
+    @Override
+    public void onResume() {
+        activeInventory = accessInventory.getActiveInventory();
+        updateDataChanges();
+        super.onResume();
     }
 
     public void sortNameAscending(View v){
