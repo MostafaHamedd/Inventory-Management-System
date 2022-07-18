@@ -63,24 +63,32 @@
     <Button
         android:id="@+id/viewAllItems"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         android:layout_weight="4"
         android:onClick="buttonViewAllOnClick"
+        android:background="@drawable/custom_button"
+        android:layout_marginRight="@dimen/default_gap"
         android:text="ViewAll" />
 
     <Button
         android:id="@+id/Edit"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         android:layout_weight="4"
         android:onClick="buttonEditDialogOnClick"
+        android:background="@drawable/custom_button"
+        android:layout_marginRight="@dimen/default_gap"
+
         android:text="Edit" />
 
     <Button
         android:id="@+id/addItem"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         android:layout_weight="4"
         android:onClick="buttonAddOnClick"
+        android:background="@drawable/plus_button"
+        android:layout_marginRight="@dimen/default_gap"
+
         android:text="+" />
 </LinearLayout>

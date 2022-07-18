@@ -18,6 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Name ↑"
+            android:background="@drawable/custom_button"
+            android:layout_marginBottom="@dimen/default_gap"
             android:onClick="sortNameAscending"/>
 
         <Button
@@ -26,6 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Name ↓"
+            android:background="@drawable/custom_button"
+            android:layout_marginRight="@dimen/default_gap"
+            android:layout_marginLeft="@dimen/default_gap"
             android:onClick="sortNameDescending"/>
 
         <Button
@@ -34,6 +39,9 @@
             android:layout_height="wrap_content"
             android:text="Price ↑"
             android:layout_weight="1"
+            android:background="@drawable/custom_button"
+            android:layout_marginRight="@dimen/default_gap"
+            android:layout_marginLeft="@dimen/default_gap"
             android:onClick="sortPriceAscending"/>
 
         <Button
@@ -42,6 +50,9 @@
             android:layout_height="wrap_content"
             android:text="Price ↓"
             android:layout_weight="1"
+            android:background="@drawable/custom_button"
+            android:layout_marginRight="@dimen/default_gap"
+            android:layout_marginLeft="@dimen/default_gap"
             android:onClick="sortPriceDescending"/>
     </LinearLayout>
 
