@@ -35,8 +35,9 @@ public class AccessInventory {
 		for(int i = 0; i < quantity; i++){
 			Item newItem = new Item(locationString,thisDate);
 			dataAccess.addItem(newItem, newItemType.getID());
+			newItemType.addItem(newItem);
 		}
-		newItemType.setItems(items);
+		activeInventory.addItem(newItemType);
 	}
 
 	public void setCurrentItem(int index) {
