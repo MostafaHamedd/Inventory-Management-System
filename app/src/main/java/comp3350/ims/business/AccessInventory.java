@@ -11,8 +11,8 @@ import comp3350.ims.persistence.DataAccess;
 
 
 public class AccessInventory {
-	private DataAccess dataAccess;
-	private Inventory activeInventory;
+	private  DataAccess dataAccess;
+	private final Inventory activeInventory;
 	private static int currentItemPosition;
 
 	public AccessInventory() {

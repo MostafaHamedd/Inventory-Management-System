@@ -57,12 +57,6 @@ public class Inventory {
 
     }
 
-    public ItemType getFilteredItem(int index) throws IndexOutOfBoundsException {
-        if(index < 0|| index >= filteredItems.size())
-            throw new IndexOutOfBoundsException();
-        return filteredItems.get(index);
-    }
-
     public void setFilteredItems(ArrayList<ItemType> filteredItems) {
         this.filteredItems = filteredItems;
     }

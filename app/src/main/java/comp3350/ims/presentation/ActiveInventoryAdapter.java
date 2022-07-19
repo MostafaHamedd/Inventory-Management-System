@@ -110,7 +110,6 @@ public class ActiveInventoryAdapter extends BaseAdapter {
         }
     };
 
-
     public Filter getFilter() {
         return myFilter;
     }

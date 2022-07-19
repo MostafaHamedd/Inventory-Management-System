@@ -1,4 +1,4 @@
-package comp3350.ims.persistence;
+package comp3350.ims.objects;
 
 import java.util.ArrayList;
 
@@ -43,21 +43,21 @@ public class DataAccessStub implements DataAccess {
 		categoryList.add("Frozen");
 		categoryList.add("Bakery");
 
-		item = new ItemType("Milk", 5.55f, 0, "Ware House", "12/06/2022", "Dairy");
+		item = new ItemType("Milk", 5.55f,  "Ware House", "12/06/2022", "Dairy");
 		activeInventory.addItem(item);
-		item = new ItemType("Cream", 3.00f, 18, "Ware House", "12/06/2022", "Dairy");
+		item = new ItemType("Cream", 3.00f,  "Ware House", "12/06/2022", "Dairy");
 		activeInventory.addItem(item);
-		item = new ItemType("Oreo", 4.00f, 12, "Ware House", "12/06/2022", "Pantry");
+		item = new ItemType("Oreo", 4.00f,  "Ware House", "12/06/2022", "Pantry");
 		activeInventory.addItem(item);
-		item = new ItemType("Ice Cream", 8.5f, 3, "Ware House", "12/06/2022", "Frozen");
+		item = new ItemType("Ice Cream", 8.5f,  "Ware House", "12/06/2022", "Frozen");
 		activeInventory.addItem(item);
-		item = new ItemType("Butter", 3.5f, 2, "Ware House", "12/06/2022", "Dairy");
+		item = new ItemType("Butter", 3.5f,  "Ware House", "12/06/2022", "Dairy");
 		activeInventory.addItem(item);
-		item = new ItemType("Bread", 3.5f, 12, "Ware House", "12/06/2022", "Bakery");
+		item = new ItemType("Bread", 3.5f,  "Ware House", "12/06/2022", "Bakery");
 		activeInventory.addItem(item);
-		item = new ItemType("Coke 12 pk", 8f, 12, "Ware House", "12/06/2022", "Drinks");
+		item = new ItemType("Coke 12 pk", 8f,  "Ware House", "12/06/2022", "Drinks");
 		activeInventory.addItem(item);
-		item = new ItemType("Cheese", 6.5f, 12, "Ware House", "12/06/2022", "Dairy");
+		item = new ItemType("Cheese", 6.5f,  "Ware House", "12/06/2022", "Dairy");
 		activeInventory.addItem(item);
 
 		System.out.println("Opened " + dbType + " database " + dbName);
@@ -65,6 +65,11 @@ public class DataAccessStub implements DataAccess {
 
 	public void close() {
 		System.out.println("Closed " + dbType + " database " + dbName);
+	}
+
+	@Override
+	public void addItem(Item item, int itemTypeID) {
+
 	}
 
 
@@ -118,6 +123,12 @@ public class DataAccessStub implements DataAccess {
 	public boolean isLocation(String name){
 		return locationList.contains(name) ;
 	}
+
+	@Override
+	public boolean removeItem(int itemID, int itemTypeID, int quantity) {
+		return false;
+	}
+
 
 	public boolean removeItem(Item item,ItemType itemType) {
 		return false;
