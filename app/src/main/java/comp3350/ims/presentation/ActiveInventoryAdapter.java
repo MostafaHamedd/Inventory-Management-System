@@ -85,8 +85,8 @@ public class ActiveInventoryAdapter extends BaseAdapter {
             }
             else{
                 for(int i = 0; i < mainInventory.items.size(); i++){
-                    if(((mainInventory.getItemForFilter(i).getName()).toLowerCase()).startsWith((constraint.toString()).toLowerCase())){
-                        tempInventory.addItem(mainInventory.getItemForFilter(i));
+                    if(((mainInventory.getItem(i).getName()).toLowerCase()).startsWith((constraint.toString()).toLowerCase())){
+                        tempInventory.addItem(mainInventory.getItem(i));
                     }
                 }
                 results.count = tempInventory.items.size();
