@@ -131,8 +131,6 @@ public class ItemType implements Comparable<ItemType> {
         return ID;
     }
 
-    public void setItems(ArrayList<Item> items){ this.items = items;}
-
     public void setID(int id) {
         this.ID = id;
         if(id > itemTypeID){

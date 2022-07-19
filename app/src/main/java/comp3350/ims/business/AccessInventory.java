@@ -28,16 +28,26 @@ public class AccessInventory {
 		return activeInventory;
 	}
 
-	public void insertItemType(String nameString, float price, int quantity, String locationString, String thisDate,String categoryString) {
+	public boolean insertItemType(String nameString, float price, int quantity, String locationString, String thisDate,String categoryString) {
+
+		boolean isInserted = true;
 		ItemType newItemType = new ItemType(nameString,price,locationString,thisDate,categoryString);
-		dataAccess.insertItem(newItemType);
-		ArrayList<Item> items = new ArrayList<>();
-		for(int i = 0; i < quantity; i++){
-			Item newItem = new Item(locationString,thisDate);
-			dataAccess.addItem(newItem, newItemType.getID());
-			newItemType.addItem(newItem);
+		if(activeInventory.contains(newItemType)) {
+			isInserted = false;
+		} else{
+			activeInventory.addItem(newItemType);
+			dataAccess.insertItem(newItemType);
+			ArrayList<Item> items = new ArrayList<>();
+			for(int i = 0; i < quantity; i++){
+				Item newItem = new Item(locationString,thisDate);
+				dataAccess.addItem(newItem, newItemType.getID());
+				newItemType.addItem(newItem);
+			}
+
 		}
-		activeInventory.addItem(newItemType);
+
+		return isInserted;
+
 	}
 
 	public void setCurrentItem(int index) {

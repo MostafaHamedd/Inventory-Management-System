@@ -89,8 +89,13 @@ public class ItemCreateActivity extends AppCompatActivity {
                 } else {
                     float price = Float.parseFloat(priceString);
                     int quantity = Integer.parseInt(quantityString);
-                    accessInventory.insertItemType(nameString, price, quantity, locationString, thisDate, categoryString);
-                    Toast.makeText(ItemCreateActivity.this, "New Item Created", Toast.LENGTH_SHORT).show();
+                     boolean isInserted = accessInventory.insertItemType(nameString, price, quantity, locationString, thisDate, categoryString);
+                    if(isInserted){
+                        Toast.makeText(ItemCreateActivity.this, "New Item Created", Toast.LENGTH_SHORT).show();
+                    } else{
+                        Toast.makeText(ItemCreateActivity.this, "Item already exists", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
 
             }

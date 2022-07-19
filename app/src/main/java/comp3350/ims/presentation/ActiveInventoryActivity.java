@@ -49,7 +49,6 @@ public class ActiveInventoryActivity extends AppCompatActivity {
 
         activeInventory = accessInventory.getActiveInventory();
 
-
         listView = (ListView) findViewById(R.id.activeInventoryList);
         adapter = new ActiveInventoryAdapter(this, activeInventory);
         listView.setAdapter(adapter);

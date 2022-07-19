@@ -76,6 +76,10 @@ public class Inventory {
         }
     }
 
+    public boolean contains(ItemType item){
+        return items.contains(item);
+    }
+
     public void sortByName(){
         Collections.sort(items, new Comparator<ItemType>() {
             @Override
