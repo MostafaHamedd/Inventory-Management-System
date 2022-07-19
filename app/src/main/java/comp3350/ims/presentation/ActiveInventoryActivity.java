@@ -179,9 +179,6 @@ public class ActiveInventoryActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 adapter.getFilter().filter(newText);
-                if(newText.isEmpty()){
-                    updateDataChanges();
-                }
                 return false;
             }
         });
@@ -191,13 +188,14 @@ public class ActiveInventoryActivity extends AppCompatActivity {
 
     public void updateDataChanges() {
         adapter.notifyDataSetChanged();
-        activeInventory.reorderByQuantity();
+
     }
 
     @Override
     public void onRestart() {
         super.onRestart();
         updateDataChanges();
+        activeInventory.reorderByQuantity();
     }
 
     public void sortNameAscending(View v){

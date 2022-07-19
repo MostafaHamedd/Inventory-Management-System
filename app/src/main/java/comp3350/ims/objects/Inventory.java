@@ -6,6 +6,7 @@ import java.util.Comparator;
 public class Inventory {
     private int numOfItems;
     public ArrayList <ItemType> items;
+    public ArrayList <ItemType> filteredItems;
 
     public Inventory() {
         items = new ArrayList<>();
@@ -45,9 +46,25 @@ public class Inventory {
     }
 
     public ItemType getItem(int index) throws IndexOutOfBoundsException {
-        if(index < 0|| index >= items.size() || items.size() == 0)
+
+        if(index < 0|| index >= items.size())
             throw new IndexOutOfBoundsException();
-        return items.get(index);
+
+        if(filteredItems == null || filteredItems.size() == items.size())
+            return items.get(index);
+        else
+            return filteredItems.get(index);
+
+    }
+
+    public ItemType getFilteredItem(int index) throws IndexOutOfBoundsException {
+        if(index < 0|| index >= filteredItems.size())
+            throw new IndexOutOfBoundsException();
+        return filteredItems.get(index);
+    }
+
+    public void setFilteredItems(ArrayList<ItemType> filteredItems) {
+        this.filteredItems = filteredItems;
     }
 
     public void reorderByQuantity() {

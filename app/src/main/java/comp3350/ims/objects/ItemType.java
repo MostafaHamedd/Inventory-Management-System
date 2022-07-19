@@ -133,6 +133,7 @@ public class ItemType implements Comparable<ItemType> {
     }
 
     public boolean needsRefill() {
+        checkRefill();
         return needsRefill;
     }
 

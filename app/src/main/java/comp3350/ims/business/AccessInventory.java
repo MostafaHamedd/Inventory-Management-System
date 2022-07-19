@@ -37,7 +37,7 @@ public class AccessInventory {
 	}
 
 	public ItemType getItem(int index) {
-		return activeInventory.items.get(index);
+		return activeInventory.getItem(index);
 	}
 
 	public String getCategories(ArrayList<String> categoryList) {
