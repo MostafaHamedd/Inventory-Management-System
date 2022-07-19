@@ -23,7 +23,7 @@ public class Inventory {
     }
 
     public boolean addItem(ItemType newItem) {
-        if (newItem != null && !(items.contains(newItem))) {
+        if (newItem != null) {
             items.add(newItem);
             numOfItems++;
             return true;
@@ -54,7 +54,13 @@ public class Inventory {
             return items.get(index);
         else
             return filteredItems.get(index);
+    }
 
+    public ItemType getItemForFilter(int index) throws IndexOutOfBoundsException {
+        if(index < 0|| index >= items.size())
+            throw new IndexOutOfBoundsException();
+
+        return items.get(index);
     }
 
     public void setFilteredItems(ArrayList<ItemType> filteredItems) {
