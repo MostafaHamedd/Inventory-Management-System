@@ -153,8 +153,11 @@
 
     <Button
         android:id="@+id/itemCreateBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="134dp"
+        android:layout_height="46dp"
+        android:layout_marginLeft="@dimen/default_gap"
+        android:layout_marginRight="@dimen/default_gap"
+        android:background="@drawable/custom_button"
         android:text="@string/item_create"
         android:textAlignment="center"
         android:textSize="24sp"

@@ -131,13 +131,13 @@ public class ActiveInventoryActivity extends AppCompatActivity {
     public void buttonAddOnClick(View v) {
 
         int position = listView.getPositionForView((View) v.getParent());
-        ItemType item = accessInventory.getItem(position);
+        ItemType itemType = accessInventory.getItem(position);
 
         SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
         Date todayDate = new Date();
         String thisDate = currentDate.format(todayDate);
 
-        accessInventory.addItem(item.addItem("Ware House", thisDate),item);
+        accessInventory.addItem(itemType.getLocation(),thisDate,itemType);
 
         TextView itemQuantity = ((View) v.getParent()).findViewById(R.id.itemQuantity);
         try {
@@ -193,9 +193,17 @@ public class ActiveInventoryActivity extends AppCompatActivity {
 
     @Override
     public void onRestart() {
-        super.onRestart();
-        updateDataChanges();
+        activeInventory = accessInventory.getActiveInventory();
         activeInventory.reorderByQuantity();
+        updateDataChanges();
+        super.onRestart();
+    }
+
+    @Override
+    public void onResume() {
+        activeInventory = accessInventory.getActiveInventory();
+        updateDataChanges();
+        super.onResume();
     }
 
     public void sortNameAscending(View v){
@@ -216,6 +224,13 @@ public class ActiveInventoryActivity extends AppCompatActivity {
     public void sortPriceDescending(View v){
         activeInventory.reverseSortByPrice();
         updateDataChanges();
+    }
+
+
+    @Override
+    public void onBackPressed(){
+        Intent coursesIntent = new Intent(this, HomeActivity.class);
+        this.startActivity(coursesIntent);
     }
 
 

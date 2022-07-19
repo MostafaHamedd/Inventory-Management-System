@@ -40,37 +40,49 @@
             android:layout_height="61dp"
             android:orientation="horizontal">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="sortNameAscending"
-                android:text="Name ↑" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Name ↑"
+            android:background="@drawable/custom_button"
+            android:layout_marginBottom="@dimen/default_gap"
+            android:onClick="sortNameAscending"/>
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="sortNameDescending"
-                android:text="Name ↓" />
 
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="sortPriceAscending"
-                android:text="Price ↑" />
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Name ↓"
+            android:background="@drawable/custom_button"
+            android:layout_marginRight="@dimen/default_gap"
+            android:layout_marginLeft="@dimen/default_gap"
+            android:onClick="sortNameDescending"/>
 
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="sortPriceDescending"
-                android:text="Price ↓" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price ↑"
+            android:layout_weight="1"
+            android:background="@drawable/custom_button"
+            android:layout_marginRight="@dimen/default_gap"
+            android:layout_marginLeft="@dimen/default_gap"
+            android:onClick="sortPriceAscending"/>
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price ↓"
+            android:layout_weight="1"
+            android:background="@drawable/custom_button"
+            android:layout_marginRight="@dimen/default_gap"
+            android:layout_marginLeft="@dimen/default_gap"
+            android:onClick="sortPriceDescending"/>
+    </LinearLayout>
 
         <ListView
             android:id="@+id/activeInventoryList"

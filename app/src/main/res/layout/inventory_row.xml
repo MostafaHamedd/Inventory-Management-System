@@ -67,6 +67,8 @@
         android:layout_weight="4"
         android:onClick="buttonViewAllOnClick"
         android:layout_gravity="center"
+        android:background="@drawable/custom_button"
+        android:layout_marginRight="@dimen/default_gap"
         android:text="ViewAll" />
 
     <Button
@@ -76,6 +78,9 @@
         android:layout_weight="4"
         android:onClick="buttonEditDialogOnClick"
         android:layout_gravity="center"
+        android:background="@drawable/custom_button"
+        android:layout_marginRight="@dimen/default_gap"
+
         android:text="Edit" />
 
     <Button
@@ -85,5 +90,8 @@
         android:layout_weight="4"
         android:onClick="buttonAddOnClick"
         android:layout_gravity="center"
+        android:background="@drawable/plus_button"
+        android:layout_marginRight="@dimen/default_gap"
+
         android:text="+" />
 </LinearLayout>

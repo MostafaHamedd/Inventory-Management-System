@@ -47,6 +47,9 @@ public class DataAccessDatabase implements DataAccess{
             processSQLError(e);
         }
         System.out.println("Opened " +dbType +" database " +dbPath);
+
+        Inventory inventory = getActiveInventory();
+
     }
 
     public void close(){
@@ -68,7 +71,7 @@ public class DataAccessDatabase implements DataAccess{
                 String location = rs3.getString("LOCATIONNAME");
                 String date = rs3.getString("DATE");
                 String category = rs3.getString("CATEGORYNAME");
-                ItemType type = new ItemType(itemTypeName, price, quantity, location, date, category);
+                ItemType type = new ItemType(itemTypeName, price, location, date, category);
                 type.setID(id);
                 itemTypes.add(type);
             }
@@ -84,7 +87,10 @@ public class DataAccessDatabase implements DataAccess{
 
                 for (int i = 0; i < itemTypes.size(); i++) {
                     if (itemTypes.get(i).getID() == itemTypeID) {
-                        itemTypes.get(i).addItem(new Item(id + "", location, date));
+                        Item newItem = new Item(location, date);
+                        newItem.setId(id);
+                        itemTypes.get(i).addItem(newItem);
+
                     }
                 }
             }
@@ -113,11 +119,6 @@ public class DataAccessDatabase implements DataAccess{
             System.out.println(values);
             cmdString = "Insert into ITEMTYPE " + " Values(" + values + ")";
             updateCount = st1.executeUpdate(cmdString);
-
-            for(int i = 0; i < item.getQuantity(); i++){
-                Item a = item.getItem(i);
-                addItem(a,item);
-            }
         }catch(Exception e){
                 processSQLError(e);
             }
@@ -148,21 +149,19 @@ public class DataAccessDatabase implements DataAccess{
     }
 
 
-    public void addItem(Item item, ItemType itemType) {
+    public void addItem(Item item, int itemTypeID) {
         String values;
 
         try {
             values = "\'" + item.getId()
-                    + "', " + itemType.getID()
+                    + "', " + itemTypeID
                     + ", '" + item.getDate()
-                    + "', '" + itemType.getLocation()
+                    + "', '" + item.getLocation()
                     + "'";
             System.out.println(values);
             cmdString = "Insert into ITEM " + " Values(" + values + ")";
             updateCount = st1.executeUpdate(cmdString);
-            cmdString = "Select * from Item";
-            rs2 = st1.executeQuery(cmdString);
-            String itemName;
+            result = checkWarning(st1,updateCount);
         }
         catch (Exception e)
         {
@@ -251,47 +250,44 @@ public class DataAccessDatabase implements DataAccess{
     }
 
     public boolean isCategory(String name){
+        boolean flag = false ;
         try{
             cmdString = "select * from CATEGORY where NAME= "+"\'"+name+"\'" ;
             rs2 = st1.executeQuery(cmdString);
-            System.out.println(rs2.next() + " Lets goo #2");
-
+            flag = rs2.next();
         }
         catch(Exception e){
             processSQLError(e);
         }
-        return false ;
+        return flag ;
     }
 
     public boolean isLocation(String name){
+        boolean flag = false ;
         try{
         cmdString = "select * from LOCATION where NAME= "+"\'"+name+"\'"  ;
         rs2 = st1.executeQuery(cmdString);
-            System.out.println(rs2.next() + " Lets goo #2 loc");
+            flag = rs2.next();
 
     }
     catch(Exception e){
         processSQLError(e);
     }
-        return false ;
+        return flag ;
     }
 
-    public boolean removeItem(Item item,ItemType itemType) {
-        String values;
+    public boolean removeItem(int itemID, int itemTypeID, int quantity) {
         boolean flag = false;
         result = null;
         try
         {
-            values = item.getId();
-            cmdString = "Delete from ITEM where ID=" +values;
+            cmdString = "Delete from ITEM where ID=" +itemID;
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
-
-            int value = itemType.getQuantity() - 1;
-            cmdString = "Update ITEMTYPE Set QUANTITY="+value+" where ID="+itemType.getID();
+            System.out.println(result);
+            cmdString = "Update ITEMTYPE Set QUANTITY="+quantity+" where ID=" + itemTypeID;
             updateCount = st2.executeUpdate(cmdString);
             result = checkWarning(st2,updateCount);
-
             flag = true;
         }
         catch (Exception e)
