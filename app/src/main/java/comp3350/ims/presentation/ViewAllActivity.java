@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import comp3350.ims.R;
 import comp3350.ims.business.AccessInventory;
+import comp3350.ims.objects.Inventory;
 import comp3350.ims.objects.ItemType;
 
 public class ViewAllActivity extends Activity {
@@ -40,9 +41,4 @@ public class ViewAllActivity extends Activity {
         }
     }
 
-    @Override
-    public void onBackPressed(){
-        Intent coursesIntent = new Intent(this, ActiveInventoryActivity.class);
-        this.startActivity(coursesIntent);
-    }
 }

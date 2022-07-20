@@ -110,6 +110,7 @@ public class ActiveInventoryActivity extends AppCompatActivity {
                 saveName = newName.getText().toString();
                 savePrice = Float.parseFloat(newPrice.getText().toString());
                 saveCategory = spinCategory.getSelectedItem().toString();
+
                 item.setName(saveName);
                 item.setPrice(savePrice);
                 item.setCategory(saveCategory);

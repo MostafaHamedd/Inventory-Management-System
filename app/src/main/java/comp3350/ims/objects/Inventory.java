@@ -50,10 +50,12 @@ public class Inventory {
         if(index < 0|| index >= items.size())
             throw new IndexOutOfBoundsException();
 
-        if(filteredItems == null || filteredItems.size() == items.size())
+        if(filteredItems == null || filteredItems.size() == items.size() || filteredItems.size() <= index)
             return items.get(index);
         else
             return filteredItems.get(index);
+
+
     }
 
     public void setFilteredItems(ArrayList<ItemType> filteredItems) {

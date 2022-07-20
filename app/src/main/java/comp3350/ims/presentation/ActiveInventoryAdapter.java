@@ -13,6 +13,7 @@ import java.util.Locale;
 
 import comp3350.ims.R;
 import comp3350.ims.objects.Inventory;
+import comp3350.ims.objects.ItemType;
 
 public class ActiveInventoryAdapter extends BaseAdapter {
     private Inventory filteredInventory;
@@ -80,13 +81,15 @@ public class ActiveInventoryAdapter extends BaseAdapter {
             Inventory tempInventory = new Inventory();
 
             if(constraint == null || constraint.length() == 0){
-                results.count = mainInventory.items.size();
+                results.count = mainInventory.getNumOfItems();
                 results.values = mainInventory;
             }
             else{
-                for(int i = 0; i < mainInventory.items.size(); i++){
-                    if(((mainInventory.getItem(i).getName()).toLowerCase()).startsWith((constraint.toString()).toLowerCase())){
-                        tempInventory.addItem(mainInventory.getItem(i));
+                ItemType item;
+                for(int i = 0; i < mainInventory.getNumOfItems(); i++){
+                    item = mainInventory.items.get(i);
+                    if(((item.getName()).toLowerCase()).startsWith((constraint.toString()).toLowerCase())){
+                        tempInventory.addItem(item);
                     }
                 }
                 results.count = tempInventory.items.size();
