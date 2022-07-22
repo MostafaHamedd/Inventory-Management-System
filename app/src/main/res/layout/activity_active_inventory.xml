@@ -84,6 +84,17 @@
             android:onClick="sortPriceDescending"/>
     </LinearLayout>
 
+        <Spinner
+            android:id="@+id/CategorySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"/>
+        <Spinner
+            android:id="@+id/LocationSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"/>
+
         <ListView
             android:id="@+id/activeInventoryList"
             android:layout_width="match_parent"

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -36,6 +37,10 @@ public class ActiveInventoryActivity extends AppCompatActivity {
     private ListView listView;
     public ActiveInventoryAdapter adapter;
     private AccessInventory accessInventory;
+    private ArrayList <String> categoryList;
+    private ArrayList <String> locationList;
+    private Spinner categories;
+    private Spinner locations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +53,60 @@ public class ActiveInventoryActivity extends AppCompatActivity {
         accessInventory = new AccessInventory();
 
         activeInventory = accessInventory.getActiveInventory();
+        categoryList = new ArrayList<>();
+        locationList = new ArrayList<>();
+
+        accessInventory.getCategories(categoryList);
+        accessInventory.getLocations(locationList);
+
+        categoryList.add(0,"Choose a category to filter");
+        locationList.add(0,"Choose a location to filter");
+
+        categories = findViewById(R.id.CategorySpinner);
+        locations = findViewById(R.id.LocationSpinner);
+
+        ArrayAdapter <String> adapterCategory = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, categoryList);
+        adapterCategory.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        categories.setAdapter(adapterCategory);
+
+        categories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedCatergory = categories.getSelectedItem().toString();
+                if(!selectedCatergory.equals("Choose a category to filter")){
+                    //filter category added here
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                return;
+            }
+        });
+
+        ArrayAdapter <String> adapterLocation = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, locationList);
+        adapterLocation.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        locations.setAdapter(adapterLocation);
+
+        locations.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedLocation = locations.getSelectedItem().toString();
+                if(!selectedLocation.equals("Choose a location to filter")){
+                    //filter location added here
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                return;
+            }
+        });
 
         listView = (ListView) findViewById(R.id.activeInventoryList);
         adapter = new ActiveInventoryAdapter(this, activeInventory);
         listView.setAdapter(adapter);
-
-
 
     }
 
