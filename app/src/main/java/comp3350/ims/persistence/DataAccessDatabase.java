@@ -298,8 +298,27 @@ public class DataAccessDatabase implements DataAccess{
     }
 
     public boolean editItemType(ItemType itemType) {
-        return false;
-    }
+            boolean flag = false;
+            result = null;
+            try
+            {
+                String values = " NAME='" + itemType.getName()
+                        + "', PRICE='" + itemType.getPrice()
+                        + "', CATEGORYNAME='" + itemType.getCategory()
+                        + "', LOCATIONNAME='" + itemType.getLocation()
+                        + "'";
+                cmdString = "Update ITEMTYPE Set "+values+" where ID=" + itemType.getID();
+                System.out.println(cmdString);
+                updateCount = st2.executeUpdate(cmdString);
+                result = checkWarning(st2,updateCount);
+                flag = true;
+            }
+            catch (Exception e)
+            {
+                result = processSQLError(e);
+            }
+            return flag;
+        }
 
     public boolean editItem(Item item) {
         return false;

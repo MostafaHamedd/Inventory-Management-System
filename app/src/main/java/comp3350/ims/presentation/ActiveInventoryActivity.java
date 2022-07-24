@@ -115,6 +115,7 @@ public class ActiveInventoryActivity extends AppCompatActivity {
                 item.setPrice(savePrice);
                 item.setCategory(saveCategory);
                 adapter.notifyDataSetChanged();
+                accessInventory.editItemType(item);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
