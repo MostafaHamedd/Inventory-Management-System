@@ -47,9 +47,6 @@ public class DataAccessDatabase implements DataAccess{
             processSQLError(e);
         }
         System.out.println("Opened " +dbType +" database " +dbPath);
-
-        Inventory inventory = getActiveInventory();
-
     }
 
     public void close(){
@@ -321,7 +318,23 @@ public class DataAccessDatabase implements DataAccess{
         }
 
     public boolean editItem(Item item) {
-        return false;
+        boolean flag = false;
+        result = null;
+        try
+        {
+            String values = " LOCATIONNAME='" + item.getLocation()
+                    + "'";
+            cmdString = "Update ITEM Set "+values+" where ID=" + item.getId();
+            System.out.println(cmdString);
+            updateCount = st2.executeUpdate(cmdString);
+            result = checkWarning(st2,updateCount);
+            flag = true;
+        }
+        catch (Exception e)
+        {
+            result = processSQLError(e);
+        }
+        return flag;
     }
 
     public String processSQLError(Exception e)
