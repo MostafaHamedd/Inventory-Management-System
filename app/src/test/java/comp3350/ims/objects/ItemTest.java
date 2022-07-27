@@ -22,9 +22,9 @@ public class ItemTest extends TestCase {
         assertEquals(test2.getId(),"");
         assertEquals(test2.getDate(),"date");
 
-        Item test3 = new Item("id","location","date");
+        Item test3 = new Item("location","date");
         assertEquals(test3.getLocation(),"location");
-        assertEquals(test3.getId(),"id");
+        assertEquals(test3.getId(),0);
         assertEquals(test3.getDate(),"date");
     }
 
