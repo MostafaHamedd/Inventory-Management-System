@@ -17,8 +17,8 @@ public class InventoryTest extends TestCase {
 
         Inventory inventory = new Inventory();
 
-        ItemType item = new ItemType("Coke 12 pk", 8f, 12, "Ware House", "12/06/2022", "Drinks");
-        ItemType item1 = new ItemType("Pepsi 12 pk", 8f, 12, "Ware House", "12/06/2022", "Drinks");
+        ItemType item = new ItemType("Coke 12 pk", 8f,  "Ware House", "12/06/2022", "Drinks");
+        ItemType item1 = new ItemType("Pepsi 12 pk", 8f,  "Ware House", "12/06/2022", "Drinks");
 
         assertTrue(inventory.addItem(item));
         assertTrue(inventory.addItem(item1));
@@ -38,7 +38,7 @@ public class InventoryTest extends TestCase {
         assertTrue(inventory.getItem(0).equals(item));
         assertTrue(inventory.getItem(1).equals(item1));
 
-        ItemType item2 = new ItemType("DrPepper 12 pk", 8f, 0, "Ware House", "12/06/2022", "Drinks");
+        ItemType item2 = new ItemType("DrPepper 12 pk", 8f,  "Ware House", "12/06/2022", "Drinks");
         assertTrue(inventory.addItem(item2));
         //checking re-order, if the 0 quantity item is at top of list.
         inventory.reorderByQuantity();
@@ -50,11 +50,11 @@ public class InventoryTest extends TestCase {
 
         Inventory inventory = new Inventory();
 
-        ItemType item = new ItemType("Coke 12 pk", 8f, 12, "Ware House", "12/06/2022", "Drinks");
-        ItemType item1 = new ItemType("Pepsi 12 pk", 8f, 12, "Ware House", "12/06/2022", "Drinks");
-        ItemType item2 = new ItemType("Fanta 12 pk", 8f, 12, "Ware House", "12/06/2022", "Drinks");
-        ItemType item3 = new ItemType("IceTea 12 pk", 8f, 12, "Ware House", "12/06/2022", "Drinks");
-        ItemType item4 = new ItemType("DrPepper 12 pk", 8f, 12, "Ware House", "12/06/2022", "Drinks");
+        ItemType item = new ItemType("Coke 12 pk", 8f, "Ware House", "12/06/2022", "Drinks");
+        ItemType item1 = new ItemType("Pepsi 12 pk", 8f, "Ware House", "12/06/2022", "Drinks");
+        ItemType item2 = new ItemType("Fanta 12 pk", 8f, "Ware House", "12/06/2022", "Drinks");
+        ItemType item3 = new ItemType("IceTea 12 pk", 8f, "Ware House", "12/06/2022", "Drinks");
+        ItemType item4 = new ItemType("DrPepper 12 pk", 8f, "Ware House", "12/06/2022", "Drinks");
 
         assertTrue(inventory.addItem(item));
         assertTrue(inventory.addItem(item1));
@@ -85,9 +85,9 @@ public class InventoryTest extends TestCase {
         assertTrue(inventory.addItem(item3));
         assertTrue(inventory.addItem(item4));
 
-        ItemType lowQuantityItem = new ItemType("Chair", 8f, 0, "Ware House", "12/06/2022", "Drinks");
-        ItemType lowQuantityItem1 = new ItemType("Chocolate", 8f, 3, "Ware House", "12/06/2022", "Drinks");
-        ItemType lowQuantityItem2 = new ItemType("Gum", 8f, 5, "Ware House", "12/06/2022", "Drinks");
+        ItemType lowQuantityItem = new ItemType("Chair", 8f,  "Ware House", "12/06/2022", "Drinks");
+        ItemType lowQuantityItem1 = new ItemType("Chocolate", 8f,  "Ware House", "12/06/2022", "Drinks");
+        ItemType lowQuantityItem2 = new ItemType("Gum", 8f,  "Ware House", "12/06/2022", "Drinks");
 
         assertTrue(inventory.addItem(lowQuantityItem));
         assertTrue(inventory.addItem(lowQuantityItem1));
@@ -123,7 +123,7 @@ public class InventoryTest extends TestCase {
         Inventory inventory = new Inventory();
 
         assertEquals(inventory.getNumOfItems(), 0);
-        ItemType item = new ItemType("Coke 12 pk", 8f, 12, "Ware House", "12/06/2022", "Drinks");
+        ItemType item = new ItemType("Coke 12 pk", 8f,  "Ware House", "12/06/2022", "Drinks");
         assertFalse(inventory.removeItem(item));
 
         assertTrue(inventory.addItem(item));
@@ -160,11 +160,11 @@ public class InventoryTest extends TestCase {
     public void testSortingBaseCases(){
         Inventory test = new Inventory();
 
-        ItemType milk =  new ItemType("Milk",1.1f,10,"Here","","");
+        ItemType milk =  new ItemType("Milk",1.1f,"Here","","");
         test.addItem(milk);
-        ItemType cereal =  new ItemType("Cereal",1.2f,10,"Here","","");
+        ItemType cereal =  new ItemType("Cereal",1.2f,"Here","","");
         test.addItem(cereal);
-        ItemType cookie =  new ItemType("Cookie",5.1f,10,"Here","","");
+        ItemType cookie =  new ItemType("Cookie",5.1f,"Here","","");
         test.addItem(cookie);
 
         test.sortByPrice();
@@ -233,11 +233,11 @@ public class InventoryTest extends TestCase {
     public void testSortingEqualCases(){
         Inventory test = new Inventory();
 
-        ItemType milk1 = new ItemType("Milk",2,10,"","","");
+        ItemType milk1 = new ItemType("Milk",2,"","","");
         test.addItem(milk1);
-        ItemType milk2 = new ItemType("Milk",2,10,"","","");
+        ItemType milk2 = new ItemType("Milk",2,"","","");
         test.addItem(milk2);
-        ItemType milk3 = new ItemType("Milk",2,10,"","","");
+        ItemType milk3 = new ItemType("Milk",2,"","","");
         test.addItem(milk3);
 
         test.sortByName();
