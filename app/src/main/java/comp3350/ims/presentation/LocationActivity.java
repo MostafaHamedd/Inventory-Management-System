@@ -25,7 +25,7 @@ public class LocationActivity extends Activity {
     private AccessInventory accessInventory;
     ListView listView;
     Button deleteButton ;
-    int selectedIndex ;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

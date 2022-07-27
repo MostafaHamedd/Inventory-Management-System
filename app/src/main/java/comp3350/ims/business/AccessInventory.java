@@ -113,7 +113,6 @@ public class AccessInventory {
 		return dataAccess.isCategory(name) ;
 	}
 	public boolean isLocation(String name){
-		System.out.println(name);
 		return dataAccess.isLocation(name) ;
 	}
 	public boolean editItemType(ItemType itemType,String name,float price,String category){

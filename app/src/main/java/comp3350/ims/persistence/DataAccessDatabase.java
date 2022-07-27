@@ -124,7 +124,6 @@ public class DataAccessDatabase implements DataAccess{
                     + "', '" + item.getDate()
                     + "', '" + item.getQuantity()
                     + "'";
-            System.out.println(values);
             cmdString = "Insert into ITEMTYPE " + " Values(" + values + ")";
             updateCount = st1.executeUpdate(cmdString);
         }catch(Exception e){
@@ -166,7 +165,7 @@ public class DataAccessDatabase implements DataAccess{
                     + ", '" + item.getDate()
                     + "', '" + item.getLocation()
                     + "'";
-            System.out.println(values);
+
             cmdString = "Insert into ITEM " + " Values(" + values + ")";
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1,updateCount);
@@ -238,6 +237,7 @@ public class DataAccessDatabase implements DataAccess{
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
             flag = true ;
+            flag = true ;
         }
         catch(Exception e){
             processSQLError(e);
@@ -294,7 +294,6 @@ public class DataAccessDatabase implements DataAccess{
             cmdString = "Delete from ITEM where ID=" +itemID;
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
-            System.out.println(result);
             cmdString = "Update ITEMTYPE Set QUANTITY="+quantity+" where ID=" + itemTypeID;
             updateCount = st2.executeUpdate(cmdString);
             result = checkWarning(st2,updateCount);
@@ -317,7 +316,7 @@ public class DataAccessDatabase implements DataAccess{
                         + "', CATEGORYNAME='" + category
                         + "'";
                 cmdString = "Update ITEMTYPE Set "+values+" where ID=" + itemType.getID();
-                System.out.println(cmdString);
+
                 updateCount = st2.executeUpdate(cmdString);
                 result = checkWarning(st2,updateCount);
                 flag = true;
@@ -340,7 +339,7 @@ public class DataAccessDatabase implements DataAccess{
             String values = " LOCATIONNAME='" + location
                     + "'";
             cmdString = "Update ITEM Set "+values+" where ID=" + item.getId();
-            System.out.println(cmdString);
+
             updateCount = st2.executeUpdate(cmdString);
             result = checkWarning(st2,updateCount);
             flag = true;
