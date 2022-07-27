@@ -74,9 +74,11 @@ public class ActiveInventoryActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedCatergory = categories.getSelectedItem().toString();
                 if(!selectedCatergory.equals("Choose a category to filter")){
-                    //filter category added here
+                    adapter.getFilter().filter("CATEGORY" + selectedCatergory);
                 }
-
+                else{
+                    adapter.getFilter().filter("");
+                }
             }
 
             @Override
@@ -93,14 +95,17 @@ public class ActiveInventoryActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedLocation = locations.getSelectedItem().toString();
-                if(!selectedLocation.equals("Choose a location to filter")){
-                    //filter location added here
+                if(!selectedLocation.equals("Choose a location to filter")) {
+                    adapter.getFilter().filter("LOCATION" + selectedLocation);
+                }
+                else{
+                    adapter.getFilter().filter("");
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                return;
+
             }
         });
 

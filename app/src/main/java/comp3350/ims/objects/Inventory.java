@@ -118,25 +118,4 @@ public class Inventory {
         });
     }
 
-    public void filterByCategory(String category){
-        ArrayList<ItemType> categoryFiltered = new ArrayList<>();
-        for(int i=0; i<items.size();i++){
-            ItemType curr = items.get(i);
-            if(curr.categoryEquals(category) || category.length() <1){
-                categoryFiltered.add(curr);
-            }
-        }
-        filteredItems = categoryFiltered;
-    }
-
-    public void filterByLocation(String location){
-        ArrayList<ItemType> locationFiltered = new ArrayList<>();
-        for(int i=0; i<items.size();i++){
-            ItemType curr = items.get(i);
-            if(curr.locationEquals(location) || location.length() <1){
-               locationFiltered.add(curr);
-            }
-        }
-        filteredItems = locationFiltered;
-    }
 }

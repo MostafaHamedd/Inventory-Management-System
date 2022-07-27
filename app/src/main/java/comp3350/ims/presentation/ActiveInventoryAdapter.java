@@ -85,11 +85,36 @@ public class ActiveInventoryAdapter extends BaseAdapter {
                 results.values = mainInventory;
             }
             else{
-                ItemType item;
-                for(int i = 0; i < mainInventory.getNumOfItems(); i++){
-                    item = mainInventory.getItem(i);
-                    if(((item.getName()).toLowerCase()).startsWith((constraint.toString()).toLowerCase())){
-                        tempInventory.addItem(item);
+
+                String type = constraint.toString();
+
+                if(type.startsWith("CATEGORY")){
+                    String filter = type.replace("CATEGORY","");
+                    ItemType item;
+                    for(int i=0; i<mainInventory.getNumOfItems(); i++){
+                        item = mainInventory.getItem(i);
+                        if(item.categoryEquals(filter)){
+                            tempInventory.addItem(item);
+                        }
+                    }
+                }
+                else if(type.startsWith("LOCATION")){
+                    String filter = type.replace("LOCATION","");
+                    ItemType item;
+                    for(int i=0; i<mainInventory.getNumOfItems(); i++){
+                        item = mainInventory.getItem(i);
+                        if(item.locationEquals(filter)){
+                            tempInventory.addItem(item);
+                        }
+                    }
+                }
+                else{
+                    ItemType item;
+                    for(int i = 0; i < mainInventory.getNumOfItems(); i++){
+                        item = mainInventory.getItem(i);
+                        if(((item.getName()).toLowerCase()).startsWith((constraint.toString()).toLowerCase())){
+                            tempInventory.addItem(item);
+                        }
                     }
                 }
                 results.count = tempInventory.getNumOfItems();
