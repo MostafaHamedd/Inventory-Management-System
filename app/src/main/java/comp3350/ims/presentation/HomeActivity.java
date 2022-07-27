@@ -49,20 +49,30 @@ public class HomeActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void buttonCreateNewItemOnClick(View v) {
-        Intent itemCreateIntent = new Intent(HomeActivity.this, ItemCreateActivity.class);
-        HomeActivity.this.startActivity(itemCreateIntent);
+    public void buttonManagerOnClick(View v) {
+        Intent jobPositionActivityIntent = new Intent(HomeActivity.this, JobPosition.class);
+        HomeActivity.this.startActivity(jobPositionActivityIntent);
     }
 
-    public void buttonInventoryOnClick(View v) {
+    public void buttonEmployeeOnClick(View v) {
         Intent coursesIntent = new Intent(HomeActivity.this, ActiveInventoryActivity.class);
         HomeActivity.this.startActivity(coursesIntent);
     }
 
-    public void buttonCategoryOnClick(View v) {
-        Intent coursesIntent = new Intent(HomeActivity.this, CategoryActivity.class);
-        HomeActivity.this.startActivity(coursesIntent);
-    }
+//    public void buttonCreateNewItemOnClick(View v) {
+//        Intent itemCreateIntent = new Intent(HomeActivity.this, ItemCreateActivity.class);
+//        HomeActivity.this.startActivity(itemCreateIntent);
+//    }
+//
+//    public void buttonInventoryOnClick(View v) {
+//        Intent coursesIntent = new Intent(HomeActivity.this, ActiveInventoryActivity.class);
+//        HomeActivity.this.startActivity(coursesIntent);
+//    }
+//
+//    public void buttonCategoryOnClick(View v) {
+//        Intent coursesIntent = new Intent(HomeActivity.this, CategoryActivity.class);
+//        HomeActivity.this.startActivity(coursesIntent);
+//    }
 
     private void copyDatabaseToDevice() {
         final String DB_PATH = "db";
@@ -115,9 +125,9 @@ public class HomeActivity extends Activity {
         }
     }
 
-    public void buttonLocationOnClick(View v) {
-        Intent coursesIntent = new Intent(HomeActivity.this, LocationActivity.class);
-        HomeActivity.this.startActivity(coursesIntent);
-    }
+//    public void buttonLocationOnClick(View v) {
+//        Intent coursesIntent = new Intent(HomeActivity.this, LocationActivity.class);
+//        HomeActivity.this.startActivity(coursesIntent);
+//    }
 
 }
