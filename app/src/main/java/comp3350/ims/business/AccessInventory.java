@@ -25,6 +25,15 @@ public class AccessInventory {
 
 	}
 
+	public AccessInventory(boolean reset) {
+		dataAccess =  Services.getDataAccess(Main.dbName);
+
+		if(activeInventory == null || reset) {
+			activeInventory = dataAccess.getActiveInventory();
+		}
+
+	}
+
 	public Inventory getActiveInventory() {
 		return activeInventory;
 	}

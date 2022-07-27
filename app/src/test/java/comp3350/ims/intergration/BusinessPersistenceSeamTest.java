@@ -3,6 +3,7 @@ package comp3350.ims.intergration;
 import junit.framework.TestCase;
 
 import java.io.IOException;
+import java.io.InvalidClassException;
 
 import comp3350.ims.application.Main;
 import comp3350.ims.application.Services;
@@ -19,7 +20,7 @@ public class BusinessPersistenceSeamTest extends TestCase {
     public void testAccessInventorySimpleCases() {
         AccessInventory accessInventory ;
         ItemType itemType ;
-        accessInventory = new AccessInventory();
+        accessInventory = new AccessInventory(true);
 
 
         assertEquals(0,accessInventory.getActiveInventory().items.size());
@@ -77,7 +78,7 @@ public class BusinessPersistenceSeamTest extends TestCase {
     public void testAccessInventoryEdgeCases() {
         AccessInventory accessInventory ;
         ItemType itemType ;
-        accessInventory = new AccessInventory();
+        accessInventory = new AccessInventory(true);
 
         accessInventory.addCategory("Dairy");
         accessInventory.addLocation("ware house");
