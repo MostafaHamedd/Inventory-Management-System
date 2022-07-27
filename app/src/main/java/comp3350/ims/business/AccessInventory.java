@@ -102,7 +102,7 @@ public class AccessInventory {
 	}
 
 	public boolean removeLocation(String name){
-		System.out.println(name);
+
 		return dataAccess.removeLocation(name);
 	}
 	public boolean removeCategory (String name){
