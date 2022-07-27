@@ -138,4 +138,11 @@ public class ItemType implements Comparable<ItemType> {
         }
     }
 
+    public Boolean locationEquals(String location){
+        return this.location.equals(location);
+    }
+
+    public Boolean categoryEquals(String category){
+        return this.category.equals(category);
+    }
 }

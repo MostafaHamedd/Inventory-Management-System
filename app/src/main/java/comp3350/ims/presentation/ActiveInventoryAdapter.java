@@ -61,7 +61,7 @@ public class ActiveInventoryAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return filteredInventory.items.size();
+        return filteredInventory.getNumOfItems();
     }
 
     @Override
@@ -87,12 +87,12 @@ public class ActiveInventoryAdapter extends BaseAdapter {
             else{
                 ItemType item;
                 for(int i = 0; i < mainInventory.getNumOfItems(); i++){
-                    item = mainInventory.items.get(i);
+                    item = mainInventory.getItem(i);
                     if(((item.getName()).toLowerCase()).startsWith((constraint.toString()).toLowerCase())){
                         tempInventory.addItem(item);
                     }
                 }
-                results.count = tempInventory.items.size();
+                results.count = tempInventory.getNumOfItems();
                 results.values = tempInventory;
             }
 
@@ -105,7 +105,7 @@ public class ActiveInventoryAdapter extends BaseAdapter {
 
             if(results.count > 0) {
                 filteredInventory = (Inventory) results.values;
-                mainInventory.setFilteredItems(filteredInventory.items);
+                mainInventory.setFilteredItems(filteredInventory.getItems());
                 notifyDataSetChanged();
             } else {
                 notifyDataSetInvalidated();
