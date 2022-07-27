@@ -50,9 +50,9 @@
         android:layout_marginBottom="110dp"
         android:layout_toEndOf="@+id/categoryName"
         android:hint="Enter a category name"
-        android:textColorHint="#ffffff"
+        android:text=""
         android:textColor="#ffffff"
-        android:text="" />
+        android:textColorHint="#ffffff" />
 
 
 
