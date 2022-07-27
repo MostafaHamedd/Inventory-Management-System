@@ -20,7 +20,7 @@ public class Services
 		return dataAccessService;
 	}
 
-	public static void setAutoCommitOff() throws SQLException {
+	public static void setAutoCommitOff(){
 		if(dataAccessService instanceof DataAccessDatabase){
 			((DataAccessDatabase) dataAccessService).setAutoCommitOff();
 		}

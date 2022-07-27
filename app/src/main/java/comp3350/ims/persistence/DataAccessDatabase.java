@@ -386,7 +386,11 @@ public class DataAccessDatabase implements DataAccess{
         return result;
     }
 
-    public void setAutoCommitOff() throws SQLException {
-        c1.setAutoCommit(false);
+    public void setAutoCommitOff(){
+        try {
+            c1.setAutoCommit(false);
+        }catch(SQLException e){
+
+        }
     }
 }
