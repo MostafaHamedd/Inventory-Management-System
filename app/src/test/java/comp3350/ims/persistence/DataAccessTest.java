@@ -25,10 +25,16 @@ public class DataAccessTest extends TestCase {
         dataAccess.open("Stub");
     }
 
-    public static void dataAccessTest(DataAccess dataAccess) {
+    public static void dataAccessTestSimple(DataAccess dataAccess) {
         DataAccessTest dataAccessTest = new DataAccessTest("");
         dataAccessTest.dataAccess = dataAccess;
         dataAccessTest.testSimpleCases();
+    }
+
+    public static void dataAccessTestTypical(DataAccess dataAccess) {
+        DataAccessTest dataAccessTest = new DataAccessTest("");
+        dataAccessTest.dataAccess = dataAccess;
+        dataAccessTest.testTypicalCases();
     }
 
     public void tearDown() {
@@ -99,7 +105,32 @@ public class DataAccessTest extends TestCase {
         ArrayList<String> categoryList = new ArrayList<String>();
         ArrayList<String> locationList = new ArrayList<String>();
 
+        dataAccess.addCategory("Produce");
+        dataAccess.addLocation("Warehouse");
+        dataAccess.addLocation("Store");
+        ItemType itemType = new ItemType("Banana",0.25f,"Warehouse","7/27/2022","Produce");
+        dataAccess.insertItem(itemType);
+        dataAccess.addItem(new Item("Warehouse","7/27/2022"), itemType.getID());
+        dataAccess.addItem(new Item("Warehouse","7/27/2022"), itemType.getID());
+        dataAccess.addItem(new Item("Warehouse","7/27/2022"), itemType.getID());
+        dataAccess.addItem(new Item("Warehouse","7/27/2022"), itemType.getID());
+        dataAccess.addItem(new Item("Warehouse","7/27/2022"), itemType.getID());
+        inventory = dataAccess.getActiveInventory();
+        dataAccess.getLocationList(locationList);
+        dataAccess.getCategoryList(categoryList);
+        dataAccess.editItem(inventory.getItem(0).getItem(0),"Store");
+        dataAccess.removeItem(inventory.getItem(0).getItem(1).getId(),inventory.getItem(0).getID(),inventory.getItem(0).getQuantity());
 
+        categoryList.clear();
+        locationList.clear();
+        dataAccess.getCategoryList(categoryList);
+        dataAccess.getLocationList(locationList);
+        inventory = dataAccess.getActiveInventory();
+        assertEquals(1,inventory.getNumOfItems());
+        assertEquals(4,inventory.getItem(0).getQuantity());
+        assertEquals("Store",inventory.getItem(0).getItem(0).getLocation());
+        assertEquals(1,categoryList.size());
+        assertEquals(2,locationList.size());
     }
 
     public void testEdgeCases(){

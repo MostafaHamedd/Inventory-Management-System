@@ -20,7 +20,7 @@ public class DataAccessHSQLDBTest extends TestCase
 		super(arg0);
 	}
 
-	public void testDataAccess() throws SQLException {
+	public void testDataAccess(){
 		DataAccess dataAccess;
 		
 		Services.closeDataAccess();
@@ -30,9 +30,13 @@ public class DataAccessHSQLDBTest extends TestCase
 		Services.createDataAccess(dbName);
 		Services.setAutoCommitOff();
 		dataAccess = Services.getDataAccess(dbName);
-		
-		DataAccessTest.dataAccessTest(dataAccess);
+		DataAccessTest.dataAccessTestSimple(dataAccess);
+		Services.closeDataAccess();
 
+		Services.createDataAccess(dbName);
+		Services.setAutoCommitOff();
+		dataAccess = Services.getDataAccess(dbName);
+		DataAccessTest.dataAccessTestTypical(dataAccess);
 		Services.closeDataAccess();
 
 		System.out.println("Finished Integration test DataAccess (using default DB)");
