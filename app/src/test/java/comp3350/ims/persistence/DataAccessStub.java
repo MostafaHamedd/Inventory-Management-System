@@ -1,4 +1,4 @@
-package comp3350.ims.objects;
+package comp3350.ims.persistence;
 
 import java.util.ArrayList;
 
@@ -117,20 +117,16 @@ public class DataAccessStub implements DataAccess {
 	public boolean removeCategory(String name){
 		return categoryList.remove(name);
 	}
+
 	public boolean isCategory(String name){
 		return categoryList.contains(name) ;
 	}
+
 	public boolean isLocation(String name){
 		return locationList.contains(name) ;
 	}
 
-	@Override
 	public boolean removeItem(int itemID, int itemTypeID, int quantity) {
-		return false;
-	}
-
-
-	public boolean removeItem(Item item,ItemType itemType) {
 		return false;
 	}
 
