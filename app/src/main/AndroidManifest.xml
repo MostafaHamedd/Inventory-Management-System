@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".presentation.JobPosition"
+            android:exported="false" />
+        <activity
             android:name=".presentation.edit_dialog_inventory_row"
             android:exported="false" />
         <activity
@@ -29,7 +32,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="comp3350.ims.presentation.HomeActivity" />
-
         </activity>
         <activity
             android:name=".presentation.ActiveInventoryActivity"

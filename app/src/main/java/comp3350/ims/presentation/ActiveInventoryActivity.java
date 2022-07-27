@@ -146,6 +146,11 @@ public class ActiveInventoryActivity extends AppCompatActivity {
         adapterCategory.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinCategory.setAdapter(adapterCategory);
 
+        Spinner newCategory = (Spinner) inflator.findViewById(R.id.spinnerCategory);
+        ArrayAdapter<String> spinnerAdap =  (ArrayAdapter<String>) newCategory.getAdapter();
+        int spinnerPosition = spinnerAdap.getPosition(item.getCategory());
+        newCategory.setSelection(spinnerPosition);
+
         EditText newName = (EditText) inflator.findViewById(R.id.itemNameInputs);
         newName.setText(item.getName());
         newName.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -153,11 +158,6 @@ public class ActiveInventoryActivity extends AppCompatActivity {
         EditText newPrice = (EditText) inflator.findViewById(R.id.itemPriceInput);
         String priceText = ""+item.getPrice();
         newPrice.setText(priceText);
-
-        Spinner newCategory = (Spinner) inflator.findViewById(R.id.spinnerCategory);
-        ArrayAdapter<String> spinnerAdap =  (ArrayAdapter<String>) newCategory.getAdapter();
-        int spinnerPosition = spinnerAdap.getPosition(item.getCategory());
-        newCategory.setSelection(spinnerPosition);
 
         builder.setView(inflator);
 
@@ -173,6 +173,7 @@ public class ActiveInventoryActivity extends AppCompatActivity {
                 item.setPrice(savePrice);
                 item.setCategory(saveCategory);
                 adapter.notifyDataSetChanged();
+                accessInventory.editItemType(item);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -202,7 +203,7 @@ public class ActiveInventoryActivity extends AppCompatActivity {
             if (activeInventory.getItem(position).needsRefill()) {
                 itemQuantity.setTextColor(Color.parseColor("RED"));
             } else {
-                itemQuantity.setTextColor(Color.parseColor("BLACK"));
+                itemQuantity.setTextColor(Color.parseColor("WHITE"));
             }
 
             updateDataChanges();

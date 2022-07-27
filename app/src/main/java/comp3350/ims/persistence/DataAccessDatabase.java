@@ -47,13 +47,20 @@ public class DataAccessDatabase implements DataAccess{
             processSQLError(e);
         }
         System.out.println("Opened " +dbType +" database " +dbPath);
-
-        Inventory inventory = getActiveInventory();
-
     }
 
     public void close(){
-
+        try
+        {	// commit all changes to the database
+            cmdString = "shutdown compact";
+            rs2 = st1.executeQuery(cmdString);
+            c1.close();
+        }
+        catch (Exception e)
+        {
+            processSQLError(e);
+        }
+        System.out.println("Closed " +dbType +" database " +dbName);
     }
 
     public Inventory getActiveInventory() {
@@ -298,11 +305,46 @@ public class DataAccessDatabase implements DataAccess{
     }
 
     public boolean editItemType(ItemType itemType) {
-        return false;
-    }
+            boolean flag = false;
+            result = null;
+            try
+            {
+                String values = " NAME='" + itemType.getName()
+                        + "', PRICE='" + itemType.getPrice()
+                        + "', CATEGORYNAME='" + itemType.getCategory()
+                        + "', LOCATIONNAME='" + itemType.getLocation()
+                        + "'";
+                cmdString = "Update ITEMTYPE Set "+values+" where ID=" + itemType.getID();
+                System.out.println(cmdString);
+                updateCount = st2.executeUpdate(cmdString);
+                result = checkWarning(st2,updateCount);
+                flag = true;
+            }
+            catch (Exception e)
+            {
+                result = processSQLError(e);
+            }
+            return flag;
+        }
 
     public boolean editItem(Item item) {
-        return false;
+        boolean flag = false;
+        result = null;
+        try
+        {
+            String values = " LOCATIONNAME='" + item.getLocation()
+                    + "'";
+            cmdString = "Update ITEM Set "+values+" where ID=" + item.getId();
+            System.out.println(cmdString);
+            updateCount = st2.executeUpdate(cmdString);
+            result = checkWarning(st2,updateCount);
+            flag = true;
+        }
+        catch (Exception e)
+        {
+            result = processSQLError(e);
+        }
+        return flag;
     }
 
     public String processSQLError(Exception e)

@@ -114,6 +114,8 @@ public class AccessInventory {
 	public boolean isLocation(String name){
 		return dataAccess.isLocation(name) ;
 	}
+	public boolean editItemType(ItemType itemType){ return dataAccess.editItemType(itemType);}
+	public boolean editItem(Item item){ return dataAccess.editItem(item); }
 
 
 	}
