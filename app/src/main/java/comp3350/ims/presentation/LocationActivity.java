@@ -1,11 +1,9 @@
 package comp3350.ims.presentation;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,7 +36,7 @@ public class LocationActivity extends Activity {
 
         accessInventory.getLocations(locationList);
 
-        adapter = new ArrayAdapter<String>(this, R.layout.activtylist_view, locationList);
+        adapter = new ArrayAdapter<String>(this, R.layout.activity_list_item, R.id.text_view, locationList);
          listView = (ListView) findViewById(R.id.LocationList);
         listView.setAdapter(adapter);
         createButton = (Button) findViewById(R.id.btnCreateLocation);

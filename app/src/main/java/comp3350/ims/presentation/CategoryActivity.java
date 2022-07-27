@@ -1,11 +1,10 @@
 package comp3350.ims.presentation;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,7 +37,7 @@ public class CategoryActivity extends Activity {
 
         accessInventory.getCategories(categoryList);
 
-        adapter = new ArrayAdapter < String > (this, R.layout.activtylist_view, categoryList);
+        adapter = new ArrayAdapter < String > (this, R.layout.activity_list_item,R.id.text_view, categoryList);
          listView = (ListView) findViewById(R.id.categoryList);
         listView.setAdapter(adapter);
         createButton = (Button) findViewById(R.id.btnCreateCategory);
