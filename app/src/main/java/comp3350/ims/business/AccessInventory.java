@@ -101,9 +101,8 @@ public class AccessInventory {
 
 	}
 		public void removeIndividualItem ( int index){
-
-			if (index >= 0) {
-				ItemType itemType = getItem(currentItemPosition);
+			ItemType itemType = getItem(currentItemPosition);
+			if (index >= 0 && itemType.getQuantity() > 0) {
 				Item item = itemType.getItem(index);
 				itemType.removeItem(index);
 				dataAccess.removeItem(item.getId(),itemType.getID(),itemType.getQuantity());
