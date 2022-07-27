@@ -69,11 +69,11 @@ public class ItemCreateActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 String nameString = itemName.getText().toString();
                 String priceString = itemPrice.getText().toString();
                 String quantityString = itemQuantity.getText().toString();
-                String categoryString = itemCategory.getSelectedItem().toString();
-                String locationString = itemLocation.getSelectedItem().toString();
+
                 ItemType newItem;
 
                 if (TextUtils.isEmpty(nameString)) {
@@ -87,14 +87,23 @@ public class ItemCreateActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(getApplicationContext(), "Error: Please enter a valid quantity", Toast.LENGTH_SHORT);
                     toast.show();
                 } else {
-                    float price = Float.parseFloat(priceString);
-                    int quantity = Integer.parseInt(quantityString);
-                     boolean isInserted = accessInventory.insertItemType(nameString, price, quantity, locationString, thisDate, categoryString);
-                    if(isInserted){
-                        Toast.makeText(ItemCreateActivity.this, "New Item Created", Toast.LENGTH_SHORT).show();
-                    } else{
-                        Toast.makeText(ItemCreateActivity.this, "Item already exists", Toast.LENGTH_SHORT).show();
+                    try{
+                        String categoryString = itemCategory.getSelectedItem().toString();
+                        String locationString = itemLocation.getSelectedItem().toString();
+                        float price = Float.parseFloat(priceString);
+                        int quantity = Integer.parseInt(quantityString);
+                        boolean isInserted = accessInventory.insertItemType(nameString, price, quantity, locationString, thisDate, categoryString);
+                        if(isInserted){
+                            Toast.makeText(ItemCreateActivity.this, "New Item Created", Toast.LENGTH_SHORT).show();
+                        } else{
+                            Toast.makeText(ItemCreateActivity.this, "Item already exists", Toast.LENGTH_SHORT).show();
+                        }
                     }
+                    catch(Exception e){
+                        Toast.makeText(ItemCreateActivity.this, "Please select a location and a category", Toast.LENGTH_SHORT).show();
+                    }
+
+
 
                 }
 
