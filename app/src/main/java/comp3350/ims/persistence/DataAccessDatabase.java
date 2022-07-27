@@ -306,21 +306,23 @@ public class DataAccessDatabase implements DataAccess{
         return flag;
     }
 
-    public boolean editItemType(ItemType itemType) {
+    public boolean editItemType(ItemType itemType,String name,float price,String category) {
             boolean flag = false;
             result = null;
             try
             {
-                String values = " NAME='" + itemType.getName()
-                        + "', PRICE='" + itemType.getPrice()
-                        + "', CATEGORYNAME='" + itemType.getCategory()
-                        + "', LOCATIONNAME='" + itemType.getLocation()
+                String values = " NAME='" +name
+                        + "', PRICE='" + price
+                        + "', CATEGORYNAME='" + category
                         + "'";
                 cmdString = "Update ITEMTYPE Set "+values+" where ID=" + itemType.getID();
                 System.out.println(cmdString);
                 updateCount = st2.executeUpdate(cmdString);
                 result = checkWarning(st2,updateCount);
                 flag = true;
+                itemType.setName(name);
+                itemType.setPrice(price);
+                itemType.setCategory(category);
             }
             catch (Exception e)
             {
@@ -329,18 +331,19 @@ public class DataAccessDatabase implements DataAccess{
             return flag;
         }
 
-    public boolean editItem(Item item) {
+    public boolean editItem(Item item,String location) {
         boolean flag = false;
         result = null;
         try
         {
-            String values = " LOCATIONNAME='" + item.getLocation()
+            String values = " LOCATIONNAME='" + location
                     + "'";
             cmdString = "Update ITEM Set "+values+" where ID=" + item.getId();
             System.out.println(cmdString);
             updateCount = st2.executeUpdate(cmdString);
             result = checkWarning(st2,updateCount);
             flag = true;
+            item.setLocation(location);
         }
         catch (Exception e)
         {

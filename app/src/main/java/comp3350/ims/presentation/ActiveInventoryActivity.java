@@ -111,11 +111,9 @@ public class ActiveInventoryActivity extends AppCompatActivity {
                 savePrice = Float.parseFloat(newPrice.getText().toString());
                 saveCategory = spinCategory.getSelectedItem().toString();
 
-                item.setName(saveName);
-                item.setPrice(savePrice);
-                item.setCategory(saveCategory);
+
                 adapter.notifyDataSetChanged();
-                accessInventory.editItemType(item);
+                accessInventory.editItemType(item,saveName,savePrice,saveCategory);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

@@ -117,8 +117,10 @@ public class AccessInventory {
 		System.out.println(name);
 		return dataAccess.isLocation(name) ;
 	}
-	public boolean editItemType(ItemType itemType){ return dataAccess.editItemType(itemType);}
-	public boolean editItem(Item item){ return dataAccess.editItem(item); }
+	public boolean editItemType(ItemType itemType,String name,float price,String category){
+		return dataAccess.editItemType(itemType,name,price,category);
+	}
+	public boolean editItem(Item item,String location){ return dataAccess.editItem(item,location); }
 	public static boolean isIsManager() {
 		return isManager;
 	}

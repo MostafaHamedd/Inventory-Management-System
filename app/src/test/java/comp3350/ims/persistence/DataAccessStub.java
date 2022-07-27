@@ -130,13 +130,14 @@ public class DataAccessStub implements DataAccess {
 		return false;
 	}
 
-	public boolean editItemType(ItemType itemType) {
+	public boolean editItemType(ItemType itemType, String name, float price, String category) {
 		return false;
 	}
 
-	public boolean editItem(Item item) {
+	public boolean editItem(Item item, String location) {
 		return false;
 	}
+
 
 
 }
