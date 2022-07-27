@@ -145,7 +145,7 @@ public class ActiveInventoryActivity extends AppCompatActivity {
             if (activeInventory.getItem(position).needsRefill()) {
                 itemQuantity.setTextColor(Color.parseColor("RED"));
             } else {
-                itemQuantity.setTextColor(Color.parseColor("BLACK"));
+                itemQuantity.setTextColor(Color.parseColor("WHITE"));
             }
 
             updateDataChanges();
