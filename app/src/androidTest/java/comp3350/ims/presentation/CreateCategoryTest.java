@@ -122,7 +122,7 @@ public class CreateCategoryTest {
                                         0),
                                 2),
                         isDisplayed()));
-        editText3.perform(replaceText("Warehouse"), closeSoftKeyboard());
+        editText3.perform(replaceText("Pantry"), closeSoftKeyboard());
 
         ViewInteraction button6 = onView(
                 allOf(withId(R.id.btnCreateCategory), withText("Create"),
@@ -135,7 +135,7 @@ public class CreateCategoryTest {
         button6.perform(click());
 
         ViewInteraction textView2 = onView(
-                allOf(withId(R.id.text_view), withText("Warehouse"),
+                allOf(withId(R.id.text_view), withText("Pantry"),
                         withParent(withParent(withId(R.id.categoryList))),
                         isDisplayed()));
         textView2.check(matches(isDisplayed()));
@@ -158,7 +158,7 @@ public class CreateCategoryTest {
                                         0),
                                 2),
                         isDisplayed()));
-        editText5.perform(replaceText("Floor"), closeSoftKeyboard());
+        editText5.perform(replaceText("Electronics"), closeSoftKeyboard());
 
         ViewInteraction button7 = onView(
                 allOf(withId(R.id.btnCreateCategory), withText("Create"),
@@ -171,10 +171,10 @@ public class CreateCategoryTest {
         button7.perform(click());
 
         ViewInteraction textView3 = onView(
-                allOf(withId(R.id.text_view), withText("Floor"),
+                allOf(withId(R.id.text_view), withText("Electronics"),
                         withParent(withParent(withId(R.id.categoryList))),
                         isDisplayed()));
-        textView3.check(matches(withText("Floor")));
+        textView3.check(matches(withText("Electronics")));
 
         ViewInteraction editText6 = onView(
                 allOf(withId(R.id.txtCategoryName),
@@ -204,7 +204,7 @@ public class CreateCategoryTest {
                                         0),
                                 2),
                         isDisplayed()));
-        editText8.perform(replaceText("Floor"), closeSoftKeyboard());
+        editText8.perform(replaceText("Electronics"), closeSoftKeyboard());
 
         ViewInteraction button8 = onView(
                 allOf(withId(R.id.btnDeleteCategory), withText("Delete"),
@@ -234,7 +234,7 @@ public class CreateCategoryTest {
                                         0),
                                 2),
                         isDisplayed()));
-        editText10.perform(replaceText("Warehouse"), closeSoftKeyboard());
+        editText10.perform(replaceText("Pantry"), closeSoftKeyboard());
 
         ViewInteraction button9 = onView(
                 allOf(withId(R.id.btnCreateCategory), withText("Create"),
@@ -247,7 +247,7 @@ public class CreateCategoryTest {
         button9.perform(click());
 
         ViewInteraction editText11 = onView(
-                allOf(withId(R.id.txtCategoryName), withText("Warehouse"),
+                allOf(withId(R.id.txtCategoryName), withText("Pantry"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -257,7 +257,7 @@ public class CreateCategoryTest {
         editText11.perform(click());
 
         ViewInteraction editText12 = onView(
-                allOf(withId(R.id.txtCategoryName), withText("Warehouse"),
+                allOf(withId(R.id.txtCategoryName), withText("Pantry"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -291,7 +291,7 @@ public class CreateCategoryTest {
         appCompatSpinner.perform(click());
 
         ViewInteraction textView4 = onView(
-                allOf(withId(android.R.id.text1), withText("Warehouse"),
+                allOf(withId(android.R.id.text1), withText("Pantry"),
                         withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class))),
                         isDisplayed()));
         textView4.check(matches(isDisplayed()));
