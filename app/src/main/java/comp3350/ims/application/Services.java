@@ -1,5 +1,7 @@
 package comp3350.ims.application;
 
+import java.sql.SQLException;
+
 import comp3350.ims.persistence.DataAccess;
 import comp3350.ims.persistence.DataAccessDatabase;
 
@@ -16,6 +18,12 @@ public class Services
 			dataAccessService.open(Main.getDBPathName());
 		}
 		return dataAccessService;
+	}
+
+	public static void setAutoCommitOff() throws SQLException {
+		if(dataAccessService instanceof DataAccessDatabase){
+			((DataAccessDatabase) dataAccessService).setAutoCommitOff();
+		}
 	}
 
 	public static DataAccess createDataAccess(DataAccess alternateDataAccessService)

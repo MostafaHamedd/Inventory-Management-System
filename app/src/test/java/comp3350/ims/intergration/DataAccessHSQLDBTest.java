@@ -2,10 +2,13 @@ package comp3350.ims.intergration;
 
 import junit.framework.TestCase;
 
+import java.sql.SQLException;
+
 import comp3350.ims.application.Main;
 import comp3350.ims.application.Services;
-import comp3350.ims.objects.DataAccessTest;
+
 import comp3350.ims.persistence.DataAccess;
+import comp3350.ims.persistence.DataAccessTest;
 
 
 public class DataAccessHSQLDBTest extends TestCase
@@ -17,8 +20,7 @@ public class DataAccessHSQLDBTest extends TestCase
 		super(arg0);
 	}
 
-	public void testDataAccess()
-	{
+	public void testDataAccess() throws SQLException {
 		DataAccess dataAccess;
 		
 		Services.closeDataAccess();
@@ -26,6 +28,7 @@ public class DataAccessHSQLDBTest extends TestCase
 		System.out.println("\nStarting Integration test DataAccess (using default DB)");
 
 		Services.createDataAccess(dbName);
+		Services.setAutoCommitOff();
 		dataAccess = Services.getDataAccess(dbName);
 		
 		DataAccessTest.dataAccessTest(dataAccess);

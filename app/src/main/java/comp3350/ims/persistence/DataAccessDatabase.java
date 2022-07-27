@@ -1,5 +1,6 @@
 package comp3350.ims.persistence;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Statement;
 import java.sql.Connection;
@@ -383,5 +384,9 @@ public class DataAccessDatabase implements DataAccess{
             result = "Tuple not inserted correctly.";
         }
         return result;
+    }
+
+    public void setAutoCommitOff() throws SQLException {
+        c1.setAutoCommit(false);
     }
 }

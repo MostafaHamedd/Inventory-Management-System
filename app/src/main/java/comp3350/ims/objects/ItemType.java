@@ -89,7 +89,11 @@ public class ItemType implements Comparable<ItemType> {
     public void setPrice(float p) { this.price = p; }
 
     public Item getItem(int index) {
-        return items.get(index);
+        if(!items.isEmpty()) {
+            return items.get(index);
+        }else{
+            return null;
+        }
     }
 
     public int getQuantity() {
