@@ -11,6 +11,7 @@ import comp3350.ims.persistence.DataAccess;
 
 
 public class AccessInventory {
+	private static boolean isManager = false;
 	private  DataAccess dataAccess;
 	private static Inventory activeInventory;
 	private static int currentItemPosition;
@@ -92,6 +93,7 @@ public class AccessInventory {
 	}
 
 	public boolean removeLocation(String name){
+		System.out.println(name);
 		return dataAccess.removeLocation(name);
 	}
 	public boolean removeCategory (String name){
@@ -112,10 +114,17 @@ public class AccessInventory {
 		return dataAccess.isCategory(name) ;
 	}
 	public boolean isLocation(String name){
+		System.out.println(name);
 		return dataAccess.isLocation(name) ;
 	}
 	public boolean editItemType(ItemType itemType){ return dataAccess.editItemType(itemType);}
 	public boolean editItem(Item item){ return dataAccess.editItem(item); }
-
-
+	public static boolean isIsManager() {
+		return isManager;
 	}
+
+	public static void setIsManager(boolean isManager) {
+		AccessInventory.isManager = isManager;
+	}
+
+}

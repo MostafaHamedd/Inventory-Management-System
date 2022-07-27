@@ -234,7 +234,8 @@ public class DataAccessDatabase implements DataAccess{
         boolean flag = false ;
         try{
             cmdString = "Delete from LOCATION where NAME= " +"\'"+name+"\'" ;
-            rs2 = st1.executeQuery(cmdString);
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
             flag = true ;
         }
         catch(Exception e){
@@ -247,7 +248,8 @@ public class DataAccessDatabase implements DataAccess{
         boolean flag = false;
         try {
             cmdString = "Delete from CATEGORY where NAME= " + "\'" + name + "\'";
-            rs2 = st1.executeQuery(cmdString);
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
             flag = true;
 
         } catch (Exception e) {

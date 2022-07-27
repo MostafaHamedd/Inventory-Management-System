@@ -19,13 +19,10 @@ public class DataAccessTest extends TestCase {
     public void setUp() {
         System.out.println("\nStarting Persistence test DataAccess (using stub)");
 
-        // Use the following statements to run with the stub database:
         dataAccess = new DataAccessStub();
         dataAccess.open("Stub");
-
     }
 
-    // this code will run the tests on the given DAO
     public static void dataAccessTest(DataAccess dataAccess) {
         DataAccessTest dataAccessTest = new DataAccessTest("");
         dataAccessTest.dataAccess = dataAccess;

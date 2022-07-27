@@ -24,8 +24,7 @@ public class DataAccessHSQLDBTest extends TestCase
 		Services.closeDataAccess();
 
 		System.out.println("\nStarting Integration test DataAccess (using default DB)");
-		
-		// Use the following two statements to run with the real database
+
 		Services.createDataAccess(dbName);
 		dataAccess = Services.getDataAccess(dbName);
 		

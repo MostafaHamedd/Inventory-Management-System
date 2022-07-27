@@ -230,8 +230,13 @@ public class ActiveInventoryActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
-        Intent coursesIntent = new Intent(this, HomeActivity.class);
-        this.startActivity(coursesIntent);
+        if(AccessInventory.isIsManager()){
+            Intent coursesIntent = new Intent(this, JobPosition.class);
+            this.startActivity(coursesIntent);
+        }else {
+            Intent coursesIntent = new Intent(this, HomeActivity.class);
+            this.startActivity(coursesIntent);
+        }
     }
 
 
