@@ -98,7 +98,7 @@ public class HomeActivity extends Activity {
             Main.setDBPathName(dataDirectory.toString() + "/" + Main.dbName);
 
         } catch (IOException ioe) {
-            System.out.println("THISNOWORKL");
+            System.out.println("Error");
         }
     }
 
