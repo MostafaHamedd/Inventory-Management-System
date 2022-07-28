@@ -93,7 +93,6 @@ public class DataAccessStub implements DataAccess {
 	}
 
 	public boolean removeItem(int itemID, int itemTypeID, int quantity) {
-		activeInventory.getItem(itemTypeID).removeItem(itemID);
 		return true;
 	}
 
