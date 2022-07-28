@@ -178,7 +178,6 @@ public class DataAccessDatabase implements DataAccess{
 
 
     public String getLocationList(ArrayList < String > locationList){
-        String category;
         String myName = EOF;
 
         try
