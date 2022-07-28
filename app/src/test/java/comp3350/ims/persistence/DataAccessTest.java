@@ -109,6 +109,7 @@ public class DataAccessTest extends TestCase {
         assertEquals("Warehouse2",inventory.getItem(0).getItem(0).getLocation());
 
         dataAccess.removeItem(firstMilk.getId(),milk.getID(),milk.getQuantity());
+        milk.removeItem(0);
         inventory = dataAccess.getActiveInventory();
         assertNull(inventory.getItem(0).getItem(0));
     }
@@ -123,15 +124,17 @@ public class DataAccessTest extends TestCase {
         dataAccess.addLocation("Store");
         ItemType itemType = new ItemType("Banana",0.25f,"Warehouse","7/27/2022","Produce");
         dataAccess.insertItem(itemType);
-        dataAccess.addItem(new Item("Warehouse","7/27/2022"), itemType.getID());
-        dataAccess.addItem(new Item("Warehouse","7/27/2022"), itemType.getID());
-        dataAccess.addItem(new Item("Warehouse","7/27/2022"), itemType.getID());
-        dataAccess.addItem(new Item("Warehouse","7/27/2022"), itemType.getID());
-        dataAccess.addItem(new Item("Warehouse","7/27/2022"), itemType.getID());
+        for(int i = 0; i < 5; i++) {
+            Item item = new Item("Warehouse", "7/27/2022");
+            itemType.addItem(item);
+            dataAccess.addItem(item,itemType.getID());
+        }
         inventory = dataAccess.getActiveInventory();
         dataAccess.getLocationList(locationList);
         dataAccess.getCategoryList(categoryList);
+        itemType.getItem(0).setLocation("Store");
         dataAccess.editItem(inventory.getItem(0).getItem(0),"Store");
+        itemType.removeItem(1);
         dataAccess.removeItem(inventory.getItem(0).getItem(1).getId(),inventory.getItem(0).getID(),inventory.getItem(0).getQuantity());
 
         categoryList.clear();
@@ -178,6 +181,7 @@ public class DataAccessTest extends TestCase {
         assertEquals(1,locationList.size());
 
         Item item = new Item(itemType.getLocation(), itemType.getDate());
+        itemType.addItem(item);
         dataAccess.addItem(item,itemType.getID());
 
         inventory = dataAccess.getActiveInventory();
