@@ -14,7 +14,7 @@ public class ItemTypeTest extends TestCase {
 
         ItemType item = new ItemType("Oreo", (float) 3.5, "Warehouse","12/03/2022","Ambient");
 
-        assertEquals(item.getQuantity(),15);
+        assertEquals(item.getQuantity(),0);
         assertEquals(item.getDate(),"12/03/2022");
         assertEquals(item.getLocation(),"Warehouse" );
         assertEquals(item.getPrice(),(float) 3.5);

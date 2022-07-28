@@ -72,15 +72,17 @@ public class CategoryActivity extends Activity {
     }
     public void buttonsDeleteCategoryOnClick(View v) {
         String name = userText.getText().toString().trim();
-        if (!TextUtils.isEmpty(name) && accessInventory.removeCategory(name)) {
-
+        if(!accessInventory.isCategory(name)){
+            Toast toast = Toast.makeText(getApplicationContext(), "Category was not found!", Toast.LENGTH_SHORT);
+            toast.show();
+        } else if (!TextUtils.isEmpty(name) && accessInventory.removeCategory(name)) {
             categoryList.remove(name);
             adapter.notifyDataSetChanged();
             userText.setText("");
             Toast toast = Toast.makeText(getApplicationContext(), "Category Deleted", Toast.LENGTH_SHORT);
             toast.show();
         } else {
-            Toast toast = Toast.makeText(getApplicationContext(), "Location was not found!", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), "Category was not found!", Toast.LENGTH_SHORT);
             toast.show();
         }
     }

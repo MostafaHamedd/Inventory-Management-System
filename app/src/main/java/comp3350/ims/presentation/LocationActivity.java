@@ -25,7 +25,7 @@ public class LocationActivity extends Activity {
     private AccessInventory accessInventory;
     ListView listView;
     Button deleteButton ;
-    int selectedIndex ;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +72,10 @@ public class LocationActivity extends Activity {
 
     public void buttonsDeleteLocationOnClick(View v) {
         String name = userText.getText().toString().trim();
-        if (!TextUtils.isEmpty(name) && accessInventory.removeLocation(name)) {
+        if(!accessInventory.isLocation(name)) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Location was not found", Toast.LENGTH_SHORT);
+            toast.show();
+        }else if (!TextUtils.isEmpty(name) && accessInventory.removeLocation(name)) {
                 locationList.remove(name);
                 adapter.notifyDataSetChanged();
                 userText.setText("");

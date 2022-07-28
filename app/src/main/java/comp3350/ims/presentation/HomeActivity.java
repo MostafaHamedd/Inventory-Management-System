@@ -2,6 +2,8 @@ package comp3350.ims.presentation;
 
 import comp3350.ims.R;
 import comp3350.ims.application.Main;
+import comp3350.ims.business.AccessInventory;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -50,11 +52,13 @@ public class HomeActivity extends Activity {
     }
 
     public void buttonManagerOnClick(View v) {
+        AccessInventory.setIsManager(true);
         Intent jobPositionActivityIntent = new Intent(HomeActivity.this, JobPosition.class);
         HomeActivity.this.startActivity(jobPositionActivityIntent);
     }
 
     public void buttonEmployeeOnClick(View v) {
+        AccessInventory.setIsManager(false);
         Intent coursesIntent = new Intent(HomeActivity.this, ActiveInventoryActivity.class);
         HomeActivity.this.startActivity(coursesIntent);
     }
@@ -94,7 +98,7 @@ public class HomeActivity extends Activity {
             Main.setDBPathName(dataDirectory.toString() + "/" + Main.dbName);
 
         } catch (IOException ioe) {
-            System.out.println("THISNOWORKL");
+            System.out.println("Error");
         }
     }
 
@@ -124,6 +128,7 @@ public class HomeActivity extends Activity {
             }
         }
     }
+
 
 //    public void buttonLocationOnClick(View v) {
 //        Intent coursesIntent = new Intent(HomeActivity.this, LocationActivity.class);

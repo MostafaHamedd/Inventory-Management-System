@@ -11,7 +11,6 @@ import comp3350.ims.persistence.DataAccess;
 
 
 public class AccessInventory {
-
 	private  DataAccess dataAccess;
 	private static Inventory activeInventory;
 	private static int currentItemPosition;
@@ -99,17 +98,16 @@ public class AccessInventory {
 		return dataAccess.removeCategory(name);
 
 	}
+		public void removeIndividualItem ( int index){
 
-	public void removeIndividualItem ( int index){
+			if (index >= 0) {
+				ItemType itemType = getItem(currentItemPosition);
+				Item item = itemType.getItem(index);
+				itemType.removeItem(index);
+				dataAccess.removeItem(item.getId(),itemType.getID(),itemType.getQuantity());
+			}
 
-		if (index >= 0) {
-			ItemType itemType = getItem(currentItemPosition);
-			Item item = itemType.getItem(index);
-			itemType.removeItem(index);
-			dataAccess.removeItem(item.getId(),itemType.getID(),itemType.getQuantity());
 		}
-	}
-
 	public boolean isCategory(String name){
 		return dataAccess.isCategory(name) ;
 	}
@@ -120,6 +118,4 @@ public class AccessInventory {
 	public boolean editItem(Item item){ return dataAccess.editItem(item); }
 
 
-	//Methods for testing purposes
-
-}
+	}

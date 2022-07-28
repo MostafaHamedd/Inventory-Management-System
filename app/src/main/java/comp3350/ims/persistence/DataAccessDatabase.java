@@ -1,5 +1,6 @@
 package comp3350.ims.persistence;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Statement;
 import java.sql.Connection;
@@ -123,7 +124,6 @@ public class DataAccessDatabase implements DataAccess{
                     + "', '" + item.getDate()
                     + "', '" + item.getQuantity()
                     + "'";
-            System.out.println(values);
             cmdString = "Insert into ITEMTYPE " + " Values(" + values + ")";
             updateCount = st1.executeUpdate(cmdString);
         }catch(Exception e){
@@ -165,7 +165,7 @@ public class DataAccessDatabase implements DataAccess{
                     + ", '" + item.getDate()
                     + "', '" + item.getLocation()
                     + "'";
-            System.out.println(values);
+
             cmdString = "Insert into ITEM " + " Values(" + values + ")";
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1,updateCount);
@@ -178,7 +178,6 @@ public class DataAccessDatabase implements DataAccess{
 
 
     public String getLocationList(ArrayList < String > locationList){
-        String category;
         String myName = EOF;
 
         try
@@ -234,7 +233,9 @@ public class DataAccessDatabase implements DataAccess{
         boolean flag = false ;
         try{
             cmdString = "Delete from LOCATION where NAME= " +"\'"+name+"\'" ;
-            rs2 = st1.executeQuery(cmdString);
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
+            flag = true ;
             flag = true ;
         }
         catch(Exception e){
@@ -247,7 +248,8 @@ public class DataAccessDatabase implements DataAccess{
         boolean flag = false;
         try {
             cmdString = "Delete from CATEGORY where NAME= " + "\'" + name + "\'";
-            rs2 = st1.executeQuery(cmdString);
+            updateCount = st1.executeUpdate(cmdString);
+            result = checkWarning(st1, updateCount);
             flag = true;
 
         } catch (Exception e) {
@@ -291,7 +293,6 @@ public class DataAccessDatabase implements DataAccess{
             cmdString = "Delete from ITEM where ID=" +itemID;
             updateCount = st1.executeUpdate(cmdString);
             result = checkWarning(st1, updateCount);
-            System.out.println(result);
             cmdString = "Update ITEMTYPE Set QUANTITY="+quantity+" where ID=" + itemTypeID;
             updateCount = st2.executeUpdate(cmdString);
             result = checkWarning(st2,updateCount);
@@ -304,21 +305,23 @@ public class DataAccessDatabase implements DataAccess{
         return flag;
     }
 
-    public boolean editItemType(ItemType itemType) {
+    public boolean editItemType(ItemType itemType,String name,float price,String category) {
             boolean flag = false;
             result = null;
             try
             {
-                String values = " NAME='" + itemType.getName()
-                        + "', PRICE='" + itemType.getPrice()
-                        + "', CATEGORYNAME='" + itemType.getCategory()
-                        + "', LOCATIONNAME='" + itemType.getLocation()
+                String values = " NAME='" +name
+                        + "', PRICE='" + price
+                        + "', CATEGORYNAME='" + category
                         + "'";
                 cmdString = "Update ITEMTYPE Set "+values+" where ID=" + itemType.getID();
-                System.out.println(cmdString);
+
                 updateCount = st2.executeUpdate(cmdString);
                 result = checkWarning(st2,updateCount);
                 flag = true;
+                itemType.setName(name);
+                itemType.setPrice(price);
+                itemType.setCategory(category);
             }
             catch (Exception e)
             {
@@ -327,18 +330,19 @@ public class DataAccessDatabase implements DataAccess{
             return flag;
         }
 
-    public boolean editItem(Item item) {
+    public boolean editItem(Item item,String location) {
         boolean flag = false;
         result = null;
         try
         {
-            String values = " LOCATIONNAME='" + item.getLocation()
+            String values = " LOCATIONNAME='" + location
                     + "'";
             cmdString = "Update ITEM Set "+values+" where ID=" + item.getId();
-            System.out.println(cmdString);
+
             updateCount = st2.executeUpdate(cmdString);
             result = checkWarning(st2,updateCount);
             flag = true;
+            item.setLocation(location);
         }
         catch (Exception e)
         {
@@ -378,5 +382,13 @@ public class DataAccessDatabase implements DataAccess{
             result = "Tuple not inserted correctly.";
         }
         return result;
+    }
+
+    public void setAutoCommitOff(){
+        try {
+            c1.setAutoCommit(false);
+        }catch(SQLException e){
+
+        }
     }
 }

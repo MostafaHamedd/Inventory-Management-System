@@ -84,9 +84,9 @@ public class ViewAllActivity extends Activity {
             public void onClick(DialogInterface dialog, int which) {
                 saveLocation = newLocation.getSelectedItem().toString();
 
-                item.setLocation(saveLocation);
+
                 adapter.notifyDataSetChanged();
-                accessInventory.editItem(item);
+                accessInventory.editItem(item,saveLocation);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
