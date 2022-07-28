@@ -31,35 +31,6 @@ public class DataAccessStub implements DataAccess {
 		categoryList = new ArrayList < > ();
 		locationList= new ArrayList < > ();
 
-		locationList.add("WareHouse");
-		locationList.add("Sales-floor");
-
-		categoryList.add("Dairy");
-		categoryList.add("Fruits & vegetables");
-		categoryList.add("Meat");
-		categoryList.add("Pantry");
-		categoryList.add("Seafood");
-		categoryList.add("Drinks");
-		categoryList.add("Frozen");
-		categoryList.add("Bakery");
-
-		item = new ItemType("Milk", 5.55f,  "Ware House", "12/06/2022", "Dairy");
-		activeInventory.addItem(item);
-		item = new ItemType("Cream", 3.00f,  "Ware House", "12/06/2022", "Dairy");
-		activeInventory.addItem(item);
-		item = new ItemType("Oreo", 4.00f,  "Ware House", "12/06/2022", "Pantry");
-		activeInventory.addItem(item);
-		item = new ItemType("Ice Cream", 8.5f,  "Ware House", "12/06/2022", "Frozen");
-		activeInventory.addItem(item);
-		item = new ItemType("Butter", 3.5f,  "Ware House", "12/06/2022", "Dairy");
-		activeInventory.addItem(item);
-		item = new ItemType("Bread", 3.5f,  "Ware House", "12/06/2022", "Bakery");
-		activeInventory.addItem(item);
-		item = new ItemType("Coke 12 pk", 8f,  "Ware House", "12/06/2022", "Drinks");
-		activeInventory.addItem(item);
-		item = new ItemType("Cheese", 6.5f,  "Ware House", "12/06/2022", "Dairy");
-		activeInventory.addItem(item);
-
 		System.out.println("Opened " + dbType + " database " + dbName);
 	}
 
@@ -67,14 +38,9 @@ public class DataAccessStub implements DataAccess {
 		System.out.println("Closed " + dbType + " database " + dbName);
 	}
 
-	@Override
 	public void addItem(Item item, int itemTypeID) {
 
-	}
 
-
-	public void addItem(Item item, ItemType itemType) {
-		activeInventory.addItem(itemType);
 	}
 
 	public Inventory getActiveInventory() {
@@ -127,15 +93,20 @@ public class DataAccessStub implements DataAccess {
 	}
 
 	public boolean removeItem(int itemID, int itemTypeID, int quantity) {
-		return false;
+		activeInventory.getItem(itemTypeID).removeItem(itemID);
+		return true;
 	}
 
 	public boolean editItemType(ItemType itemType, String name, float price, String category) {
-		return false;
+		itemType.setName(name);
+		itemType.setCategory(category);
+		itemType.setPrice(price);
+		return true;
 	}
 
 	public boolean editItem(Item item, String location) {
-		return false;
+		item.setLocation(location);
+		return true;
 	}
 
 

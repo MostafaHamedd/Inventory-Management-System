@@ -39,6 +39,18 @@ public class DataAccessHSQLDBTest extends TestCase
 		DataAccessTest.dataAccessTestTypical(dataAccess);
 		Services.closeDataAccess();
 
+		Services.createDataAccess(dbName);
+		Services.setAutoCommitOff();
+		dataAccess = Services.getDataAccess(dbName);
+		DataAccessTest.dataAccessTestInvalid(dataAccess);
+		Services.closeDataAccess();
+
+		Services.createDataAccess(dbName);
+		Services.setAutoCommitOff();
+		dataAccess = Services.getDataAccess(dbName);
+		DataAccessTest.dataAccessTestEdge(dataAccess);
+		Services.closeDataAccess();
+
 		System.out.println("Finished Integration test DataAccess (using default DB)");
 	}
 }

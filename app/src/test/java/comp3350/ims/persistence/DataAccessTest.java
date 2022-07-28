@@ -99,6 +99,7 @@ public class DataAccessTest extends TestCase {
 
         //Item Tests
         Item firstMilk = new Item(milk.getLocation(),milk.getDate());
+        milk.addItem(firstMilk);
         dataAccess.addItem(firstMilk,milk.getID());
         inventory = dataAccess.getActiveInventory();
         assertEquals(firstMilk.getId(),inventory.getItem(0).getItem(0).getId());

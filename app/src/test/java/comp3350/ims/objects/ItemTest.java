@@ -14,7 +14,7 @@ public class ItemTest extends TestCase {
     public void testTypicaCases(){
         Item test = new Item();
         assertEquals(test.getDate(),"");
-        assertEquals(test.getId(),"");
+        assertEquals(test.getId(),0);
         assertEquals(test.getLocation(),"");
 
         Item test2 = new Item("location","date");

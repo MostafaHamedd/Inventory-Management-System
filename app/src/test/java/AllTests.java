@@ -23,9 +23,9 @@ public class AllTests extends TestCase
 
     private static void tObjects()
     {
-        suite.addTestSuite(InventoryTest.class);
-        suite.addTestSuite(ItemTest.class);
-        suite.addTestSuite(ItemTypeTest.class);
+//        suite.addTestSuite(InventoryTest.class);
+//        suite.addTestSuite(ItemTest.class);
+//        suite.addTestSuite(ItemTypeTest.class);
         suite.addTestSuite(DataAccessTest.class);
     }
 }
