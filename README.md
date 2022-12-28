@@ -1,5 +1,5 @@
-# IMS
-Inventory Management System app:
+# IMS (Inventory Management System app)
+
 
 ## Ineventroy Managment app Helps you to manage/customize your inventory on your own way.
 
