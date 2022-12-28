@@ -3,7 +3,7 @@
 
 ## Here are some screenshots of the app in action:
 
-### Home page: https://user-images.githubusercontent.com/88238579/191371013-0834a50b-21f7-47d5-9f3e-3ddc3c8f3944.png
+![(HOME PAGE)](https://user-images.githubusercontent.com/88238579/191371013-0834a50b-21f7-47d5-9f3e-3ddc3c8f3944.png)
 ### Main page: https://user-images.githubusercontent.com/88238579/191372419-64f74f30-b164-4a0b-865f-847cb158395f.png
 ### Create category: https://user-images.githubusercontent.com/88238579/191372853-a00dd3b5-fe8f-463c-8582-1aee59fdcba7.png
 ### Create location: https://user-images.githubusercontent.com/88238579/191372883-509f4a83-9d88-43a7-95f6-7dcdda58e62c.png
