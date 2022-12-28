@@ -13,7 +13,7 @@
 ![(Create location)](https://user-images.githubusercontent.com/88238579/191372883-509f4a83-9d88-43a7-95f6-7dcdda58e62c.png)
 ### Create Item: You are now ready to create a new item.
 ![(Create item)](https://user-images.githubusercontent.com/88238579/191372914-7625b75a-2473-43bd-8649-200042670724.png)
-Inventory: You can now head to the inventory and manage the items you've created.
+### Inventory: You can now head to the inventory and manage the items you've created.
 ![(Inventory)](https://user-images.githubusercontent.com/88238579/191372968-13aee034-9ada-4112-b032-c9d557cd7ada.png)
 ### Edit Item: You can edit the items you've created.
 ![(Edit item)](https://user-images.github)
